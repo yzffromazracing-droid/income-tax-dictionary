@@ -49,6 +49,13 @@ CATEGORIES = [
         "description": "社会政策その他の見地から所得税を課さないこととされている所得（非課税所得）。",
         "overview": "2011",
         "pages": [],  # 表から抽出する
+        # No.2011 の表の「区分」ごとのタブ（pages の代わりに group で振り分ける）
+        "subtabs": [
+            {"id": "hk-rishi", "name": "利子・配当所得関係", "group": "利子・配当所得関係", "pages": []},
+            {"id": "hk-kyuyo", "name": "給与所得・公的年金関係", "group": "給与所得・公的年金関係", "pages": []},
+            {"id": "hk-joto", "name": "譲渡（山林）所得関係", "group": "譲渡(山林)所得関係", "pages": []},
+            {"id": "hk-sonota", "name": "その他", "group": "その他", "pages": []},
+        ],
     },
     {
         "id": "shotoku-kubun",
@@ -496,6 +503,7 @@ def search_items(result):
     sub_of = {code: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for code in t["pages"]}
     sub_ids = [t["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])]
     assert len(sub_ids) == len(set(sub_ids)), "下のタブの id が重複しています"
+    sub_of_group = {t["group"]: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) if "group" in t}
 
     def page_item(cat_id, page, kind):
         return {
@@ -511,7 +519,7 @@ def search_items(result):
         for i, e in enumerate(cat["entries"], 1):
             if cat["id"] == "hikazei":
                 items.append({
-                    "id": f"hk{i}", "cat": cat["id"], "kind": "hikazei",
+                    "id": f"hk{i}", "cat": cat["id"], "sub": sub_of_group[e["group"]], "kind": "hikazei",
                     "term": e["term"], "yomi": e["yomi"], "alias": e["alias"], "group": e["group"],
                     "basis": e["legal_basis"], "asOf": cat["overview"]["as_of"],
                     "url": e["source_url"], "summary": "",
