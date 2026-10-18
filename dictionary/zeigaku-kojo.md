@@ -210,6 +210,14 @@
 
 - **読み**: はいとうしょとくがあるときはいとうこうじょ
 - **要旨**: 剰余金の配当などの配当所得があるときには、一定の方法で計算した金額の税額控除を受けることができます。これを配当控除といいます。
+- **具体例**:
+  - 日本国内に本店のある法人から受ける剰余金の配当・利益の配当（総合課税を選んだもの）（[No.1250](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)）
+  - 証券投資信託の収益の分配金（控除率は剰余金の配当等の半分）（[No.1250](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)）
+- **当たらない例**:
+  - 外国法人から受ける配当等 → 対象外（[No.1250](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)）
+  - 投資法人から受ける配当等 → 対象外（[No.1250](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)）
+  - 基金利息 → 対象外（[No.1250](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)）
+  - 確定申告不要制度や申告分離課税を選んだ配当 → 対象外（[No.1250](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -323,6 +331,14 @@
 
 - **読み**: きょじゅうしゃにかかるがいこくぜいがくこうじょ
 - **要旨**: 居住者が、その年において外国の法令により所得税に相当する租税（以下「外国所得税」といいます。）を納付することとなる場合には、次の算式で計算した控除限度額を限度として、その外国所得税額をその年分の所得税額から差し引くことができます。
+- **具体例**:
+  - 外国の法令により納めた所得税に相当する税（外国所得税）（[No.1240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm)）
+  - 超過所得税など、所得の特定の部分にかかる外国の税（[No.1240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm)）
+  - 外国の所得税の附加税（[No.1240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm)）
+- **当たらない例**:
+  - 納めた後に任意に還付を請求できる税 → 外国所得税に含まれない（[No.1240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm)）
+  - NISA口座内の上場株式等の配当等に課される外国所得税 → 対象外（[No.1240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm)）
+  - 非居住者だった期間に生じた所得に課された外国所得税 → 対象外（[No.1240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -632,6 +648,11 @@
 
 - **読み**: ひきょじゅうしゃにかかるがいこくぜいがくこうじょ
 - **要旨**: 国内に恒久的施設を有する非居住者が、その恒久的施設に帰属する所得（恒久的施設帰属所得）につきその年において外国の法令により所得税に相当する租税（以下「外国所得税」といいます。）を納付することとなる場合には、次の算式で計算した控除限度額を限度として、その外国所得税額をその年分の所得税額等から差し引くことができます。
+- **具体例**:
+  - 国内の恒久的施設に帰属する所得について、外国で納めた所得税に相当する税（[No.1241](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1241.htm)）
+  - 国外にある資産の運用・保有により生じた所得に外国で課された税（[No.1241](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1241.htm)）
+- **当たらない例**:
+  - 非居住者の居住地国で、利子・配当などに源泉徴収に類する方法で課される税 → 対象外（[No.1241](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1241.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -879,6 +900,12 @@
 
 - **読み**: しけんけんきゅうをおこなったばあいのしょとくぜいがくのとくべつこうじょ
 - **要旨**: 青色申告者のその年分の事業所得の金額の計算上必要経費に算入される試験研究費の額がある場合に、その試験研究費の額の一定割合の金額をその年分の総所得金額に係る所得税額から控除することを認めるものです。
+- **具体例**:
+  - 製品の製造や技術の改良・考案・発明の試験研究に使った原材料費・人件費・経費（[No.1270](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm)）
+  - 他の者に試験研究を委託するために支払う費用（[No.1270](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm)）
+  - 国の試験研究機関や大学などと共同で行う試験研究の費用（特別試験研究費）（[No.1270](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm)）
+- **当たらない例**:
+  - 白色申告者の試験研究費 → 対象外（青色申告者のみ）（[No.1270](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1212,6 +1239,11 @@ ii…総合課税の長期譲渡所得の2分の1の金額と一時所得の2分
 
 - **読み**: ちほうかつりょくこうじょうちいきとうにおいてこようしゃのかずがぞうかしたばあいのしょとくぜいがくのとくべつこうじょ
 - **要旨**: この制度は、青色申告書を提出する事業者である個人が、令和8年3月31日までに拡充型事業の計画または移転型事業の計画の認定を受けた地域再生法に定める認定事業者であって、適用年の12月31日における特定業務施設の雇用者の数が適用年の前年の12月31日における特定業務施設の雇用者の数に比して2人以上増加していることなどについて証明がされるなど一定の要件を満たす場合、税額控除が認められます。
+- **具体例**:
+  - 地域再生法の拡充型・移転型事業の計画の認定を受けた青色申告の事業者で、雇用者の数が増えた場合（[No.1284](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1284.htm)）
+- **当たらない例**:
+  - 親族など個人の特殊関係者（雇用者の数に含まれない） → 対象外（[No.1284](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1284.htm)）
+  - 適用年・前年に事業主都合で離職した雇用者がいる場合 → 対象外（[No.1284](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1284.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1389,6 +1421,11 @@ B　 20万円×地方事業所基準雇用者数から新規雇用者総数を�
 
 - **読み**: きゅうよとうのひきあげおよびせつびとうしをおこなったばあいとうのぜいがくこうじょ
 - **要旨**: この制度は、青色申告書を提出する個人が令和元年から令和3年までの各年において、国内雇用者に対して支払う給与等支給額が適用年の前年の給与等支払額に比して一定割合以上増加した場合に、税額控除が認められます。
+- **具体例**:
+  - 令和元年〜3年に国内雇用者への給与等支給額を増やした青色申告の個人（旧制度）（[No.1286](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1286.htm)）
+  - 中小事業者で、継続雇用者給与等支給額が前年より1.5%以上増えた場合（[No.1286](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1286.htm)）
+- **当たらない例**:
+  - 親族など個人と特殊の関係のある人への給与（国内雇用者に含まれない） → 対象外（[No.1286](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1286.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1510,6 +1547,10 @@ B　 20万円×地方事業所基準雇用者数から新規雇用者総数を�
 
 - **読み**: きゅうよとうのしきゅうがくがぞうかしたばあいのしょとくぜいがくのとくべつこうじょ
 - **要旨**: この制度は、青色申告書を提出する個人が令和4年から令和9年までの各年において、国内雇用者に対して支払う給与等支給額が適用年の前年の給与等支給額に比して一定割合以上増加した場合に、税額控除が認められます。
+- **具体例**:
+  - 令和4年〜9年に国内雇用者への給与等支給額を増やした青色申告の個人（[No.1288](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1288.htm)）
+  - 中小事業者（従業員1,000人以下）で、雇用者給与等支給額が前年より2.5%以上増えた場合（[No.1288](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1288.htm)）
+  - あわせて教育訓練費を前年より10%以上増やした場合（控除率の上乗せ）（[No.1288](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1288.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1751,6 +1792,13 @@ B　 20万円×地方事業所基準雇用者数から新規雇用者総数を�
 
 - **読み**: まいほーむのしゅとくとうとしょとくぜいのぜいがくこうじょ
 - **要旨**: 個人が住宅ローン等を利用してマイホームの新築、取得または増改築等（以下「取得等」といいます。）をした場合で、一定の要件を満たすときは、その取得等に係る住宅ローン等の年末残高の合計額等を基として計算した金額を、居住の用に供した年分以後の各年分の所得税額から控除する「住宅借入金等特別控除」または「特定増改築等住宅借入金等特別控除」の適用を受けることができます。
+- **具体例**:
+  - 住宅ローン等でマイホームを新築・取得・増改築等した場合（住宅借入金等特別控除）（[No.1210](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm)）
+  - 住宅ローン等を使わずに既存住宅の耐震改修をした場合（[No.1210](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm)）
+  - 住宅ローン等を使わずにバリアフリー・省エネ・多世帯同居・子育て対応の改修工事をした場合（[No.1210](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm)）
+  - 認定住宅等を新築等した場合（[No.1210](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm)）
+- **当たらない例**:
+  - 令和4年以後に住宅ローン等で特定の増改築等をした場合の特定増改築等住宅借入金等特別控除 → 受けられない（[No.1210](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1790,6 +1838,10 @@ B　 20万円×地方事業所基準雇用者数から新規雇用者総数を�
 
 - **読み**: せいとうとうきふきんとくべつこうじょせいど
 - **要旨**: 個人が平成7年1月1日から令和11年12月31日までに支払った「政党等に対する寄附金」（注）については、支払った年分の所得控除としての寄附金控除の適用を受けるか、または次の「計算方法・計算式」にある「特別控除額」について税額控除の適用を受けるか、いずれか有利な方を選択することができます。
+- **具体例**:
+  - 政党とその支部、政治資金団体などへの寄附金（[No.1260](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm)）
+  - 寄附金控除（所得控除）とどちらか有利な方を選べる（[No.1260](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm)）
+  - 控除額は（寄附金の合計額−2千円）×30%（100円未満切捨て）（[No.1260](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1846,6 +1898,11 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: にんていえぬぴーおーほうじんにきふをしたとき
 - **要旨**: 個人が認定NPO法人等（注1）に対して一定の寄附金（特定非営利活動に係る事業に関連する寄附で、寄附をした人に特別の利益が及ぶと認められるものおよび令和3年4月1日以降に支出する出資に関する業務に充てられることが明らかなものを除きます。）を、その認定等の有効期間内に支払った場合には、支払った年分の所得控除として寄附金控除の適用を受けるか、または次の算式で計算した特別控除額について税額控除の適用を受けるか、いずれか有利な方を選択することができます。
+- **具体例**:
+  - 認定NPO法人等への、特定非営利活動に係る事業に関連する寄附金（[No.1263](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm)）
+  - 控除額は（寄附金の合計額−2千円）×40%（100円未満切捨て）（[No.1263](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm)）
+- **当たらない例**:
+  - 寄附をした人に特別の利益が及ぶと認められる寄附 → 対象外（[No.1263](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1898,6 +1955,12 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: こうえきしゃだんほうじんとうにきふをしたとき
 - **要旨**: 個人が支払った特定寄附金のうち、次の（1）から（3）までに掲げる法人等（以下「公益社団法人等」といいます。）に対する寄附金については、支払った年分の所得控除として寄附金控除の適用を受けるか、または次の算式で計算した金額（その年分の所得税額の25パーセント相当額を限度とします。）について税額控除（以下「公益社団法人等寄附金特別控除」といいます。）の適用を受けるか、いずれかを選択することができます。
+- **具体例**:
+  - 公益社団法人・公益財団法人への寄附金（[No.1266](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm)）
+  - 学校法人への寄附金（[No.1266](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm)）
+  - 社会福祉法人・更生保護法人への寄附金（[No.1266](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm)）
+  - 国立大学法人・公立大学法人などへの、学生の修学支援の事業に充てられる寄附金（[No.1266](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm)）
+  - 国立大学法人などへの、学生や不安定な雇用状態にある研究者の研究助成に充てられる寄附金（[No.1266](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 

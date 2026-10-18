@@ -31,7 +31,7 @@
 - 所得区分・所得控除・税額控除は、各タックスアンサーのページを1語として収録し、要旨・根拠法令等・本文（表を含む）を載せています。
 - 検索ページは `scripts/search_template.html` をもとに生成されます。
 - 読みは [data/yomi.tsv](data/yomi.tsv)（表記と読みの対応表）から作ります。用語名はこの表で区切って読みを組み立て、読めない漢字が残るとビルドがエラーで止まるので、その語を表に追加してください。本文を読みで検索できるのも、この表にある語に限られます。
-- 所得区分の各所得と所得控除の各控除には具体例（当たらない例を含む）を載せています。例は [data/shotoku_examples.json](data/shotoku_examples.json)・[data/kojo_examples.json](data/kojo_examples.json) に、出典（タックスアンサーまたは所得税基本通達）とその本文の文言を添えて書いてあり、ビルド時に文言が出典の本文に実在するかを照合します（見つからなければエラーで止まります）。
+- 所得区分の各所得、所得控除・税額控除の各控除には具体例（当たらない例を含む）を載せています。例は [data/shotoku_examples.json](data/shotoku_examples.json)・[data/kojo_examples.json](data/kojo_examples.json)・[data/zeigaku_examples.json](data/zeigaku_examples.json) に、出典（タックスアンサーまたは所得税基本通達）とその本文の文言を添えて書いてあり、ビルド時に文言が出典の本文に実在するかを照合します（見つからなければエラーで止まります）。
 - 青色申告には、対象者・申請期限・帳簿・特典などの要点（[data/aoiro_points.json](data/aoiro_points.json)、出典の文言を照合）と、関連する所得税基本通達（法第52条・57条・143条〜151条関係）の一覧を付けています。
 - 通達は `scripts/tsutatsu.py` で取得します。基本通達は「2-1」などの通達番号ごとに1語、個別通達は通達ごとに1語です（申告所得税・源泉所得税・譲渡・山林所得・租税特別措置法の各関係。5ページを超える通達はページごとに分けています。一部改正通達は含みません）。
 - 機械処理用のデータは [data/income_tax_dictionary.json](data/income_tax_dictionary.json) にあります。

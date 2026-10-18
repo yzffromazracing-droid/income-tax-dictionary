@@ -37,6 +37,7 @@ YOMI = DATA / "yomi.tsv"
 EXAMPLES = DATA / "shotoku_examples.json"
 POINTS = DATA / "aoiro_points.json"
 KOJO_EXAMPLES = DATA / "kojo_examples.json"
+ZEIGAKU_EXAMPLES = DATA / "zeigaku_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 TSUTATSU_TAB = {
@@ -617,6 +618,8 @@ def main():
             add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon)
         if cat["id"] == "shotoku-kojo":
             add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon, KOJO_EXAMPLES)
+        if cat["id"] == "zeigaku-kojo":
+            add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon, ZEIGAKU_EXAMPLES)
         if cat["id"] == "aoiro":
             add_examples([overview], {p["code"]: p for p in [overview] + entries}, kihon, POINTS, "points")
         if cat.get("related_tsutatsu"):
