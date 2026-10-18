@@ -861,6 +861,9 @@
   - 山林を伐採して譲渡したことによる所得（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
   - 山林を立木のままで譲渡したことによる所得（[所基通32-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm)）
   - 伐採した山林を自己の家屋の建築など家事のために消費した場合（消費時の時価が収入金額）（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
+- **課税方法**:
+  - 山林所得は、他の所得と合計せず、異なった計算方法で税額を計算して確定申告する → 分離課税（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
+  - 税額は5分5乗方式（課税山林所得金額の5分の1に税率をかけ、それを5倍）で計算する → 分離課税（5分5乗方式）（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
 - **当たらない例**:
   - 取得してから5年以内に譲渡した山林 → 事業所得又は雑所得（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
   - 山林とともに譲渡した、その山林が生えている土地 → 山林所得以外（土地は譲渡所得）（[所基通32-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm)）

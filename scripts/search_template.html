@@ -526,6 +526,14 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
         (searching ? '<span class="n' + (t.n ? "" : " zero") + '">' + t.n + "</span>" : "") + "</button>";
     }).join("");
   }
+  // 項目が属する下のタブ（複数のことがある）
+  function subsOf(it) { return it.subs && it.subs.length ? it.subs : (it.sub ? [it.sub] : []); }
+  // 一覧の見出し：「退職所得（分離課税）」のように下のタブと3段目のタブの名前
+  function groupLabel(it) {
+    var sub = state.sub !== "all" ? state.sub : it.sub;
+    var kids = state.sub2 !== "all" ? [state.sub2] : (it.sub2 || []).filter(function (k) { return SUB2[k].sub === sub; });
+    return SUB[sub].name + (kids.length ? "（" + kids.map(function (k) { return SUB2[k].name; }).join("・") + "）" : "");
+  }
   function setSub2(id) {
     var refocus = subtabs2El.contains(document.activeElement);
     state.sub2 = id; state.limit = 60; state.current = null;
@@ -566,13 +574,18 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     state.autoTab = false;
     renderTabs(counts);
     var inCat = r.all.filter(function (x) { return x.it.cat === state.cat; }), subCounts = {};
-    inCat.forEach(function (x) { if (x.it.sub) subCounts[x.it.sub] = (subCounts[x.it.sub] || 0) + 1; });
+    inCat.forEach(function (x) { subsOf(x.it).forEach(function (k) { subCounts[k] = (subCounts[k] || 0) + 1; }); });
     renderSubtabs(state.cat, subCounts, inCat.length, toks.length > 0);
-    var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return x.it.sub === state.sub; }), sub2Counts = {};
+    var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return subsOf(x.it).indexOf(state.sub) >= 0; }), sub2Counts = {};
     inSub.forEach(function (x) { (x.it.sub2 || []).forEach(function (k) { sub2Counts[k] = (sub2Counts[k] || 0) + 1; }); });
     if (!SUB2[state.sub2] || SUB2[state.sub2].sub !== state.sub) state.sub2 = "all";
     renderSubtabs2(sub2Counts, inSub.length, toks.length > 0);
     var shown = state.sub2 === "all" ? inSub : inSub.filter(function (x) { return (x.it.sub2 || []).indexOf(state.sub2) >= 0; });
+    // 複数のタブに属するページ（No.2240 など）は、そのタブ本来のページの後ろに並べる
+    if (!toks.length && state.sub !== "all") {
+      shown = shown.filter(function (x) { return x.it.sub === state.sub; })
+        .concat(shown.filter(function (x) { return x.it.sub !== state.sub; }));
+    }
     setHeaderH();
     $("status").textContent = toks.length ? ITEMS.length + "語中 " + r.all.length + "件が一致" : ITEMS.length + "語を収録";
     document.body.classList.toggle("searching", toks.length > 0);
@@ -608,9 +621,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (pos >= state.limit) state.limit = pos + 20;
     var html = "", lastGroup = null, list = shown.slice(0, state.limit);
     list.forEach(function (x) {
-      var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && SUB[it.sub].name +
-        (state.sub2 !== "all" ? "（" + SUB2[state.sub2].name + "）" :
-         (it.sub2 || []).length ? "（" + it.sub2.map(function (k) { return SUB2[k].name; }).join("・") + "）" : "")) || "用語");
+      var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && groupLabel(it)) || "用語");
       if (!toks.length && group !== lastGroup) {
         html += '<div class="group-label">' + esc(group) + "</div>";
         lastGroup = group;
@@ -635,7 +646,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function jumpTo(id) {
     var it = BY_ID[id];
     if (!it) return;
-    if (it.cat !== state.cat || (it.sub && state.sub !== "all" && it.sub !== state.sub)) {
+    if (it.cat !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
       qEl.value = ""; state.q = "";
       state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
     }

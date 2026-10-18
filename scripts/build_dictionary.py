@@ -88,7 +88,10 @@ CATEGORIES = [
              "children": [
                  {"id": "taishoku-bunri", "name": "分離課税", "pages": ["1420", "2240"]},
              ]},
-            {"id": "sanrin", "name": "山林所得", "pages": ["1480"]},
+            {"id": "sanrin", "name": "山林所得", "pages": ["1480", "2240"],
+             "children": [
+                 {"id": "sanrin-bunri", "name": "分離課税", "pages": ["1480", "2240"]},
+             ]},
             {"id": "joto", "name": "譲渡所得", "pages": ["1460", "1440", "1463"],
              # 譲渡所得の下のタブ（課税方法）
              "children": [
@@ -554,7 +557,12 @@ def demote(md):
 def search_items(result):
     """検索ページ用に全カテゴリの項目を1つのリストにする。"""
     items = []
-    sub_of = {code: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for code in t["pages"]}
+    # 1つのページが複数の下のタブに属することがある（No.2240 は退職所得と山林所得の両方）
+    subs_of = {}
+    for cat in CATEGORIES:
+        for t in cat.get("subtabs", []):
+            for code in t["pages"]:
+                subs_of.setdefault(code, []).append(t["id"])
     # 3段目のタブは、1つのページが複数のタブに属することがある（No.1310 は総合課税と分離課税の両方）
     sub2_of = {}
     for cat in CATEGORIES:
@@ -569,7 +577,7 @@ def search_items(result):
 
     def page_item(cat_id, page, kind):
         return {
-            "id": f"no{page['code']}", "cat": cat_id, "sub": sub_of.get(page["code"], ""),
+            "id": f"no{page['code']}", "cat": cat_id, "sub": subs_of.get(page["code"], [""])[0], "subs": subs_of.get(page["code"], []),
             "sub2": sub2_of.get(page["code"], []), "kind": kind,
             "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],

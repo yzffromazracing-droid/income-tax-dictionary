@@ -913,6 +913,20 @@
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm",
               "other": "山林所得以外（土地は譲渡所得）",
               "tax": ""
+            },
+            {
+              "text": "山林所得は、他の所得と合計せず、異なった計算方法で税額を計算して確定申告する",
+              "source": "No.1480",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm",
+              "other": "",
+              "tax": "分離課税"
+            },
+            {
+              "text": "税額は5分5乗方式（課税山林所得金額の5分の1に税率をかけ、それを5倍）で計算する",
+              "source": "No.1480",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm",
+              "other": "",
+              "tax": "分離課税（5分5乗方式）"
             }
           ]
         },
