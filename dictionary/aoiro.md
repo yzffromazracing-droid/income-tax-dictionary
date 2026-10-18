@@ -151,6 +151,14 @@
 
 - **読み**: あおいろしんこくとくべつこうじょ
 - **要旨**: 青色申告者に対しては種々の特典がありますが、その1つに所得金額から55万円（一定の要件を満たす場合は65万円）または10万円を控除するという青色申告特別控除があります。
+- **具体例**:
+  - 複式簿記で記帳し、貸借対照表・損益計算書を確定申告書に添付して期限内に申告した不動産所得・事業所得の青色申告者：55万円（[No.2072](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm)）
+  - 55万円の要件に加えて、仕訳帳・総勘定元帳を電子帳簿保存している人：65万円（[No.2072](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm)）
+  - 55万円の要件に加えて、確定申告書・貸借対照表・損益計算書等をe-Taxで期限内に送信した人：65万円（[No.2072](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm)）
+  - 55万円・65万円の要件に当たらない青色申告者（簡易な記帳の人など）：10万円（[No.2072](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm)）
+- **当たらない例**:
+  - 現金主義による所得計算の特例を選んでいる人の55万円控除 → 受けられない（[No.2072](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm)）
+  - 確定申告書等をイメージデータで送信した場合の65万円控除（e-Taxの要件） → 要件を満たさない（[No.2072](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -235,6 +243,14 @@
 
 - **読み**: あおいろじぎょうせんじゅうしゃきゅうよとじぎょうせんじゅうしゃこうじょ
 - **要旨**: 納税者と生計を一にしている配偶者その他の親族が納税者の経営する不動産所得、事業所得または山林所得を生ずべき事業に従事している場合、納税者がこれらの人に給与を支払うことがあります。これらの給与は原則として必要経費にはなりませんが、次のような特別の取扱いが認められています。
+- **具体例**:
+  - 青色申告者と生計を一にし、12月31日現在で15歳以上の配偶者や親族で、年6か月を超えて事業に専ら従事している人への給与（[No.2075](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm)）
+  - 「青色事業専従者給与に関する届出書」に記載した方法・金額の範囲内で支払った、労務の対価として相当な給与（[No.2075](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm)）
+  - 白色申告者の事業専従者：配偶者は86万円、その他の親族は1人50万円が上限の事業専従者控除（[No.2075](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm)）
+- **当たらない例**:
+  - 労務の対価として過大な部分の給与 → 必要経費にならない（[No.2075](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm)）
+  - 事業として行われていない不動産貸付けの場合の専従者給与・事業専従者控除 → 適用なし（[No.2075](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm)）
+  - 青色事業専従者として給与を受ける人を同一生計配偶者や扶養親族にすること → できない（[No.2075](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -326,6 +342,14 @@
 
 - **読み**: あらたにじぎょうをはじめたときのとどけでなど
 - **要旨**: 個人が新たに事業を開始した場合には、所得税および源泉所得税ならびに消費税に関する各種届出書等の提出が必要となります。
+- **具体例**:
+  - 事業を始めたとき：個人事業の開廃業等届出書（事業開始の年分の確定申告期限まで）（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
+  - 青色申告をしたいとき：所得税の青色申告承認申請書（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
+  - 家族に給与を払って必要経費にしたいとき：青色事業専従者給与に関する届出書（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
+  - 棚卸資産の評価方法・減価償却資産の償却方法を選ぶとき：所得税の棚卸資産の評価方法・減価償却資産の償却方法の届出書（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
+  - 従業員に給与を払うとき：給与支払事務所等の開設・移転・廃止届出書（開設から1か月以内）（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
+  - 給与の支給人員が常時10人未満で、源泉所得税の納付を年2回にまとめたいとき：源泉所得税の納期の特例の承認に関する申請書（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
+  - インボイス（適格請求書）を発行したいとき：適格請求書発行事業者の登録申請書（[No.2090](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2090.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -382,6 +406,13 @@
 
 - **読み**: しろいろしんこくもののきちょうちょうぼとうほぞんせいど
 - **要旨**: 我が国の所得税は、納税者が自ら税法に従って所得金額と税額を正しく計算し納税するという申告納税制度を採っています。
+- **具体例**:
+  - 白色申告でも記帳が必要な人：不動産所得・事業所得・山林所得のある人（[No.2080](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2080.htm)）
+  - 日々の合計金額だけをまとめて記載するなど、簡易な方法での記帳（[No.2080](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2080.htm)）
+  - 収入金額や必要経費を記載した帳簿（法定帳簿）は7年間保存（[No.2080](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2080.htm)）
+  - 請求書・納品書・送り状・領収書などの書類は5年間保存（[No.2080](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2080.htm)）
+  - 前々年分の業務に係る雑所得の収入金額が300万円を超える人も、現金預金取引等関係書類を5年間保存（[No.2080](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2080.htm)）
+  - 確定申告書には収支内訳書など、総収入金額や必要経費の内容を記載した書類を添付（[No.2080](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2080.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 

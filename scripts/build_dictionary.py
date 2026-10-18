@@ -38,6 +38,7 @@ EXAMPLES = DATA / "shotoku_examples.json"
 POINTS = DATA / "aoiro_points.json"
 KOJO_EXAMPLES = DATA / "kojo_examples.json"
 ZEIGAKU_EXAMPLES = DATA / "zeigaku_examples.json"
+AOIRO_EXAMPLES = DATA / "aoiro_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 TSUTATSU_TAB = {
@@ -671,6 +672,7 @@ def main():
             add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon, ZEIGAKU_EXAMPLES)
         if cat["id"] == "aoiro":
             add_examples([overview], {p["code"]: p for p in [overview] + entries}, kihon, POINTS, "points")
+            add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon, AOIRO_EXAMPLES)
         if cat.get("related_tsutatsu"):
             overview["related_tsutatsu"] = [
                 {"id": f"tk{i}", "term": e["term"], "url": e["source_url"]}
