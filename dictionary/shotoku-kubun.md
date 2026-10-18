@@ -108,6 +108,7 @@
 - [事業所得の課税のしくみ(事業所得)](#no1350) — No.1350
 - [給与所得](#no1400) — No.1400
 - [退職金を受け取ったとき(退職所得)](#no1420) — No.1420
+- [申告分離課税制度](#no2240) — No.2240
 - [山林所得](#no1480) — No.1480
 - [譲渡所得(土地、建物及び株式等以外の資産を譲渡したとき)](#no1460) — No.1460
 - [譲渡所得(土地や建物を譲渡したとき)](#no1440) — No.1440
@@ -720,6 +721,10 @@
   - 労働基準法第20条により支払われる解雇予告手当（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
   - 賃金の支払の確保等に関する法律第7条により退職した労働者が弁済を受ける未払賃金（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
   - 使用人から役員になった人に、使用人であった期間の退職手当等として支払われる給与（[所基通30-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/04.htm)）
+- **課税方法**:
+  - 退職所得は、原則として他の所得と分離して所得税額を計算する → 分離課税（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 「退職所得の受給に関する申告書」を提出した人は、支払の際の源泉徴収で済み、原則として確定申告は不要 → 分離課税（源泉徴収で完結）（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 「退職所得の受給に関する申告書」を提出していない人は、支払金額の20.42%が源泉徴収され、確定申告で精算する → 分離課税（確定申告で精算）（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
 - **当たらない例**:
   - 退職の際に支払われても、引き続き勤務している人の賞与等と同性質のもの → 退職所得以外（[所基通30-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/04.htm)）
 
@@ -813,6 +818,38 @@
 - **根拠法令等**: 所法30、31、120～122、199、201～203、所令72、措法29の4、所基通30-3、30-5、復興財確法28、防衛財確法5の26
 - **基準**: 令和8年4月1日現在法令等
 - **タックスアンサー**: [No.1420 退職金を受け取ったとき(退職所得)](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)
+
+<a id="no2240"></a>
+
+### 申告分離課税制度
+
+- **読み**: しんこくぶんりかぜいせいど
+- **要旨**: 所得税は、各種の所得金額を合計し総所得金額を求め、これについて税額を計算して確定申告によりその税金を納める総合課税が原則です。
+- **具体例**:
+  - 退職所得（[No.2240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2240.htm)）
+  - 山林所得、土地建物等の譲渡による譲渡所得、株式等の譲渡所得等（[No.2240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2240.htm)）
+  - 特定公社債等の利子等に係る利子所得、一定の先物取引による雑所得等（[No.2240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2240.htm)）
+  - 他の所得と合計せず分離して税額を計算し、確定申告で納める（源泉分離課税とは異なる）（[No.2240](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2240.htm)）
+
+<details><summary>詳細（タックスアンサー本文）</summary>
+
+#### 概要
+
+所得税は、各種の所得金額を合計し総所得金額を求め、これについて税額を計算して[確定申告](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2020.htm)によりその税金を納める[総合課税](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2220.htm)が原則です。
+
+しかし、一定の所得については、他の所得金額と合計せず、分離して税額を計算し（この点が総合課税制度と異なります。）、確定申告によりその税額を納めることとなります（この点が源泉分離課税制度と異なります。）。これが申告分離課税制度です。
+
+##### 申告分離課税制度の例
+
+申告分離課税制度となっている例としては、[退職所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)、[山林所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)、[土地建物等の譲渡による譲渡所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm)、[株式等の譲渡所得等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)、[平成28年1月1日以後に支払を受けるべき特定公社債等の利子等に係る利子所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)および[一定の先物取引による雑所得等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm)があります。
+
+また、[平成28年1月1日以後に支払を受けるべき特定上場株式等の配当等に係る配当所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm)については、総合課税に代えて、申告分離課税を選択することができます。
+
+</details>
+
+- **根拠法令等**: 所法21、22、89、措法8の4、31、32、37の10、37の11、41の14
+- **基準**: 令和8年4月1日現在法令等
+- **タックスアンサー**: [No.2240 申告分離課税制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2240.htm)
 
 <a id="no1480"></a>
 
