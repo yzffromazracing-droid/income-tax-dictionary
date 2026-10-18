@@ -51,6 +51,14 @@
 
 - **読み**: さいがいやとうなんなどでしさんにそんがいをうけたときざっそんこうじょ
 - **要旨**: 災害または盗難もしくは横領によって、下記の「雑損控除の対象になる資産の要件」にあてはまる資産について損害を受けた場合には、一定の金額の所得控除を受けることができます。これを雑損控除といいます。
+- **具体例**:
+  - 震災・風水害・冷害・雪害・落雷など自然現象の異変による災害で受けた損害（[No.1110](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm)）
+  - 火災・火薬類の爆発など人為による異常な災害で受けた損害（[No.1110](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm)）
+  - 害虫などの生物による異常な災害で受けた損害（[No.1110](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm)）
+  - 盗難による損害（[No.1110](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm)）
+  - 横領による損害（[No.1110](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm)）
+- **当たらない例**:
+  - 別荘など趣味・娯楽・保養・鑑賞の目的で持つ資産（生活に通常必要でない資産）の損害 → 対象外（[No.1110](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -148,6 +156,20 @@
 
 - **読み**: いりょうひをしはらったときいりょうひこうじょ
 - **要旨**: その年の1月1日から12月31日までの間に自己または自己と生計を一にする配偶者やその他の親族のために医療費を支払った場合において、その支払った医療費が一定額を超えるときは、その医療費の額を基に計算される金額（下記「医療費控除の対象となる金額」参照）の所得控除を受けることができます。これを医療費控除といいます。
+- **具体例**:
+  - 医師・歯科医師による診療や治療の対価（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 風邪をひいたときの風邪薬など、治療・療養に必要な医薬品の購入代金（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - あん摩マッサージ指圧師・はり師・きゅう師・柔道整復師による治療のための施術（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 助産師による分べんの介助の対価（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 介護保険制度で提供された一定の施設・居宅サービスの自己負担額（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 診療を受けるための通院費、入院の際の部屋代や食事代（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 治療に直接必要な義手・義足・松葉杖・補聴器・義歯・眼鏡などの購入費用（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - おおむね6か月以上寝たきりで医師の治療を受けている人のおむつ代（医師の証明が必要）（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 日本骨髄バンク・日本臓器移植ネットワークに支払う移植のあっせんの患者負担金（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+- **当たらない例**:
+  - 健康診断の費用や医師などへの謝礼金 → 原則として対象外（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - ビタミン剤など病気の予防や健康増進のための医薬品 → 対象外（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
+  - 疲れを癒す・体調を整えるといった、治療に直接関係のないマッサージなど → 対象外（[No.1122](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -231,6 +253,13 @@
 
 - **読み**: とくていいっぱんよういやくひんとうこうにゅうひをしはらったときいりょうひこうじょのとくれいせるふめでぃけーしょんぜいせい
 - **要旨**: 健康の保持増進および疾病の予防への取組として一定の取組を行っている方が、自己または自己と生計を一にする配偶者その他の親族のために特定一般用医薬品等購入費を支払った場合には、一定の金額の所得控除（医療費控除の特例）を受けることができます。
+- **具体例**:
+  - ドラッグストアで買えるスイッチOTC医薬品などの購入費（[No.1129](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm)）
+  - 必要な「一定の取組」の例：保険者が行う人間ドックや各種健（検）診（[No.1129](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm)）
+  - 必要な「一定の取組」の例：定期予防接種やインフルエンザワクチンの予防接種（[No.1129](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm)）
+  - 必要な「一定の取組」の例：勤務先で受ける定期健康診断（[No.1129](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm)）
+  - 必要な「一定の取組」の例：特定健康診査（メタボ健診）・特定保健指導（[No.1129](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm)）
+  - 必要な「一定の取組」の例：市区町村のがん検診（[No.1129](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -328,6 +357,14 @@
 
 - **読み**: しゃかいほけんりょうこうじょ
 - **要旨**: 納税者が自己または自己と生計を一にする配偶者やその他の親族の負担すべき社会保険料を支払った場合には、その支払った金額について所得控除を受けることができます。これを社会保険料控除といいます。
+- **具体例**:
+  - 健康保険・厚生年金保険・国民年金の保険料（被保険者として負担するもの）（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
+  - 国民健康保険の保険料（国民健康保険税）（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
+  - 後期高齢者医療制度（高齢者の医療の確保に関する法律）の保険料（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
+  - 介護保険料（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
+  - 雇用保険の被保険者として負担する労働保険料（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
+  - 国民年金基金の掛金（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
+  - 公務員共済組合・私学共済などの掛金（[No.1130](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -405,6 +442,10 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: しょうきぼきぎょうきょうさいとうかけきんこうじょ
 - **要旨**: 納税者が小規模企業共済法に規定された共済契約に基づく掛金等を支払った場合には、その支払った金額について所得控除が受けられます。これを小規模企業共済等掛金控除といいます。
+- **具体例**:
+  - 小規模企業共済の掛金（中小企業基盤整備機構との共済契約）（[No.1135](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm)）
+  - 確定拠出年金の企業型年金加入者掛金・個人型年金（iDeCo）加入者掛金（[No.1135](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm)）
+  - 地方公共団体の心身障害者扶養共済制度の掛金（[No.1135](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -452,6 +493,10 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: せいめいほけんりょうこうじょ
 - **要旨**: 納税者が生命保険料、介護医療保険料および個人年金保険料を支払った場合には、一定の金額の所得控除を受けることができます。これを生命保険料控除といいます。
+- **具体例**:
+  - 生命保険料（平成24年1月1日以後に締結した契約は新生命保険料）（[No.1141](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1141.htm)）
+  - 介護医療保険料（病気やけがで医療費を支払ったことにより保険金が支払われる契約など）（[No.1141](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1141.htm)）
+  - 個人年金保険料（平成24年1月1日以後に締結した契約は新個人年金保険料）（[No.1141](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1141.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -561,6 +606,11 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: じしんほけんりょうこうじょ
 - **要旨**: 納税者が特定の損害保険契約等に係る地震等損害部分の保険料または掛金を支払った場合には、一定の金額の所得控除を受けることができます。これを地震保険料控除といいます。
+- **具体例**:
+  - 損害保険契約のうち地震等損害部分の保険料（[No.1145](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm)）
+  - 農業協同組合などの建物更生共済・火災共済の掛金（[No.1146](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm)）
+  - 消費生活協同組合連合会の火災共済・自然災害共済の掛金（[No.1146](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm)）
+  - 平成18年12月31日までに結んだ満期返戻金のある長期の損害保険（旧長期損害保険）の保険料（経過措置）（[No.1145](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -623,6 +673,14 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: いっていのきふきんをしはらったとききふきんこうじょ
 - **要旨**: 納税者が国や地方公共団体、特定公益増進法人などに対し、「特定寄附金」を支出した場合には、所得控除を受けることができます。これを寄附金控除といいます。
+- **具体例**:
+  - 国や地方公共団体に対する寄附金（[No.1150](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm)）
+  - ふるさと納税（自分の選んだ自治体への寄附。寄附額のうち2,000円を超える部分が控除の対象）（[No.1155](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm)）
+  - 公益法人等に対する寄附金で財務大臣が指定したもの（[No.1150](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm)）
+  - 公益社団法人・公益財団法人、学校法人、社会福祉法人、更生保護法人などの特定公益増進法人に対する寄附金（[No.1150](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm)）
+  - 日本赤十字社に対する寄附金（[No.1150](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm)）
+  - 政党（支部を含む）・政治資金団体などに対する政治活動に関する寄附金（一定のもの）（[No.1150](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm)）
+  - 認定NPO法人等に対する寄附金（特定非営利活動に係る事業に関連するもの）（[No.1150](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -761,6 +819,14 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: しょうがいしゃこうじょ
 - **要旨**: 納税者自身、同一生計配偶者または扶養親族が所得税法上の障害者に当てはまる場合には、一定の金額の所得控除を受けることができます。これを障害者控除といいます。
+- **具体例**:
+  - 身体障害者手帳に身体上の障害がある人として記載されている人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
+  - 精神障害者保健福祉手帳の交付を受けている人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
+  - 児童相談所などの判定により知的障害者と判定された人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
+  - 65歳以上で、障害の程度が障害者に準ずるとして市町村長等の認定を受けている人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
+  - 戦傷病者手帳の交付を受けている人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
+  - 原子爆弾被爆者として厚生労働大臣の認定を受けている人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
+  - 引き続き6か月以上、身体の障害により寝たきりで複雑な介護を必要とする人（[No.1160](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -830,6 +896,9 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: かふこうじょ
 - **要旨**: 納税者自身が寡婦であるときは、一定の金額の所得控除を受けることができます。これを寡婦控除といいます。
+- **具体例**:
+  - 夫と離婚した後に婚姻をしておらず、扶養親族がいて、合計所得金額が500万円以下の人（[No.1170](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm)）
+  - 夫と死別した後に婚姻をしていない人（または夫の生死が明らかでない一定の人）で、合計所得金額が500万円以下の人（扶養親族の要件なし）（[No.1170](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -896,6 +965,8 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: ひとりおやこうじょ
 - **要旨**: 納税者がひとり親であるときは、一定の金額の所得控除を受けることができます。これをひとり親控除といいます。なお、ひとり親控除は令和2年分の所得税から適用されます。
+- **具体例**:
+  - 生計を一にする子がいて、合計所得金額が500万円以下で、事実上婚姻関係と同様の事情にある人がいない人（[No.1171](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -937,6 +1008,8 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: かふこうじょ
 - **要旨**: 納税者自身が寡夫であるときは、一定の金額の所得控除を受けることができます。これを寡夫控除といいます。令和2年分から、ひとり親控除に変わりました。
+- **具体例**:
+  - 妻と死別・離婚した後に婚姻をしておらず、生計を一にする子がいて、合計所得金額が500万円以下の人（令和元年分以前）（[No.1172](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1172.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -978,6 +1051,12 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: きんろうがくせいこうじょ
 - **要旨**: 納税者自身が勤労学生であるときは、一定の金額の所得控除を受けることができます。これを勤労学生控除といいます。
+- **具体例**:
+  - 小学校・中学校・高等学校・大学・高等専門学校などの学生・生徒で、給与など勤労による所得がある人（[No.1175](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm)）
+  - 国・地方公共団体・学校法人などが設置した一定の専修学校・各種学校の生徒（[No.1175](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm)）
+  - 認定職業訓練を行う職業訓練法人で一定の課程を履修している人（[No.1175](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm)）
+- **当たらない例**:
+  - 勤労による所得以外の所得が10万円を超える学生 → 対象外（[No.1175](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1069,6 +1148,11 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: はいぐうしゃこうじょ
 - **要旨**: 納税者に所得税法上の控除対象配偶者がいる場合には、一定の金額の所得控除が受けられます。これを配偶者控除といいます。
+- **具体例**:
+  - 生計を一にする民法上の配偶者で、合計所得金額が62万円以下（令和8年分以後）の人（[No.1191](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm)）
+- **当たらない例**:
+  - 内縁関係の人 → 対象外（[No.1191](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm)）
+  - 青色事業専従者として給与を受けている配偶者、白色申告者の事業専従者である配偶者 → 対象外（[No.1191](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1125,6 +1209,10 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: はいぐうしゃとくべつこうじょ
 - **要旨**: 配偶者に62万円（注）（令和7年分は58万円、令和2年分から令和6年分までは48万円、令和元年分以前は38万円）を超える所得があるため配偶者控除の適用が受けられないときでも、配偶者の所得金額に応じて、一定の金額の所得控除が受けられる場合があります。これを配偶者特別控除といいます。
+- **具体例**:
+  - 合計所得金額が62万円超133万円以下（令和8年分以後）の配偶者がいる人（[No.1195](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm)）
+- **当たらない例**:
+  - 本人の合計所得金額が1,000万円を超える人 → 対象外（[No.1195](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1252,6 +1340,13 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: ふようこうじょ
 - **要旨**: 納税者に所得税法上の控除対象扶養親族となる人がいる場合には、一定の金額の所得控除が受けられます。これを扶養控除といいます。
+- **具体例**:
+  - 生計を一にする16歳以上の子や親など、配偶者以外の親族（6親等内の血族・3親等内の姻族）（[No.1180](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm)）
+  - 都道府県知事から養育を委託された児童（里子）（[No.1180](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm)）
+  - 留学により国内に住所・居所がなくなった30歳以上70歳未満の非居住者の扶養親族（[No.1180](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm)）
+  - 生活費・教育費として年38万円以上の送金を受けている30歳以上70歳未満の非居住者の扶養親族（[No.1180](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm)）
+- **当たらない例**:
+  - その年12月31日現在で16歳未満の扶養親族 → 扶養控除の対象外（[No.1180](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1322,6 +1417,8 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: とくていしんぞくとくべつこうじょ
 - **要旨**: 納税者に、生計を一にする年齢19歳以上23歳未満の親族等で、合計所得金額が一定金額以下の控除対象扶養親族に該当しない者（以下「特定親族」といいます。）がいる場合には、一定の金額の所得控除が受けられます。これを特定親族特別控除といいます。
+- **具体例**:
+  - 生計を一にする19歳以上23歳未満の子など（合計所得金額123万円以下で、控除対象扶養親族に当たらない人）（[No.1177](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1177.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -1391,6 +1488,10 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 - **読み**: きそこうじょ
 - **要旨**: 確定申告や年末調整において所得税額の計算をする場合に、総所得金額などから差し引くことができる控除の1つに基礎控除があります。
+- **具体例**:
+  - 合計所得金額132万円以下の人：104万円（令和8年分・令和9年分）（[No.1199](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm)）
+  - 合計所得金額655万円超2,350万円以下の人：62万円（令和8年分・令和9年分）（[No.1199](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm)）
+  - 合計所得金額2,500万円を超える人：0円（[No.1199](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 

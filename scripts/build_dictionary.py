@@ -36,6 +36,7 @@ TEMPLATE = Path(__file__).resolve().parent / "search_template.html"
 YOMI = DATA / "yomi.tsv"
 EXAMPLES = DATA / "shotoku_examples.json"
 POINTS = DATA / "aoiro_points.json"
+KOJO_EXAMPLES = DATA / "kojo_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 TSUTATSU_TAB = {
@@ -437,6 +438,10 @@ def add_examples(pages, ta_pages, kihon, path=EXAMPLES, key="examples"):
     for page in pages:
         page[key] = []
         for ex in data.get(page["code"], []):
+            if ex["src"] not in sources and re.fullmatch(r"\d{4}", ex["src"]):
+                # カテゴリ外のタックスアンサー（No.1122 など）も出典にできる
+                p, _ = parse_page(ex["src"], fetch(ex["src"]))
+                sources[ex["src"]] = (f"No.{ex['src']}", p["source_url"], p["content_md"])
             label, url, md = sources.get(ex["src"], (None, None, ""))
             if label is None or _plain(ex["quote"]) not in _plain(md):
                 errors.append(f"  No.{page['code']} {ex['text']}: {ex['src']} に「{ex['quote']}」が見つかりません")
@@ -610,6 +615,8 @@ def main():
         add_yomi([overview] + entries, table, maxlen)
         if cat["id"] == "shotoku-kubun":
             add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon)
+        if cat["id"] == "shotoku-kojo":
+            add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon, KOJO_EXAMPLES)
         if cat["id"] == "aoiro":
             add_examples([overview], {p["code"]: p for p in [overview] + entries}, kihon, POINTS, "points")
         if cat.get("related_tsutatsu"):
