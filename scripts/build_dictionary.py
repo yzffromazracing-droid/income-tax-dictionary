@@ -396,14 +396,14 @@ def render_md(cat, overview, entries):
         for e in entries:
             lines += [f'<a id="no{e["code"]}"></a>', "", f"### {e['term']}", "",
                       f"- **読み**: {e['yomi']}"]
-            lines.append(f"- **タックスアンサー**: [No.{e['code']}]({e['source_url']})"
-                         + (f"（{e['as_of']}）" if e["as_of"] else ""))
             if e["legal_basis"]:
                 lines.append(f"- **根拠法令等**: {e['legal_basis']}")
             if e["summary"]:
                 lines.append(f"- **要旨**: {e['summary']}")
             lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
-                      demote(e["content_md"]), "", "</details>", ""]
+                      demote(e["content_md"]), "", "</details>", "",
+                      f"**タックスアンサー**: [{e['title']}]({e['source_url']})"
+                      + (f"（{e['as_of']}）" if e["as_of"] else ""), ""]
     if overview_first:
         lines += ["---", "", source, ""]
     return "\n".join(lines).rstrip() + "\n"
