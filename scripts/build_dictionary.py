@@ -106,8 +106,20 @@ CATEGORIES = [
         "name": "税額控除",
         "description": "税金から差し引かれる金額（税額控除）。",
         "overview": "1200",
-        "pages": ["1210", "1240", "1241", "1250", "1260", "1263", "1266",
-                  "1270", "1284", "1286", "1288"],
+        # 所得税法（92条・95条）、租税特別措置法（10条〜41条の18の3）の順
+        "pages": ["1250", "1240", "1241", "1270", "1284", "1286", "1288",
+                  "1210", "1260", "1263", "1266"],
+        "subtabs": [
+            {"id": "haito-kojo", "name": "配当控除", "pages": ["1250"]},
+            {"id": "gaikoku", "name": "外国税額控除", "pages": ["1240", "1241"]},
+            {"id": "shiken", "name": "試験研究の特別控除", "pages": ["1270"]},
+            {"id": "koyo", "name": "雇用者の数が増加した場合の特別控除", "pages": ["1284"]},
+            {"id": "kyuyo-zoka", "name": "給与等が増加した場合の特別控除", "pages": ["1286", "1288"]},
+            {"id": "jutaku", "name": "マイホームの取得等の税額控除", "pages": ["1210"]},
+            {"id": "seito", "name": "政党等寄附金特別控除", "pages": ["1260"]},
+            {"id": "npo", "name": "認定NPO法人等寄附金特別控除", "pages": ["1263"]},
+            {"id": "koeki", "name": "公益社団法人等寄附金特別控除", "pages": ["1266"]},
+        ],
     },
 ]
 
@@ -482,6 +494,8 @@ def search_items(result):
     """検索ページ用に全カテゴリの項目を1つのリストにする。"""
     items = []
     sub_of = {code: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for code in t["pages"]}
+    sub_ids = [t["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])]
+    assert len(sub_ids) == len(set(sub_ids)), "下のタブの id が重複しています"
 
     def page_item(cat_id, page, kind):
         return {
