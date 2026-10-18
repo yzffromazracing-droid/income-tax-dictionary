@@ -1,1 +1,28 @@
 # income-tax-dictionary
+
+国税庁ホームページの[タックスアンサー（所得税）](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)をもとに作成した所得税の辞書です。
+
+## カテゴリ
+
+| カテゴリ | ファイル | 出典（概要ページ） | 項目数 |
+|---|---|---|---|
+| 非課税 | [dictionary/hikazei.md](dictionary/hikazei.md) | [No.2011 課税される所得と非課税所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm) | 24 |
+| 所得区分 | [dictionary/shotoku-kubun.md](dictionary/shotoku-kubun.md) | [No.1300 所得の区分のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm) | 11 |
+| 所得控除 | [dictionary/shotoku-kojo.md](dictionary/shotoku-kojo.md) | [No.1100 所得控除のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1100.htm) | 18 |
+| 税額控除 | [dictionary/zeigaku-kojo.md](dictionary/zeigaku-kojo.md) | [No.1200 税額控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1200.htm) | 11 |
+
+- 非課税は No.2011 の「主な非課税所得」の表の各項目を1語として収録し、区分・通称・根拠条文・関連するタックスアンサーを付けています。
+- 所得区分・所得控除・税額控除は、各タックスアンサーのページを1語として収録し、要旨・根拠法令等・本文（表を含む）を載せています。
+- 機械処理用のデータは [data/income_tax_dictionary.json](data/income_tax_dictionary.json) にあります。
+
+収録内容は各ページに記載の「令和8年4月1日現在法令等」に基づきます。最新の内容・個別の判断は必ず出典ページをご確認ください。
+
+## 再生成
+
+```sh
+pip install beautifulsoup4 lxml
+python3 scripts/build_dictionary.py            # 取得したHTMLは .cache/ に保存され再利用されます
+python3 scripts/build_dictionary.py --refresh  # 国税庁サイトから取り直す
+```
+
+収録するページは `scripts/build_dictionary.py` の `CATEGORIES` で変更できます。
