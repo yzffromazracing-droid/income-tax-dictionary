@@ -48,6 +48,7 @@ CATEGORIES = [
         "name": "所得区分",
         "description": "所得税法上の10種類の所得の区分。",
         "overview": "1300",
+        "overview_first": True,  # 概要を目次より前に、出典をページ末尾に置く
         "pages": ["1310", "1330", "1350", "1370", "1400", "1420",
                   "1440", "1460", "1480", "1490", "1500"],
     },
@@ -345,10 +346,21 @@ def add_yomi(pages, table, maxlen):
 
 
 def render_md(cat, overview, entries):
+    source = (f"出典: 国税庁タックスアンサー [{overview['title']}]({overview['source_url']})"
+              + (f"（{overview['as_of']}）" if overview["as_of"] else ""))
+    # 本文の「### 概要」はページの「## 概要」と重なるので外す
+    summary_md = re.sub(r"\A### 概要\n\n", "", overview["content_md"])
+    summary = ["## 概要", "", summary_md, ""]
+    if overview["legal_basis"]:
+        summary += [f"**根拠法令等**: {overview['legal_basis']}", ""]
+    overview_first = cat.get("overview_first", False)
+
     lines = [f"# {cat['name']}", "", cat["description"], ""]
-    lines.append(f"出典: 国税庁タックスアンサー [{overview['title']}]({overview['source_url']})"
-                 + (f"（{overview['as_of']}）" if overview["as_of"] else ""))
-    lines += ["", "## 目次", ""]
+    if overview_first:
+        lines += summary
+    else:
+        lines += [source, ""]
+    lines += ["## 目次", ""]
     if cat["id"] == "hikazei":
         groups = list(dict.fromkeys(e["group"] for e in entries))
         for g in groups:
@@ -359,9 +371,9 @@ def render_md(cat, overview, entries):
     else:
         for e in entries:
             lines.append(f"- [{e['term']}](#no{e['code']}) — No.{e['code']}")
-    lines += ["", "## 概要", "", overview["content_md"], ""]
-    if overview["legal_basis"]:
-        lines += [f"**根拠法令等**: {overview['legal_basis']}", ""]
+    lines.append("")
+    if not overview_first:
+        lines += summary
 
     if cat["id"] == "hikazei":
         lines += ["## 用語", ""]
@@ -392,6 +404,8 @@ def render_md(cat, overview, entries):
                 lines.append(f"- **要旨**: {e['summary']}")
             lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
                       demote(e["content_md"]), "", "</details>", ""]
+    if overview_first:
+        lines += ["---", "", source, ""]
     return "\n".join(lines).rstrip() + "\n"
 
 
