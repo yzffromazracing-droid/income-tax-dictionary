@@ -108,6 +108,7 @@ header.top .wrap { padding-block: 14px 12px; display: grid; grid-template-column
 header.top.has-sub .tabbar { margin-bottom: 0; border-bottom: 1px solid var(--line); }
 .subtabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; padding-top: 2px; }
 .subtabs::-webkit-scrollbar { display: none; }
+@media (min-width: 861px) { .subtabs { flex-wrap: wrap; } }
 .subtab {
   font: inherit; font-size: 13px; cursor: pointer; color: var(--muted); white-space: nowrap;
   background: transparent; border: 1px solid transparent; border-radius: 999px;
