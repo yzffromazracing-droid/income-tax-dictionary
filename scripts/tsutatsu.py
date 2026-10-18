@@ -76,7 +76,7 @@ def resolve(base, href):
 def kihon_index(refresh):
     """目次から、各ページの見出し（編・章・「法第○条関係」）を集める。"""
     soup = body_soup(fetch_path(KIHON_INDEX, refresh))
-    pages, hen, sho, law = {}, "", "", ""
+    pages, labels, hen, sho, law = {}, {}, "", "", ""
     for el in soup.find_all(["h2", "h3", "p", "li"]):
         text = clean(el.get_text())
         if el.name == "h2":
@@ -85,12 +85,15 @@ def kihon_index(refresh):
             sho, law = text, ""
         elif el.name == "p" and "関係" in text:
             law = text
+            m = re.match(r"法第(\d+)条(の\d+)?", text)
+            if m:
+                labels.setdefault(m.group(1) + (m.group(2) or ""), {"hen": hen, "sho": sho, "group": text})
         for a in el.find_all("a", href=True) if el.name in ("p", "li") else []:
             path = resolve(KIHON_INDEX, a["href"])
             if re.match(r"/law/tsutatsu/kihon/shotoku/\d\d/\d\d\.htm$", path) and path not in pages:
                 group = law if el.name == "li" or not text.endswith("関係") else text
                 pages[path] = {"hen": hen, "sho": sho, "group": group or clean(a.get_text())}
-    return pages
+    return pages, labels
 
 
 def parse_kihon_page(path, meta, refresh):
@@ -166,8 +169,14 @@ def parse_kihon_page(path, meta, refresh):
 
 def build_kihon(refresh=False):
     entries = []
-    for path, meta in kihon_index(refresh).items():
+    pages, labels = kihon_index(refresh)
+    for path, meta in pages.items():
         entries.extend(parse_kihon_page(path, meta, refresh))
+    # 1ページに複数の条の通達が載っていることがあるので、「24-1」の「24」のように番号から条を引き直す
+    for e in entries:
+        label = labels.get(e["no"].split("-")[0])
+        if label:
+            e.update(label)
     return entries
 
 

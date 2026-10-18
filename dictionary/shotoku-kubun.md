@@ -120,6 +120,14 @@
 
 - **読み**: りそくをうけとったときりししょとく
 - **要旨**: 利子所得とは、預貯金および公社債の利子ならびに合同運用信託、公社債投資信託および公募公社債等運用投資信託の収益の分配に係る所得をいいます。
+- **具体例**:
+  - 銀行などの預貯金の利子（[No.1310](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)）
+  - 国債、地方債、社債などの公社債の利子（[No.1310](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)）
+  - 合同運用信託の収益の分配（[No.1310](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)）
+  - 公社債投資信託・公募公社債等運用投資信託の収益の分配（[No.1310](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)）
+  - 定期積金の中途解約前・満期後の期間に対応して支払われる利子（[所基通23-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/01.htm)）
+- **当たらない例**:
+  - 学校債・組合債などの利子 → 雑所得（[所基通35-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -199,6 +207,13 @@
 
 - **読み**: はいとうきんをうけとったときはいとうしょとく
 - **要旨**: 配当所得とは、株主や出資者が法人から受ける剰余金や利益の配当、剰余金の分配、基金利息、投資法人からの金銭の分配または投資信託（公社債投資信託および公募公社債等運用投資信託以外のもの）および特定受益証券発行信託の収益の分配などに係る所得をいいます。
+- **具体例**:
+  - 株主や出資者が法人から受ける剰余金や利益の配当（[No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)）
+  - 法人から受ける剰余金の分配、基金利息（[No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)）
+  - 投資法人からの金銭の分配（[No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)）
+  - 公社債投資信託・公募公社債等運用投資信託以外の投資信託の収益の分配（[No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)）
+  - 特定受益証券発行信託の収益の分配（[No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)）
+  - 株主等である地位に基づいて法人から受ける経済的な利益（[所基通24-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/01.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -293,6 +308,18 @@
 
 - **読み**: ふどうさんしゅうにゅうをうけとったときふどうさんしょとく
 - **要旨**: 不動産所得とは、次の（1）から（3）までの所得（事業所得または譲渡所得に該当するものを除きます。）をいいます。
+- **具体例**:
+  - 土地や建物などの不動産の貸付け（地代・家賃）（[No.1370](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm)）
+  - 食事を出さないアパート・貸間の所得（[所基通26-4](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 借地権など不動産の上に存する権利の設定・貸付け（[No.1370](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm)）
+  - 船舶や航空機の貸付け（[No.1370](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm)）
+  - 名義書換料、承諾料、更新料、頭金（[No.1370](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm)）
+  - 敷金や保証金のうち返還を要しないもの（[No.1370](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm)）
+  - 共益費などの名目で受け取る電気代、水道代、掃除代（[No.1370](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm)）
+  - 広告のために土地、家屋の屋上・側面、塀などを使わせる所得（[所基通26-5](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 有料駐車場で、他人の車を自己の責任で保管しない場合の所得（[所基通27-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+- **当たらない例**:
+  - 下宿のように食事を出す場合の所得 → 事業所得又は雑所得（[所基通26-4](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -346,6 +373,16 @@
 
 - **読み**: じぎょうしょとくのかぜいのしくみじぎょうしょとく
 - **要旨**: 事業所得とは、農業、漁業、製造業、卸売業、小売業、サービス業その他の事業を営んでいる人のその事業から生ずる所得をいいます。
+- **具体例**:
+  - 農業、漁業、製造業、卸売業、小売業、サービス業などの事業から生ずる所得（[No.1350](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1350.htm)）
+  - 事業上、取引先や使用人に貸し付けた貸付金の利子（[所基通27-5](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 新聞販売店の折込広告収入（[所基通27-5](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 浴場業、飲食業などで広告を掲示して得る収入（[所基通27-5](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 医師・歯科医師が休日・夜間の診療で地方公共団体等から受ける委嘱料等（[所基通27-5](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 貸衣装業の衣装類など、事業の性質上反復して譲渡する事業用固定資産の譲渡（[所基通27-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+  - 有料駐車場で、他人の車を自己の責任で保管する場合の所得（事業所得又は雑所得）（[所基通27-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm)）
+- **当たらない例**:
+  - 不動産の貸付けや山林の譲渡による所得 → 原則として不動産所得や山林所得（[No.1350](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1350.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -425,6 +462,13 @@
 
 - **読み**: きゅうよしょとく
 - **要旨**: 給与所得とは、使用人や役員等が支払いを受ける俸給や給料、賃金、歳費、賞与のほか、これらの性質を有する給与に係る所得をいいます。
+- **具体例**:
+  - 俸給、給料、賃金、歳費、賞与（[No.1400](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm)）
+  - 勤務先から商品などを無償または低い価額で譲り受けたこと（現物給与）（[No.1400](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm)）
+  - 勤務先から土地や建物などを無償または低い使用料で借り受けたこと（[No.1400](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm)）
+  - 勤務先から金銭を無利息または低い利息で借り受けたこと（[No.1400](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm)）
+  - 宿直料・日直料（勤務1回につき4,000円までは課税しない取扱いあり）（[所基通28-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/03.htm)）
+  - 雇用契約等に基づいて支給される結婚・出産等の祝金品（社会通念上相当なものは課税しない）（[所基通28-5](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/03.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -502,6 +546,15 @@
 
 - **読み**: たいしょくきんをうけとったときたいしょくしょとく
 - **要旨**: 退職所得とは、退職により勤務先から受ける退職手当などの所得をいい、社会保険制度などにより退職に基因して支給される一時金、確定拠出年金法に規定する企業型年金規約または個人型年金規約に基づいて老齢給付金として支給される一時金なども退職所得とみなされます。
+- **具体例**:
+  - 退職により勤務先から受ける退職手当（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 社会保険制度などにより退職に基因して支給される一時金（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 確定拠出年金（企業型・個人型）の老齢給付金として受ける一時金（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 労働基準法第20条により支払われる解雇予告手当（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 賃金の支払の確保等に関する法律第7条により退職した労働者が弁済を受ける未払賃金（[No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm)）
+  - 使用人から役員になった人に、使用人であった期間の退職手当等として支払われる給与（[所基通30-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/04.htm)）
+- **当たらない例**:
+  - 退職の際に支払われても、引き続き勤務している人の賞与等と同性質のもの → 退職所得以外（[所基通30-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/04.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -600,6 +653,13 @@
 
 - **読み**: さんりんしょとく
 - **要旨**: 山林所得とは、山林を伐採して譲渡したり、立木のままで譲渡することによって生ずる所得をいいます。ただし、山林を取得してから5年以内に譲渡した場合は、山林所得ではなく事業所得か雑所得になります。また、山林を土地付で譲渡する場合の土地の部分は、譲渡所得になります。
+- **具体例**:
+  - 山林を伐採して譲渡したことによる所得（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
+  - 山林を立木のままで譲渡したことによる所得（[所基通32-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm)）
+  - 伐採した山林を自己の家屋の建築など家事のために消費した場合（消費時の時価が収入金額）（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
+- **当たらない例**:
+  - 取得してから5年以内に譲渡した山林 → 事業所得又は雑所得（[No.1480](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm)）
+  - 山林とともに譲渡した、その山林が生えている土地 → 山林所得以外（土地は譲渡所得）（[所基通32-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -649,6 +709,13 @@
 
 - **読み**: じょうとしょとくとちやたてものをじょうとしたとき
 - **要旨**: 譲渡所得とは、一般的に土地、建物、株式等、ゴルフ会員権、金地金などの資産を譲渡することによって生ずる所得をいいます。
+- **具体例**:
+  - 土地や建物の譲渡（[No.1440](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm)）
+  - マイホーム（居住用財産）の譲渡（[No.1440](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm)）
+  - 収用等による土地建物の譲渡（[No.1440](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm)）
+  - 借家権の譲渡（[所基通33-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/07.htm)）
+- **当たらない例**:
+  - 事業用の商品などの棚卸資産や山林の譲渡 → 譲渡所得以外（[No.1440](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -730,6 +797,13 @@
 
 - **読み**: じょうとしょとくとちたてものおよびかぶしきとういがいのしさんをじょうとしたとき
 - **要旨**: 譲渡所得とは、一般的に土地、建物、株式等、ゴルフ会員権、金地金などの資産を譲渡することによって生ずる所得をいいます。
+- **具体例**:
+  - ゴルフ会員権の譲渡（[No.1460](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm)）
+  - 金地金の譲渡（[No.1460](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm)）
+  - 株式等の譲渡（申告分離課税。No.1463）（[No.1460](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm)）
+  - 自己の研究成果である特許権などの譲渡（所有期間にかかわらず長期譲渡所得）（[No.1460](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm)）
+- **当たらない例**:
+  - 使用可能期間1年未満または取得価額10万円未満の減価償却資産の譲渡 → 譲渡所得以外（[No.1460](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -779,6 +853,16 @@
 
 - **読み**: いちじしょとく
 - **要旨**: 一時所得とは、営利を目的とする継続的行為から生じた所得以外の所得で、労務や役務の対価としての性質や資産の譲渡による対価としての性質を有しない一時の所得をいいます。
+- **具体例**:
+  - 懸賞や福引きの賞金品（業務に関して受けるものを除く）（[No.1490](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm)）
+  - 競馬や競輪の払戻金（営利を目的とする継続的行為から生じたものを除く）（[No.1490](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm)）
+  - 生命保険の一時金や損害保険の満期返戻金等（[No.1490](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm)）
+  - 法人から贈与された金品（業務に関して受けるもの、継続的に受けるものを除く）（[No.1490](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm)）
+  - 遺失物拾得者や埋蔵物発見者の受ける報労金等（[No.1490](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm)）
+  - 資産の移転等の費用に充てるため受けた交付金のうち、目的の支出に充てなかったもの（[No.1490](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm)）
+  - 労働基準法第114条により支払を受ける付加金（[所基通34-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/08.htm)）
+- **当たらない例**:
+  - 年間を通じてほぼ全てのレースで馬券を購入し続けるなど、営利を目的とする継続的行為から生じた馬券の払戻金 → 雑所得（[所基通34-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/08.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 
@@ -834,6 +918,18 @@
 
 - **読み**: ざつしょとく
 - **要旨**: 雑所得とは、利子所得、配当所得、不動産所得、事業所得、給与所得、退職所得、山林所得、譲渡所得および一時所得のいずれにも当たらない所得をいい、例えば、公的年金等、非営業用貸金の利子、副業に係る所得（原稿料やシェアリングエコノミーに係る所得など）が該当します。
+- **具体例**:
+  - 公的年金等（[No.1300](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm)）
+  - 非営業用貸金の利子（[No.1300](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm)）
+  - 副業に係る所得（原稿料やシェアリングエコノミーに係る所得など）（[No.1300](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm)）
+  - 生命保険契約等に基づく年金（[No.1300](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm)）
+  - 原稿・さし絵・作曲・デザインの報酬、放送謝金、著作権の使用料、講演料など（事業所得と認められるものを除く）（[所基通35-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
+  - 動産（船舶・航空機を除く）の貸付けによる所得（[所基通35-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
+  - 工業所有権の使用料に係る所得（[所基通35-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
+  - 金銭の貸付けによる所得（事業所得と認められるものを除く）（[所基通35-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
+  - 保有期間が5年以内の山林の伐採・譲渡による所得（事業所得と認められるものを除く）（[所基通35-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
+  - 税金の還付加算金（[所基通35-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
+  - 学校債・組合債などの利子（[所基通35-1](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm)）
 
 <details><summary>詳細（タックスアンサー本文）</summary>
 

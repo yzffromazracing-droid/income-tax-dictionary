@@ -33,6 +33,7 @@ DOCS = ROOT / "dictionary"
 SITE = ROOT / "docs"
 TEMPLATE = Path(__file__).resolve().parent / "search_template.html"
 YOMI = DATA / "yomi.tsv"
+EXAMPLES = DATA / "shotoku_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 TSUTATSU_TAB = {
@@ -364,6 +365,31 @@ def add_yomi(pages, table, maxlen):
         raise SystemExit(f"{YOMI.name} に読みがない漢字があります。追加してください。\n{detail}")
 
 
+def _plain(md):
+    return re.sub(r"\s|\*\*", "", re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", md))
+
+
+def add_examples(pages, ta_pages, kihon):
+    """所得区分の各ページに具体例（data/shotoku_examples.json）を付ける。
+
+    各例の quote が出典の本文に実在するかを照合し、見つからなければ止める。
+    """
+    data = json.loads(EXAMPLES.read_text(encoding="utf-8"))
+    sources = {code: (f"No.{code}", p["source_url"], p["content_md"]) for code, p in ta_pages.items()}
+    sources.update({f"所基通{e['no']}": (f"所基通{e['no']}", e["source_url"], e["content_md"]) for e in kihon})
+    errors = []
+    for page in pages:
+        page["examples"] = []
+        for ex in data.get(page["code"], []):
+            label, url, md = sources.get(ex["src"], (None, None, ""))
+            if label is None or _plain(ex["quote"]) not in _plain(md):
+                errors.append(f"  No.{page['code']} {ex['text']}: {ex['src']} に「{ex['quote']}」が見つかりません")
+                continue
+            page["examples"].append({"text": ex["text"], "source": label, "url": url, "other": ex.get("other", "")})
+    if errors:
+        raise SystemExit(f"{EXAMPLES.name} の出典を確認してください。\n" + "\n".join(errors))
+
+
 def render_md(cat, overview, entries):
     source = (f"出典: 国税庁タックスアンサー [{overview['title']}]({overview['source_url']})"
               + (f"（{overview['as_of']}）" if overview["as_of"] else ""))
@@ -408,6 +434,12 @@ def render_md(cat, overview, entries):
                       f"- **読み**: {e['yomi']}"]
             if e["summary"]:
                 lines.append(f"- **要旨**: {e['summary']}")
+            for heading, items in (("具体例", [x for x in e.get("examples", []) if not x["other"]]),
+                                   ("当たらない例", [x for x in e.get("examples", []) if x["other"]])):
+                if items:
+                    lines.append(f"- **{heading}**:")
+                    lines += [f"  - {x['text']}" + (f" → {x['other']}" if x["other"] else "")
+                              + f"（[{x['source']}]({x['url']})）" for x in items]
             lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
                       demote(e["content_md"]), "", "</details>", ""]
             if e["legal_basis"]:
@@ -437,6 +469,7 @@ def search_items(result):
             "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
+            "examples": page.get("examples", []),
         }
 
     for cat in result["categories"]:
@@ -498,6 +531,9 @@ def main():
         "generated_at": datetime.date.today().isoformat(),
         "categories": [],
     }
+    import tsutatsu
+    kihon = tsutatsu.build_kihon(args.refresh)
+    kobetsu = tsutatsu.build_kobetsu(args.refresh)
     yomi_pairs = load_yomi()
     table = dict(yomi_pairs)
     maxlen = max(len(s) for s in table)
@@ -508,6 +544,8 @@ def main():
         else:
             entries = [parse_page(c, fetch(c, args.refresh))[0] for c in cat["pages"]]
         add_yomi([overview] + entries, table, maxlen)
+        if cat["id"] == "shotoku-kubun":
+            add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon)
         result["categories"].append({
             "id": cat["id"],
             "name": cat["name"],
@@ -518,9 +556,6 @@ def main():
         (DOCS / f"{cat['id']}.md").write_text(render_md(cat, overview, entries), encoding="utf-8")
         print(f"{cat['name']}: {len(entries)} 項目", file=sys.stderr)
 
-    import tsutatsu
-    kihon = tsutatsu.build_kihon(args.refresh)
-    kobetsu = tsutatsu.build_kobetsu(args.refresh)
     result["tsutatsu"] = {"kihon": kihon, "kobetsu": kobetsu}
     (DOCS / "tsutatsu-kihon.md").write_text(tsutatsu.render_kihon_md(kihon), encoding="utf-8")
     (DOCS / "tsutatsu-kobetsu.md").write_text(tsutatsu.render_kobetsu_md(kobetsu), encoding="utf-8")
