@@ -34,6 +34,23 @@
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm"
             }
           ],
+          "hk_id": "hk1",
+          "examples": [
+            {
+              "text": "身体障害者手帳の交付を受けている人や障害年金を受けている人などの、預貯金・合同運用信託などの元本350万円までの利子（障害者等のマル優）",
+              "source": "No.1313",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "障害者等が持つ国債・地方債の額面350万円までの利子（障害者等の特別マル優。マル優とは別枠）",
+              "source": "No.1313",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "しょうがいしゃとうのしょうがくよきんのりしとう"
         },
         {
@@ -48,6 +65,23 @@
               "title": "No.1316 財形住宅貯蓄",
               "summary": "預貯金などの利子は、原則として、その支払の際、一律15.315パーセント（他に地方税5パーセント）の税率を乗じて算出した所得税および復興特別所得税（令和9年以後は所得税、防衛特別所得税および復興特別所得税）が源泉徴収され、これにより納税を完結させることができます（注1）。",
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm"
+            }
+          ],
+          "hk_id": "hk2",
+          "examples": [
+            {
+              "text": "55歳未満の勤労者が給与天引きで積み立てる財形住宅貯蓄の利子（財形年金貯蓄と合わせて550万円まで）",
+              "source": "No.1316",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "財形住宅貯蓄を住宅取得などの目的以外で払い出した場合",
+              "source": "No.1316",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm",
+              "other": "原則5年間さかのぼって課税",
+              "tax": ""
             }
           ],
           "yomi": "きんろうしゃざいさんけいせいじゅうたくちょちくのりしとう"
@@ -66,6 +100,30 @@
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm"
             }
           ],
+          "hk_id": "hk3",
+          "examples": [
+            {
+              "text": "55歳未満の勤労者が給与天引きで積み立て、60歳以降に年金として受け取る財形年金貯蓄の利子（財形住宅貯蓄と合わせて550万円まで）",
+              "source": "No.1319",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "生命保険・生命共済・損害保険による財形年金貯蓄は385万円まで",
+              "source": "No.1319",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "財形年金貯蓄を目的以外で払い出した場合",
+              "source": "No.1319",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm",
+              "other": "原則5年間さかのぼって課税",
+              "tax": ""
+            }
+          ],
           "yomi": "きんろうしゃざいさんけいせいねんきんちょちくのりしとう"
         },
         {
@@ -75,6 +133,16 @@
           "legal_basis": "措法5",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk4",
+          "examples": [
+            {
+              "text": "納税準備預金の利子（租税特別措置法第5条）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "のうぜいじゅんびよきんのりし"
         },
         {
@@ -84,6 +152,16 @@
           "legal_basis": "所法9①十一、所令27",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk5",
+          "examples": [
+            {
+              "text": "オープン型証券投資信託の特別分配金（所得税法第9条第1項第11号、所得税法施行令第27条）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "おーぷんがたしょうけんとうししんたくのとくべつぶんぱいきん"
         },
         {
@@ -98,6 +176,37 @@
               "title": "No.1535 NISA制度",
               "summary": "（1）　令和6年以降のNISA",
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm"
+            }
+          ],
+          "hk_id": "hk6",
+          "examples": [
+            {
+              "text": "令和6年以降のNISA（つみたて投資枠・成長投資枠）で取得した上場株式等の配当等",
+              "source": "No.1535",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "令和5年までの一般NISA・つみたてNISAで投資した商品（新しいNISAの外枠で引き続き非課税）",
+              "source": "No.1535",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "ジュニアNISA（未成年者口座）で取得した上場株式等の配当等",
+              "source": "No.1535",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "NISA口座の上場株式等でも、発行者から直接受け取る配当等（株式数比例配分方式でないもの）",
+              "source": "No.1535",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+              "other": "課税",
+              "tax": ""
             }
           ],
           "yomi": "ひかぜいこうざないみせいねんしゃこうざないのしょうがくじょうじょうかぶしきとうにかかるはいとうとういわゆるにーさじゅにあにーさ"
@@ -116,6 +225,30 @@
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1605.htm"
             }
           ],
+          "hk_id": "hk7",
+          "examples": [
+            {
+              "text": "国民年金法・厚生年金保険法などに基づいて遺族に支給される遺族年金や遺族恩給",
+              "source": "No.1605",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1605.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "亡くなった人の勤務に基づき、勤務先から遺族に支給される年金",
+              "source": "所基通9-2",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-01",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "遺族が受け取る未支給年金",
+              "source": "No.1605",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1605.htm",
+              "other": "一時所得",
+              "tax": ""
+            }
+          ],
           "yomi": "しょうびょうしゃやいぞくなどのうけとるおんきゅうねんきんとう"
         },
         {
@@ -125,6 +258,58 @@
           "legal_basis": "所法9①四～六、所令20～21",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk8",
+          "examples": [
+            {
+              "text": "職務上の旅行に必要な運賃・宿泊料・移転料などのうち、通常必要と認められる範囲の旅費",
+              "source": "所基通9-3",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-02",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "最も経済的かつ合理的な経路による新幹線通勤の運賃（限度額内の通勤手当）",
+              "source": "所基通9-6の3",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-03",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "災害地に派遣された職員に支給される災害派遣手当（宿泊等の費用の弁償部分）",
+              "source": "所基通9-6",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-02",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "勤務場所だけで着る事務服・作業服",
+              "source": "所基通9-8",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-04",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "職務上必要で提供される船員の船室、看護師・守衛などの住居",
+              "source": "所基通9-9",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-04",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "新幹線通勤の運賃のうち特別車両料金等",
+              "source": "所基通9-6の3",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-03",
+              "other": "非課税の通勤手当に含まれない",
+              "tax": ""
+            },
+            {
+              "text": "通常必要な範囲を超える旅費",
+              "source": "所基通9-4",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-02",
+              "other": "給与所得など（課税）",
+              "tax": ""
+            }
+          ],
           "yomi": "きゅうよしょとくしゃにしきゅうされるいっていのりょひげんどがくないのつうきんてあてしょくむのすいこうじょうひつようなげんぶつきゅうよ"
         },
         {
@@ -134,6 +319,16 @@
           "legal_basis": "所法9①七、所令22",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk9",
+          "examples": [
+            {
+              "text": "国外で勤務する人が受ける一定の在外手当（所得税法第9条第1項第7号、所得税法施行令第22条）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "こくがいできんむするもののうけるいっていのざいがいてあて"
         },
         {
@@ -143,6 +338,23 @@
           "legal_basis": "所法9①八、所令23、24",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk10",
+          "examples": [
+            {
+              "text": "国内に住む外国の大使・公使・外交官である大公使館員とその配偶者",
+              "source": "所基通9-11",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-05",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "外国政府の全額出資でも、外国政府等に当たらない法人から受ける給与",
+              "source": "所基通9-12",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-05",
+              "other": "課税",
+              "tax": ""
+            }
+          ],
           "yomi": "がいこくせいふこくさいきかんとうにきんむするがいこくせいふしょくいんとうがうけるきゅうよしょとく"
         },
         {
@@ -152,6 +364,16 @@
           "legal_basis": "所法9①十三",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk11",
+          "examples": [
+            {
+              "text": "文化功労者年金法による年金（所得税法第9条第1項第13号）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "ぶんかこうろうしゃねんきんほうのきていによるねんきんとう"
         },
         {
@@ -168,6 +390,23 @@
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm"
             }
           ],
+          "hk_id": "hk12",
+          "examples": [
+            {
+              "text": "税制適格ストック・オプションを権利行使して株式を取得したときの経済的利益（課税は株式の売却時まで繰り延べ）",
+              "source": "No.1540",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "ストック・オプション税制で取得した株式を売却したとき",
+              "source": "No.1540",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm",
+              "other": "",
+              "tax": "譲渡所得等として申告分離課税"
+            }
+          ],
           "yomi": "とくていのとりしまりやくとうがうけるしんかぶよやくけんとうのこうしによるかぶしきのしゅとくにかかるけいざいてきりえきいわゆるぜいせいてきかくすとっくおぷしょん"
         },
         {
@@ -177,6 +416,16 @@
           "legal_basis": "所法9①九、所令25",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk13",
+          "examples": [
+            {
+              "text": "生活に通常必要な動産の譲渡による所得（所得税法第9条第1項第9号、所得税法施行令第25条）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "せいかつにつうじょうひつようなどうさんのじょうとによるしょとく"
         },
         {
@@ -186,6 +435,23 @@
           "legal_basis": "所法9①十、所令26",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk14",
+          "examples": [
+            {
+              "text": "資力を喪失して債務を弁済することが著しく困難な場合の、強制換価手続による資産の譲渡",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "営利を目的として継続的に行う山林の伐採・譲渡",
+              "source": "所基通9-12の3",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/03.htm",
+              "other": "非課税にならない",
+              "tax": ""
+            }
+          ],
           "yomi": "しりょくそうしつのばあいのきょうせいかんかてつづきによるじょうとによるしょとくとう"
         },
         {
@@ -202,6 +468,23 @@
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm"
             }
           ],
+          "hk_id": "hk15",
+          "examples": [
+            {
+              "text": "NISAのつみたて投資枠・成長投資枠で取得した上場株式等の売却益",
+              "source": "No.1535",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "NISA口座で取得した上場株式等の売却損",
+              "source": "No.1535",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm",
+              "other": "損失はなかったものとみなされる",
+              "tax": ""
+            }
+          ],
           "yomi": "ひかぜいこうざないみせいねんしゃこうざないのしょうがくじょうじょうかぶしきとうにかかるじょうとしょとくとういわゆるにーさじゅにあにーさ"
         },
         {
@@ -211,6 +494,16 @@
           "legal_basis": "措法40",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk16",
+          "examples": [
+            {
+              "text": "国や地方公共団体などに財産を寄附した場合の譲渡所得等（租税特別措置法第40条）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "くにやちほうこうきょうだんたいとうにざいさんをきふしたばあいのじょうとしょとくとう"
         },
         {
@@ -220,6 +513,16 @@
           "legal_basis": "所法9①十二",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk17",
+          "examples": [
+            {
+              "text": "内廷費・皇族費（所得税法第9条第1項第12号）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "ないていひおよびこうぞくひ"
         },
         {
@@ -229,6 +532,16 @@
           "legal_basis": "所法9①十四",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk18",
+          "examples": [
+            {
+              "text": "オリンピック・パラリンピックで優秀な成績を収めた人に日本オリンピック委員会等から交付される金品（所得税法第9条第1項第14号）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "おりんぴっくぱらりんぴっくにおいてゆうしゅうなせいせきをおさめたものにざいだんほうじんにほんおりんぴっくいいんかいとうからこうふされるきんぴん"
         },
         {
@@ -238,6 +551,30 @@
           "legal_basis": "所法9①十五、所令29",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk19",
+          "examples": [
+            {
+              "text": "学資に充てるために給付される学資金、扶養義務を果たすために給付される金品（所得税法第9条第1項第15号）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "勤務先から通常の給与に加算して受ける学資金（一定のもの）",
+              "source": "所基通9-14",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-02",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "通常の給与に代えて給付される学資金",
+              "source": "所基通9-14",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-02",
+              "other": "課税",
+              "tax": ""
+            }
+          ],
           "yomi": "がくしきんおよびふようぎむをりこうするためにきゅうふされるきんぴん"
         },
         {
@@ -247,6 +584,16 @@
           "legal_basis": "所法9①十六",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk20",
+          "examples": [
+            {
+              "text": "国や地方公共団体の子育て助成事業で受け取った利用券などを、保育・子育ての費用に充てた部分（充てた部分とそれ以外を区分している場合）",
+              "source": "所基通9-16の3",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-04",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "くにまたはちほうこうきょうだんたいがおこなうほいくこそだてじょせいじぎょうによりほいくこそだてにかかるしせつさーびすのりようにようするひようにあてるためにきゅうふされるきんぴん"
         },
         {
@@ -256,6 +603,23 @@
           "legal_basis": "所法9①十七",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk21",
+          "examples": [
+            {
+              "text": "相続・遺贈や個人からの贈与で取得した財産（所得税法第9条第1項第17号）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "亡くなった人の給与・公的年金等・退職手当等で、死亡後に支給期が来て相続税の課税価格に算入されるもの",
+              "source": "所基通9-17",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-04",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "そうぞくいぞうまたはこじんからのぞうよによりしゅとくするもの"
         },
         {
@@ -272,6 +636,65 @@
               "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm"
             }
           ],
+          "hk_id": "hk22",
+          "examples": [
+            {
+              "text": "交通事故の負傷で受ける治療費・慰謝料、働けない間の収益を補償する損害賠償金",
+              "source": "No.1700",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "事故による車両の破損について受ける損害賠償金",
+              "source": "No.1700",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "病気で重い障害の状態になったときの高度障害保険金、入院費給付金",
+              "source": "所基通9-21",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-05",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "病気やけがで働けない期間の所得を補償する所得補償保険金",
+              "source": "所基通9-22",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-05",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "社会通念上相当な金額の葬祭料・香典・災害等の見舞金",
+              "source": "所基通9-23",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-05",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "労働基準法による遺族補償・葬祭料",
+              "source": "所基通9-1",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-01",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "配送中の事故でだめになった商品（棚卸資産）について受ける損害賠償金",
+              "source": "No.1700",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm",
+              "other": "事業所得",
+              "tax": ""
+            },
+            {
+              "text": "死亡保険金",
+              "source": "所基通9-20",
+              "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-05",
+              "other": "この非課税の対象外",
+              "tax": ""
+            }
+          ],
           "yomi": "しんしんにくわえられたそんがいまたはとっぱつてきなじこによりしさんにくわえられたそんがいにもとづいてしゅとくするほけんきんそんがいばいしょうきんいしゃりょうなど"
         },
         {
@@ -281,6 +704,16 @@
           "legal_basis": "所法9①十九",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk23",
+          "examples": [
+            {
+              "text": "公職選挙法の選挙の候補者が選挙運動に関して受け取る金銭など（所得税法第9条第1項第19号）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "こうしょくせんきょほうのてきようをうけるせんきょにかかるこうしょくのこうほしゃがせんきょうんどうにかんししゅとくするきんせんとう"
         },
         {
@@ -290,6 +723,16 @@
           "legal_basis": "措法41の8、措規19の2",
           "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
           "related": [],
+          "hk_id": "hk24",
+          "examples": [
+            {
+              "text": "消費税率の引上げの際に、低所得者に配慮して都道府県・市区町村から支払われる一定の給付金（租税特別措置法第41条の8）",
+              "source": "No.2011",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm",
+              "other": "",
+              "tax": ""
+            }
+          ],
           "yomi": "とどうふけんしくちょうそんからしょうひぜいりつのひきあげにさいしてていしょとくしゃにはいりょするかんてんからしはらわれるいっていのきゅうふきん"
         }
       ]

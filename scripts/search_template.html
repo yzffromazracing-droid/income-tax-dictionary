@@ -41,6 +41,7 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
   background: var(--bg); color: var(--ink); font-family: var(--font-body);
   font-size: 15px; line-height: 1.7; margin: 0;
@@ -672,6 +673,20 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     detailEl.scrollTop = 0;
   }
 
+  // 要点・具体例・課税方法・当たらない例（出典付き）
+  function examplesHtml(it) {
+    var ex = it.examples || [], h = "";
+    [["要点", it.points || []], ["具体例", ex.filter(function (x) { return !x.other && !x.tax; })],
+     ["課税方法", ex.filter(function (x) { return x.tax; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
+      if (!g[1].length) return;
+      h += '<div class="body examples"><h3>' + g[0] + "</h3><ul>" + g[1].map(function (x) {
+        var to = x.other || x.tax;
+        return "<li>" + esc(x.text) + (to ? '<span class="to">→ ' + esc(to) + "</span>" : "") +
+          ' <a class="src" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.source) + "</a></li>";
+      }).join("") + "</ul></div>";
+    });
+    return h;
+  }
   function renderDetail() {
     var it = BY_ID[state.current];
     if (!it) { detailEl.innerHTML = ""; return; }
@@ -687,6 +702,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     else h += '<div class="rule"></div>';
     if (it.kind === "hikazei") {
       h += '<p class="lead">' + esc(c.description) + "</p>";
+      h += examplesHtml(it);
       if (it.related && it.related.length) {
         h += '<div class="body"><h3>関連するタックスアンサー</h3></div><ul class="related">';
         it.related.forEach(function (r) {
@@ -700,17 +716,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
           sib.map(function (x) { return '<li><a href="#' + x.id + '" data-jump="' + x.id + '">' + esc(x.term) + "</a></li>"; }).join("") + "</ul></div>";
       }
     } else {
-      // 要点・具体例（出典付き）を本文の前に出す
-      var ex = it.examples || [];
-      [["要点", it.points || []], ["具体例", ex.filter(function (x) { return !x.other && !x.tax; })],
-       ["課税方法", ex.filter(function (x) { return x.tax; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
-        if (!g[1].length) return;
-        h += '<div class="body examples"><h3>' + g[0] + "</h3><ul>" + g[1].map(function (x) {
-          var to = x.other || x.tax;
-          return "<li>" + esc(x.text) + (to ? '<span class="to">→ ' + esc(to) + "</span>" : "") +
-            ' <a class="src" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.source) + "</a></li>";
-        }).join("") + "</ul></div>";
-      });
+      h += examplesHtml(it);
       h += '<div class="body">' + mdToHtml(it.md) + "</div>";
       if (it.relatedTsutatsu && it.relatedTsutatsu.length) {
         h += '<div class="body"><h3>関連する通達（所得税基本通達）</h3><ul>' + it.relatedTsutatsu.map(function (t) {

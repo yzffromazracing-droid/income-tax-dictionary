@@ -39,6 +39,7 @@ POINTS = DATA / "aoiro_points.json"
 KOJO_EXAMPLES = DATA / "kojo_examples.json"
 ZEIGAKU_EXAMPLES = DATA / "zeigaku_examples.json"
 AOIRO_EXAMPLES = DATA / "aoiro_examples.json"
+HIKAZEI_EXAMPLES = DATA / "hikazei_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 TSUTATSU_TAB = {
@@ -458,30 +459,54 @@ def _plain(md):
     return re.sub(r"\s|\*\*", "", re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", md))
 
 
-def add_examples(pages, ta_pages, kihon, path=EXAMPLES, key="examples"):
+def add_examples(pages, ta_pages, kihon, path=EXAMPLES, key="examples", data=None, key_of=lambda p: p["code"]):
     """各ページに出典付きの箇条書き（所得区分の具体例、青色申告の要点など）を付ける。
 
     各項目の quote が出典の本文に実在するかを照合し、見つからなければ止める。
     """
-    data = json.loads(path.read_text(encoding="utf-8"))
+    if data is None:
+        data = json.loads(path.read_text(encoding="utf-8"))
     sources = {code: (f"No.{code}", p["source_url"], p["content_md"]) for code, p in ta_pages.items()}
     sources.update({f"所基通{e['no']}": (f"所基通{e['no']}", e["source_url"], e["content_md"]) for e in kihon})
     errors = []
     for page in pages:
         page[key] = []
-        for ex in data.get(page["code"], []):
+        for ex in data.get(key_of(page), []):
             if ex["src"] not in sources and re.fullmatch(r"\d{4}", ex["src"]):
                 # カテゴリ外のタックスアンサー（No.1122 など）も出典にできる
                 p, _ = parse_page(ex["src"], fetch(ex["src"]))
                 sources[ex["src"]] = (f"No.{ex['src']}", p["source_url"], p["content_md"])
             label, url, md = sources.get(ex["src"], (None, None, ""))
             if label is None or _plain(ex["quote"]) not in _plain(md):
-                errors.append(f"  No.{page['code']} {ex['text']}: {ex['src']} に「{ex['quote']}」が見つかりません")
+                errors.append(f"  {key_of(page)} {ex['text']}: {ex['src']} に「{ex['quote']}」が見つかりません")
                 continue
             page[key].append({"text": ex["text"], "source": label, "url": url,
                               "other": ex.get("other", ""), "tax": ex.get("tax", "")})
     if errors:
         raise SystemExit(f"{path.name} の出典を確認してください。\n" + "\n".join(errors))
+
+
+def add_hikazei_examples(entries, overview, kihon):
+    """非課税の各項目（No.2011 の表の行）に具体例を付ける。行の順番と用語が data と合っているかも確かめる。"""
+    raw = json.loads(HIKAZEI_EXAMPLES.read_text(encoding="utf-8"))
+    for i, e in enumerate(entries, 1):
+        e["hk_id"] = f"hk{i}"
+        if e["hk_id"] in raw and raw[e["hk_id"]]["_term"] != e["term"]:
+            raise SystemExit(f"{HIKAZEI_EXAMPLES.name}: {e['hk_id']} の用語が No.2011 の表と違います: {e['term']}")
+    data = {k: v["examples"] for k, v in raw.items() if not k.startswith("_")}
+    add_examples(entries, {overview["code"]: overview}, kihon, HIKAZEI_EXAMPLES, data=data, key_of=lambda p: p["hk_id"])
+
+
+def _example_lines(exs, indent=""):
+    lines = []
+    for heading, items in (("具体例", [x for x in exs if not x["other"] and not x.get("tax")]),
+                           ("課税方法", [x for x in exs if x.get("tax")]),
+                           ("当たらない例", [x for x in exs if x["other"]])):
+        if items:
+            lines.append(f"{indent}- **{heading}**:")
+            lines += [f"{indent}  - {x['text']}" + (f" → {x['other'] or x.get('tax')}" if x["other"] or x.get("tax") else "")
+                      + f"（[{x['source']}]({x['url']})）" for x in items]
+    return lines
 
 
 def render_md(cat, overview, entries):
@@ -517,6 +542,7 @@ def render_md(cat, overview, entries):
                 lines += [f"#### {e['term']}", "", f"- **読み**: {e['yomi']}"]
                 if e["alias"]:
                     lines.append(f"- **通称**: {e['alias']}")
+                lines += _example_lines(e.get("examples", []))
                 for r in e["related"]:
                     lines.append(f"- **関連**: [{r['title']}]({r['source_url']})"
                                  + (f" — {r['summary']}" if r["summary"] else ""))
@@ -530,14 +556,7 @@ def render_md(cat, overview, entries):
                       f"- **読み**: {e['yomi']}"]
             if e["summary"]:
                 lines.append(f"- **要旨**: {e['summary']}")
-            exs = e.get("examples", [])
-            for heading, items in (("具体例", [x for x in exs if not x["other"] and not x.get("tax")]),
-                                   ("課税方法", [x for x in exs if x.get("tax")]),
-                                   ("当たらない例", [x for x in exs if x["other"]])):
-                if items:
-                    lines.append(f"- **{heading}**:")
-                    lines += [f"  - {x['text']}" + (f" → {x['other'] or x.get('tax')}" if x["other"] or x.get("tax") else "")
-                              + f"（[{x['source']}]({x['url']})）" for x in items]
+            lines += _example_lines(e.get("examples", []))
             lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
                       demote(e["content_md"]), "", "</details>", ""]
             if e["legal_basis"]:
@@ -601,6 +620,7 @@ def search_items(result):
                     "url": e["source_url"], "summary": "",
                     "related": [{"title": r["title"], "summary": r["summary"],
                                  "url": r["source_url"]} for r in e["related"]],
+                    "examples": e.get("examples", []),
                 })
             else:
                 items.append(page_item(cat["id"], e, "entry"))
@@ -661,6 +681,7 @@ def main():
         overview, soup = parse_page(cat["overview"], fetch(cat["overview"], args.refresh))
         if cat["id"] == "hikazei":
             entries = extract_hikazei(soup, args.refresh)
+            add_hikazei_examples(entries, overview, kihon)
         else:
             entries = [parse_page(c, fetch(c, args.refresh))[0] for c in cat["pages"]]
         add_yomi([overview] + entries, table, maxlen)
