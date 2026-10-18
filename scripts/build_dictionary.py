@@ -4,6 +4,7 @@
 カテゴリ:
   - 非課税     : No.2011「課税される所得と非課税所得」の表から各非課税所得を項目化
   - 所得区分   : No.1300 と 10種類の所得の各ページ
+  - 青色申告   : No.2070 と青色申告特別控除・青色事業専従者給与・届出などのページ（要点と関連通達つき）
   - 所得控除   : No.1100 と各所得控除のページ
   - 税額控除   : No.1200 と各税額控除のページ
   - 通達       : 法令解釈通達の所得税基本通達と個別通達（所得税関係）。scripts/tsutatsu.py
@@ -34,7 +35,8 @@ SITE = ROOT / "docs"
 TEMPLATE = Path(__file__).resolve().parent / "search_template.html"
 YOMI = DATA / "yomi.tsv"
 EXAMPLES = DATA / "shotoku_examples.json"
-CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun",
+POINTS = DATA / "aoiro_points.json"
+CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 TSUTATSU_TAB = {
     "id": "tsutatsu", "name": "通達", "color": "tsutatsu",
@@ -78,6 +80,21 @@ CATEGORIES = [
             {"id": "ichiji", "name": "一時所得", "pages": ["1490"]},
             {"id": "zatsu", "name": "雑所得", "pages": ["1500"]},
         ],
+    },
+    {
+        "id": "aoiro",
+        "name": "青色申告",
+        "description": "一定水準の記帳をし、その記帳に基づいて正しい申告をする人が受けられる青色申告の制度と、その特典・手続。",
+        "overview": "2070",
+        "pages": ["2072", "2075", "2090", "2080"],
+        "subtabs": [
+            {"id": "aoiro-kojo", "name": "青色申告特別控除", "pages": ["2072"]},
+            {"id": "senjusha", "name": "青色事業専従者給与", "pages": ["2075"]},
+            {"id": "aoiro-tetsuzuki", "name": "届出・手続", "pages": ["2090"]},
+            {"id": "shiroiro", "name": "白色申告者の記帳・帳簿保存", "pages": ["2080"]},
+        ],
+        # 関連する所得税基本通達（「法第○条《…》関係」の条番号で選ぶ）
+        "related_tsutatsu": r"^法第(52|57|14[3-9]|15[01])条《",
     },
     {
         "id": "shotoku-kojo",
@@ -408,25 +425,25 @@ def _plain(md):
     return re.sub(r"\s|\*\*", "", re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", md))
 
 
-def add_examples(pages, ta_pages, kihon):
-    """所得区分の各ページに具体例（data/shotoku_examples.json）を付ける。
+def add_examples(pages, ta_pages, kihon, path=EXAMPLES, key="examples"):
+    """各ページに出典付きの箇条書き（所得区分の具体例、青色申告の要点など）を付ける。
 
-    各例の quote が出典の本文に実在するかを照合し、見つからなければ止める。
+    各項目の quote が出典の本文に実在するかを照合し、見つからなければ止める。
     """
-    data = json.loads(EXAMPLES.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
     sources = {code: (f"No.{code}", p["source_url"], p["content_md"]) for code, p in ta_pages.items()}
     sources.update({f"所基通{e['no']}": (f"所基通{e['no']}", e["source_url"], e["content_md"]) for e in kihon})
     errors = []
     for page in pages:
-        page["examples"] = []
+        page[key] = []
         for ex in data.get(page["code"], []):
             label, url, md = sources.get(ex["src"], (None, None, ""))
             if label is None or _plain(ex["quote"]) not in _plain(md):
                 errors.append(f"  No.{page['code']} {ex['text']}: {ex['src']} に「{ex['quote']}」が見つかりません")
                 continue
-            page["examples"].append({"text": ex["text"], "source": label, "url": url, "other": ex.get("other", "")})
+            page[key].append({"text": ex["text"], "source": label, "url": url, "other": ex.get("other", "")})
     if errors:
-        raise SystemExit(f"{EXAMPLES.name} の出典を確認してください。\n" + "\n".join(errors))
+        raise SystemExit(f"{path.name} の出典を確認してください。\n" + "\n".join(errors))
 
 
 def render_md(cat, overview, entries):
@@ -435,6 +452,8 @@ def render_md(cat, overview, entries):
     # 本文の「### 概要」はページの「## 概要」と重なるので外す
     summary_md = re.sub(r"\A### 概要\n\n", "", overview["content_md"])
     summary = ["## 概要", "", summary_md, ""]
+    if overview.get("points"):
+        summary = ["## 要点", ""] + [f"- {x['text']}（[{x['source']}]({x['url']})）" for x in overview["points"]] + [""] + summary
 
     # 並び: 説明 → 概要 → 目次 → 用語 → 根拠法令等・出典
     lines = [f"# {cat['name']}", "", cat["description"], ""] + summary + ["## 目次", ""]
@@ -486,6 +505,8 @@ def render_md(cat, overview, entries):
             if e["as_of"]:
                 lines.append(f"- **基準**: {e['as_of']}")
             lines += [f"- **タックスアンサー**: [{e['title']}]({e['source_url']})", ""]
+    if overview.get("related_tsutatsu"):
+        lines += ["## 関連する通達", ""] + [f"- [所得税基本通達 {t['term']}]({t['url']})" for t in overview["related_tsutatsu"]] + [""]
     lines += ["---", ""]
     if overview["legal_basis"]:
         lines += [f"**根拠法令等**: {overview['legal_basis']}", ""]
@@ -511,7 +532,8 @@ def search_items(result):
             "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
-            "examples": page.get("examples", []),
+            "examples": page.get("examples", []), "points": page.get("points", []),
+            "relatedTsutatsu": page.get("related_tsutatsu", []),
         }
 
     for cat in result["categories"]:
@@ -588,6 +610,12 @@ def main():
         add_yomi([overview] + entries, table, maxlen)
         if cat["id"] == "shotoku-kubun":
             add_examples(entries, {p["code"]: p for p in [overview] + entries}, kihon)
+        if cat["id"] == "aoiro":
+            add_examples([overview], {p["code"]: p for p in [overview] + entries}, kihon, POINTS, "points")
+        if cat.get("related_tsutatsu"):
+            overview["related_tsutatsu"] = [
+                {"id": f"tk{i}", "term": e["term"], "url": e["source_url"]}
+                for i, e in enumerate(kihon, 1) if re.match(cat["related_tsutatsu"], e["group"])]
         result["categories"].append({
             "id": cat["id"],
             "name": cat["name"],
