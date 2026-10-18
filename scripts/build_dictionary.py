@@ -48,7 +48,6 @@ CATEGORIES = [
         "name": "所得区分",
         "description": "所得税法上の10種類の所得の区分。",
         "overview": "1300",
-        "overview_first": True,  # 概要を目次より前に、出典をページ末尾に置く
         "pages": ["1310", "1330", "1350", "1370", "1400", "1420",
                   "1440", "1460", "1480", "1490", "1500"],
     },
@@ -353,14 +352,9 @@ def render_md(cat, overview, entries):
     summary = ["## 概要", "", summary_md, ""]
     if overview["legal_basis"]:
         summary += [f"**根拠法令等**: {overview['legal_basis']}", ""]
-    overview_first = cat.get("overview_first", False)
 
-    lines = [f"# {cat['name']}", "", cat["description"], ""]
-    if overview_first:
-        lines += summary
-    else:
-        lines += [source, ""]
-    lines += ["## 目次", ""]
+    # 並び: 説明 → 概要 → 目次 → 用語 → 出典
+    lines = [f"# {cat['name']}", "", cat["description"], ""] + summary + ["## 目次", ""]
     if cat["id"] == "hikazei":
         groups = list(dict.fromkeys(e["group"] for e in entries))
         for g in groups:
@@ -372,8 +366,6 @@ def render_md(cat, overview, entries):
         for e in entries:
             lines.append(f"- [{e['term']}](#no{e['code']}) — No.{e['code']}")
     lines.append("")
-    if not overview_first:
-        lines += summary
 
     if cat["id"] == "hikazei":
         lines += ["## 用語", ""]
@@ -404,8 +396,7 @@ def render_md(cat, overview, entries):
                       demote(e["content_md"]), "", "</details>", "",
                       f"**タックスアンサー**: [{e['title']}]({e['source_url']})"
                       + (f"（{e['as_of']}）" if e["as_of"] else ""), ""]
-    if overview_first:
-        lines += ["---", "", source, ""]
+    lines += ["---", "", source, ""]
     return "\n".join(lines).rstrip() + "\n"
 
 
