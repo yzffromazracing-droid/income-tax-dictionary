@@ -530,9 +530,12 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function subsOf(it) { return it.subs && it.subs.length ? it.subs : (it.sub ? [it.sub] : []); }
   // 一覧の見出し：「退職所得（分離課税）」のように下のタブと3段目のタブの名前
   function groupLabel(it) {
-    var sub = state.sub !== "all" ? state.sub : it.sub;
-    var kids = state.sub2 !== "all" ? [state.sub2] : (it.sub2 || []).filter(function (k) { return SUB2[k].sub === sub; });
-    return SUB[sub].name + (kids.length ? "（" + kids.map(function (k) { return SUB2[k].name; }).join("・") + "）" : "");
+    // 「すべて」では、複数の所得に共通のページ（No.2220 など）を「不動産所得・事業所得・給与所得（総合課税）」とまとめる
+    var subs = state.sub !== "all" ? [state.sub] : subsOf(it);
+    var kids = state.sub2 !== "all" ? [state.sub2] : (it.sub2 || []).filter(function (k) { return subs.indexOf(SUB2[k].sub) >= 0; });
+    var names = [];
+    kids.forEach(function (k) { if (names.indexOf(SUB2[k].name) < 0) names.push(SUB2[k].name); });
+    return subs.map(function (k) { return SUB[k].name; }).join("・") + (names.length ? "（" + names.join("・") + "）" : "");
   }
   function setSub2(id) {
     var refocus = subtabs2El.contains(document.activeElement);
