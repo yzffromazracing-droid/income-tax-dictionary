@@ -350,10 +350,8 @@ def render_md(cat, overview, entries):
     # 本文の「### 概要」はページの「## 概要」と重なるので外す
     summary_md = re.sub(r"\A### 概要\n\n", "", overview["content_md"])
     summary = ["## 概要", "", summary_md, ""]
-    if overview["legal_basis"]:
-        summary += [f"**根拠法令等**: {overview['legal_basis']}", ""]
 
-    # 並び: 説明 → 概要 → 目次 → 用語 → 出典
+    # 並び: 説明 → 概要 → 目次 → 用語 → 根拠法令等・出典
     lines = [f"# {cat['name']}", "", cat["description"], ""] + summary + ["## 目次", ""]
     if cat["id"] == "hikazei":
         groups = list(dict.fromkeys(e["group"] for e in entries))
@@ -377,26 +375,30 @@ def render_md(cat, overview, entries):
                 lines += [f"#### {e['term']}", "", f"- **読み**: {e['yomi']}"]
                 if e["alias"]:
                     lines.append(f"- **通称**: {e['alias']}")
-                if e["legal_basis"]:
-                    lines.append(f"- **根拠法令**: {e['legal_basis']}")
                 for r in e["related"]:
                     lines.append(f"- **関連**: [{r['title']}]({r['source_url']})"
                                  + (f" — {r['summary']}" if r["summary"] else ""))
+                if e["legal_basis"]:
+                    lines.append(f"- **根拠法令**: {e['legal_basis']}")
                 lines.append("")
     else:
         lines += ["## 用語", ""]
         for e in entries:
             lines += [f'<a id="no{e["code"]}"></a>', "", f"### {e['term']}", "",
                       f"- **読み**: {e['yomi']}"]
-            if e["legal_basis"]:
-                lines.append(f"- **根拠法令等**: {e['legal_basis']}")
             if e["summary"]:
                 lines.append(f"- **要旨**: {e['summary']}")
             lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
-                      demote(e["content_md"]), "", "</details>", "",
-                      f"**タックスアンサー**: [{e['title']}]({e['source_url']})"
-                      + (f"（{e['as_of']}）" if e["as_of"] else ""), ""]
-    lines += ["---", "", source, ""]
+                      demote(e["content_md"]), "", "</details>", ""]
+            if e["legal_basis"]:
+                lines.append(f"- **根拠法令等**: {e['legal_basis']}")
+            if e["as_of"]:
+                lines.append(f"- **基準**: {e['as_of']}")
+            lines += [f"- **タックスアンサー**: [{e['title']}]({e['source_url']})", ""]
+    lines += ["---", ""]
+    if overview["legal_basis"]:
+        lines += [f"**根拠法令等**: {overview['legal_basis']}", ""]
+    lines += [source, ""]
     return "\n".join(lines).rstrip() + "\n"
 
 
