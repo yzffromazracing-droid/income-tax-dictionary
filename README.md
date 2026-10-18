@@ -11,7 +11,7 @@
 - スペース区切りで AND 検索、全角/半角・カタカナ/ひらがなの違いは無視
 - 非課税・所得区分・青色申告・所得控除・税額控除・通達をタブで切り替え（検索中は各タブに一致件数を表示）
 - 通達タブの下には基本通達・個別通達のタブがあり、`36-30` や `所基通9-3` のように通達番号でも検索できる
-- 非課税タブの下には No.2011 の表の区分（利子・配当所得関係、給与所得・公的年金関係、譲渡（山林）所得関係、その他）のタブ、所得区分タブの下には利子所得から雑所得までの10種類の所得のタブ、所得控除タブの下には雑損控除から基礎控除までの各控除のタブ、税額控除タブの下には配当控除から公益社団法人等寄附金特別控除までの各控除のタブがある
+- 非課税タブの下には No.2011 の表の区分（利子・配当所得関係、給与所得・公的年金関係、譲渡（山林）所得関係、その他）のタブ、所得区分タブの下には利子所得から雑所得までの10種類の所得のタブ（譲渡所得の下にはさらに総合課税・分離課税のタブ）、所得控除タブの下には雑損控除から基礎控除までの各控除のタブ、税額控除タブの下には配当控除から公益社団法人等寄附金特別控除までの各控除のタブがある
 - `#no1199` のようなリンクで用語を、`#shotoku-kojo` や `#kyuyo`（給与所得）のようなリンクでタブを直接開ける
 - GitHub Pages を「main ブランチの /docs」で公開すれば Web 上でも使えます
 
@@ -20,7 +20,7 @@
 | カテゴリ | ファイル | 出典（概要ページ） | 項目数 |
 |---|---|---|---|
 | 非課税 | [dictionary/hikazei.md](dictionary/hikazei.md) | [No.2011 課税される所得と非課税所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm) | 24 |
-| 所得区分 | [dictionary/shotoku-kubun.md](dictionary/shotoku-kubun.md) | [No.1300 所得の区分のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm) | 11 |
+| 所得区分 | [dictionary/shotoku-kubun.md](dictionary/shotoku-kubun.md) | [No.1300 所得の区分のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm) | 12 |
 | 青色申告 | [dictionary/aoiro.md](dictionary/aoiro.md) | [No.2070 青色申告制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm) | 4 |
 | 所得控除 | [dictionary/shotoku-kojo.md](dictionary/shotoku-kojo.md) | [No.1100 所得控除のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1100.htm) | 18 |
 | 税額控除 | [dictionary/zeigaku-kojo.md](dictionary/zeigaku-kojo.md) | [No.1200 税額控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1200.htm) | 11 |

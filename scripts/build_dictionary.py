@@ -68,7 +68,7 @@ CATEGORIES = [
         "overview": "1300",
         # 所得税法（23条〜35条）の順
         "pages": ["1310", "1330", "1370", "1350", "1400", "1420",
-                  "1480", "1440", "1460", "1490", "1500"],
+                  "1480", "1460", "1440", "1463", "1490", "1500"],
         # 検索ページで「所得区分」タブの下に出すタブ
         "subtabs": [
             {"id": "rishi", "name": "利子所得", "pages": ["1310"]},
@@ -78,7 +78,12 @@ CATEGORIES = [
             {"id": "kyuyo", "name": "給与所得", "pages": ["1400"]},
             {"id": "taishoku", "name": "退職所得", "pages": ["1420"]},
             {"id": "sanrin", "name": "山林所得", "pages": ["1480"]},
-            {"id": "joto", "name": "譲渡所得", "pages": ["1440", "1460"]},
+            {"id": "joto", "name": "譲渡所得", "pages": ["1460", "1440", "1463"],
+             # 譲渡所得の下のタブ（課税方法）
+             "children": [
+                 {"id": "joto-sogo", "name": "総合課税", "pages": ["1460"]},
+                 {"id": "joto-bunri", "name": "分離課税", "pages": ["1440", "1463"]},
+             ]},
             {"id": "ichiji", "name": "一時所得", "pages": ["1490"]},
             {"id": "zatsu", "name": "雑所得", "pages": ["1500"]},
         ],
@@ -528,13 +533,17 @@ def search_items(result):
     """検索ページ用に全カテゴリの項目を1つのリストにする。"""
     items = []
     sub_of = {code: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for code in t["pages"]}
-    sub_ids = [t["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])]
+    sub2_of = {code: c["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])
+               for c in t.get("children", []) for code in c["pages"]}
+    sub_ids = [t["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])] + \
+        [c["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for c in t.get("children", [])]
     assert len(sub_ids) == len(set(sub_ids)), "下のタブの id が重複しています"
     sub_of_group = {t["group"]: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) if "group" in t}
 
     def page_item(cat_id, page, kind):
         return {
-            "id": f"no{page['code']}", "cat": cat_id, "sub": sub_of.get(page["code"], ""), "kind": kind,
+            "id": f"no{page['code']}", "cat": cat_id, "sub": sub_of.get(page["code"], ""),
+            "sub2": sub2_of.get(page["code"], ""), "kind": kind,
             "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
@@ -571,7 +580,9 @@ def render_search_page(result, yomi_pairs, tsutatsu_items):
         "as_of": as_of,
         "categories": [{"id": c["id"], "name": c["name"], "description": c["description"],
                         "color": CAT_COLORS[c["id"]],
-                        "subtabs": [{"id": t["id"], "name": t["name"]} for t in conf.get("subtabs", [])]}
+                        "subtabs": [{"id": t["id"], "name": t["name"],
+                                     "children": [{"id": c["id"], "name": c["name"]} for c in t.get("children", [])]}
+                                    for t in conf.get("subtabs", [])]}
                        for c, conf in zip(result["categories"], CATEGORIES)] + [TSUTATSU_TAB],
         "items": search_items(result) + tsutatsu_items,
         # ひらがな入力を漢字表記に置き換えるための読み辞書（漢字を含む語のみ）

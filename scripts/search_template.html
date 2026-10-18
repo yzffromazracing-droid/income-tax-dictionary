@@ -119,6 +119,10 @@ header.top.has-sub .tabbar { margin-bottom: 0; border-bottom: 1px solid var(--li
 .subtab[aria-selected="true"] { color: var(--ink); font-weight: 700; background: var(--accent-soft); border-color: var(--line); }
 .subtab .n { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
 .subtab .n.zero { opacity: .5; }
+/* 3段目のタブ（譲渡所得の課税方法など） */
+.subtabs.sub2 { align-items: center; padding-top: 0; }
+.subtabs.sub2::before { content: "└"; color: var(--muted); margin: 0 4px 0 10px; }
+.subtabs.sub2 .subtab { font-size: 12.5px; padding: 2px 10px; }
 .status { margin-left: auto; padding-bottom: 12px; color: var(--muted); font-size: 12.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* 本体 */
@@ -233,6 +237,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
       <span class="status" id="status"></span>
     </div>
     <div class="subtabs" id="subtabs" role="tablist" aria-label="所得の種類" hidden></div>
+    <div class="subtabs sub2" id="subtabs2" role="tablist" aria-label="課税方法" hidden></div>
   </div>
 </header>
 <main class="wrap">
@@ -255,10 +260,17 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
 
   var $ = function (id) { return document.getElementById(id); };
   var qEl = $("q"), listEl = $("list"), detailEl = $("detail"), tabsEl = $("tabs");
-  var state = { q: "", cat: CATS[0].id, sub: "all", current: null, limit: 60 };
+  var state = { q: "", cat: CATS[0].id, sub: "all", sub2: "all", current: null, limit: 60 };
   var subtabsEl = $("subtabs");
   var SUB = {};
-  CATS.forEach(function (c) { c.subtabs.forEach(function (t) { SUB[t.id] = { cat: c.id, name: t.name }; }); });
+  var SUB2 = {};
+  CATS.forEach(function (c) {
+    c.subtabs.forEach(function (t) {
+      SUB[t.id] = { cat: c.id, name: t.name, children: t.children || [] };
+      (t.children || []).forEach(function (k) { SUB2[k.id] = { cat: c.id, sub: t.id, name: k.name }; });
+    });
+  });
+  var subtabs2El = document.getElementById("subtabs2");
 
   // ---- 正規化（全角/半角・カタカナ/ひらがな・大文字小文字を同一視） ----
   function normChar(ch) {
@@ -501,16 +513,36 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var sel = $("sub-" + state.sub);
     if (sel) subtabsEl.scrollLeft = sel.offsetLeft - (subtabsEl.clientWidth - sel.offsetWidth) / 2;
   }
+  // 3段目のタブ（選んでいる下のタブに children があるときだけ出す）
+  function renderSubtabs2(counts, total, searching) {
+    var kids = state.sub !== "all" && SUB[state.sub] ? SUB[state.sub].children : [];
+    subtabs2El.hidden = !kids.length;
+    if (!kids.length) { subtabs2El.innerHTML = ""; return; }
+    var tabs = [{ id: "all", name: "すべて", n: total }].concat(kids.map(function (k) { return { id: k.id, name: k.name, n: counts[k.id] || 0 }; }));
+    subtabs2El.innerHTML = tabs.map(function (t) {
+      var on = state.sub2 === t.id;
+      return '<button class="subtab" type="button" role="tab" id="sub2-' + t.id + '" data-sub2="' + t.id + '" aria-selected="' + on +
+        '" tabindex="' + (on ? 0 : -1) + '">' + esc(t.name) +
+        (searching ? '<span class="n' + (t.n ? "" : " zero") + '">' + t.n + "</span>" : "") + "</button>";
+    }).join("");
+  }
+  function setSub2(id) {
+    var refocus = subtabs2El.contains(document.activeElement);
+    state.sub2 = id; state.limit = 60; state.current = null;
+    document.body.classList.remove("reading");
+    render();
+    if (refocus) $("sub2-" + id).focus();
+  }
   function setSub(id) {
     var refocus = subtabsEl.contains(document.activeElement);
-    state.sub = id; state.limit = 60; state.current = null;
+    state.sub = id; state.sub2 = "all"; state.limit = 60; state.current = null;
     document.body.classList.remove("reading");
     render();
     if (refocus) $("sub-" + id).focus();
   }
   function setTab(id) {
     var refocus = tabsEl.contains(document.activeElement);
-    state.cat = id; state.sub = "all"; state.limit = 60; state.current = null;
+    state.cat = id; state.sub = "all"; state.sub2 = "all"; state.limit = 60; state.current = null;
     document.body.classList.remove("reading");
     render();
     if (refocus) $("tab-" + id).focus();
@@ -536,13 +568,25 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var inCat = r.all.filter(function (x) { return x.it.cat === state.cat; }), subCounts = {};
     inCat.forEach(function (x) { if (x.it.sub) subCounts[x.it.sub] = (subCounts[x.it.sub] || 0) + 1; });
     renderSubtabs(state.cat, subCounts, inCat.length, toks.length > 0);
-    var shown = state.sub === "all" ? inCat : inCat.filter(function (x) { return x.it.sub === state.sub; });
+    var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return x.it.sub === state.sub; }), sub2Counts = {};
+    inSub.forEach(function (x) { if (x.it.sub2) sub2Counts[x.it.sub2] = (sub2Counts[x.it.sub2] || 0) + 1; });
+    if (!SUB2[state.sub2] || SUB2[state.sub2].sub !== state.sub) state.sub2 = "all";
+    renderSubtabs2(sub2Counts, inSub.length, toks.length > 0);
+    var shown = state.sub2 === "all" ? inSub : inSub.filter(function (x) { return x.it.sub2 === state.sub2; });
     setHeaderH();
     $("status").textContent = toks.length ? ITEMS.length + "語中 " + r.all.length + "件が一致" : ITEMS.length + "語を収録";
     document.body.classList.toggle("searching", toks.length > 0);
     $("clear").hidden = !state.q;
     $("kbd").hidden = !!state.q;
 
+    if (!shown.length && inSub.length) {
+      var kids = SUB[state.sub].children.filter(function (k) { return sub2Counts[k.id]; });
+      listEl.innerHTML = '<div class="empty"><p>「' + esc(state.q) + "」に一致する用語は" + esc(SUB2[state.sub2].name) + "にはありません。</p>" +
+        '<div class="others">' + kids.map(function (k) { return '<button type="button" data-sub2="' + k.id + '">' + esc(k.name) + " " + sub2Counts[k.id] + "件</button>"; }).join("") +
+        '<button type="button" data-sub2="all">すべて ' + inSub.length + "件</button></div></div>";
+      detailEl.innerHTML = "";
+      return;
+    }
     if (!shown.length && inCat.length) {
       var subs = CAT[state.cat].subtabs.filter(function (t) { return subCounts[t.id]; });
       listEl.innerHTML = '<div class="empty"><p>「' + esc(state.q) + "」に一致する用語は" + esc(SUB[state.sub].name) + "にはありません。</p>" +
@@ -564,7 +608,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (pos >= state.limit) state.limit = pos + 20;
     var html = "", lastGroup = null, list = shown.slice(0, state.limit);
     list.forEach(function (x) {
-      var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && SUB[it.sub].name) || "用語");
+      var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && SUB[it.sub].name +
+        (it.sub2 && SUB2[it.sub2] ? "（" + SUB2[it.sub2].name + "）" : "")) || "用語");
       if (!toks.length && group !== lastGroup) {
         html += '<div class="group-label">' + esc(group) + "</div>";
         lastGroup = group;
@@ -591,7 +636,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (!it) return;
     if (it.cat !== state.cat || (it.sub && state.sub !== "all" && it.sub !== state.sub)) {
       qEl.value = ""; state.q = "";
-      state.cat = it.cat; state.sub = it.sub || "all"; state.limit = 60;
+      state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = it.sub2 || "all"; state.limit = 60;
     }
     state.current = id;
     render();
@@ -676,7 +721,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   qEl.addEventListener("input", function () {
     clearTimeout(timer);
     timer = setTimeout(function () {
-      state.q = qEl.value.trim(); state.limit = 60; state.current = null; state.autoTab = true; state.sub = "all";
+      state.q = qEl.value.trim(); state.limit = 60; state.current = null; state.autoTab = true; state.sub = "all"; state.sub2 = "all";
       document.body.classList.remove("reading");
       render();
     }, 80);
@@ -689,6 +734,18 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   subtabsEl.addEventListener("click", function (e) {
     var b = e.target.closest(".subtab");
     if (b) setSub(b.getAttribute("data-sub"));
+  });
+  subtabs2El.addEventListener("click", function (e) {
+    var b = e.target.closest(".subtab");
+    if (b) setSub2(b.getAttribute("data-sub2"));
+  });
+  subtabs2El.addEventListener("keydown", function (e) {
+    var ids = ["all"].concat(SUB[state.sub].children.map(function (k) { return k.id; }));
+    var i = ids.indexOf(state.sub2), n = ids.length;
+    var next = { ArrowRight: (i + 1) % n, ArrowLeft: (i + n - 1) % n, Home: 0, End: n - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    setSub2(ids[next]);
   });
   subtabsEl.addEventListener("keydown", function (e) {
     var ids = ["all"].concat(CAT[state.cat].subtabs.map(function (t) { return t.id; }));
@@ -711,6 +768,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (t) { setTab(t.getAttribute("data-cat")); return; }
     var u = e.target.closest("[data-sub]");
     if (u) { setSub(u.getAttribute("data-sub")); return; }
+    var w = e.target.closest("[data-sub2]");
+    if (w) { setSub2(w.getAttribute("data-sub2")); return; }
     var b = e.target.closest(".result");
     if (b) select(b.getAttribute("data-id"), true);
   });
@@ -744,9 +803,10 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   $("foot").innerHTML = "出典: <a href=\"" + esc(DATA.source_url) + "\" target=\"_blank\" rel=\"noopener\">" + esc(DATA.source) + "</a>（" + esc(DATA.as_of) + "）。国税庁の公式サービスではありません。生成日 " + esc(DATA.generated_at) + "。";
 
   var initial = (location.hash || "").slice(1);
-  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; }
+  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; state.sub2 = BY_ID[initial].sub2 || "all"; }
   else if (CAT[initial]) state.cat = initial;
   else if (SUB[initial]) { state.cat = SUB[initial].cat; state.sub = initial; }
+  else if (SUB2[initial]) { state.cat = SUB2[initial].cat; state.sub = SUB2[initial].sub; state.sub2 = initial; }
   render();
   setHeaderH();
   if (BY_ID[initial]) select(initial, window.innerWidth <= 860);
