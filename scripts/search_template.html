@@ -569,10 +569,10 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     inCat.forEach(function (x) { if (x.it.sub) subCounts[x.it.sub] = (subCounts[x.it.sub] || 0) + 1; });
     renderSubtabs(state.cat, subCounts, inCat.length, toks.length > 0);
     var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return x.it.sub === state.sub; }), sub2Counts = {};
-    inSub.forEach(function (x) { if (x.it.sub2) sub2Counts[x.it.sub2] = (sub2Counts[x.it.sub2] || 0) + 1; });
+    inSub.forEach(function (x) { (x.it.sub2 || []).forEach(function (k) { sub2Counts[k] = (sub2Counts[k] || 0) + 1; }); });
     if (!SUB2[state.sub2] || SUB2[state.sub2].sub !== state.sub) state.sub2 = "all";
     renderSubtabs2(sub2Counts, inSub.length, toks.length > 0);
-    var shown = state.sub2 === "all" ? inSub : inSub.filter(function (x) { return x.it.sub2 === state.sub2; });
+    var shown = state.sub2 === "all" ? inSub : inSub.filter(function (x) { return (x.it.sub2 || []).indexOf(state.sub2) >= 0; });
     setHeaderH();
     $("status").textContent = toks.length ? ITEMS.length + "語中 " + r.all.length + "件が一致" : ITEMS.length + "語を収録";
     document.body.classList.toggle("searching", toks.length > 0);
@@ -609,7 +609,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var html = "", lastGroup = null, list = shown.slice(0, state.limit);
     list.forEach(function (x) {
       var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && SUB[it.sub].name +
-        (it.sub2 && SUB2[it.sub2] ? "（" + SUB2[it.sub2].name + "）" : "")) || "用語");
+        (state.sub2 !== "all" ? "（" + SUB2[state.sub2].name + "）" :
+         (it.sub2 || []).length ? "（" + it.sub2.map(function (k) { return SUB2[k].name; }).join("・") + "）" : "")) || "用語");
       if (!toks.length && group !== lastGroup) {
         html += '<div class="group-label">' + esc(group) + "</div>";
         lastGroup = group;
@@ -636,7 +637,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (!it) return;
     if (it.cat !== state.cat || (it.sub && state.sub !== "all" && it.sub !== state.sub)) {
       qEl.value = ""; state.q = "";
-      state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = it.sub2 || "all"; state.limit = 60;
+      state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
     }
     state.current = id;
     render();
@@ -687,10 +688,12 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     } else {
       // 要点・具体例（出典付き）を本文の前に出す
       var ex = it.examples || [];
-      [["要点", it.points || []], ["具体例", ex.filter(function (x) { return !x.other; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
+      [["要点", it.points || []], ["具体例", ex.filter(function (x) { return !x.other && !x.tax; })],
+       ["課税方法", ex.filter(function (x) { return x.tax; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
         if (!g[1].length) return;
         h += '<div class="body examples"><h3>' + g[0] + "</h3><ul>" + g[1].map(function (x) {
-          return "<li>" + esc(x.text) + (x.other ? '<span class="to">→ ' + esc(x.other) + "</span>" : "") +
+          var to = x.other || x.tax;
+          return "<li>" + esc(x.text) + (to ? '<span class="to">→ ' + esc(to) + "</span>" : "") +
             ' <a class="src" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.source) + "</a></li>";
         }).join("") + "</ul></div>";
       });
@@ -803,7 +806,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   $("foot").innerHTML = "出典: <a href=\"" + esc(DATA.source_url) + "\" target=\"_blank\" rel=\"noopener\">" + esc(DATA.source) + "</a>（" + esc(DATA.as_of) + "）。国税庁の公式サービスではありません。生成日 " + esc(DATA.generated_at) + "。";
 
   var initial = (location.hash || "").slice(1);
-  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; state.sub2 = BY_ID[initial].sub2 || "all"; }
+  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; state.sub2 = (BY_ID[initial].sub2 || []).length === 1 ? BY_ID[initial].sub2[0] : "all"; }
   else if (CAT[initial]) state.cat = initial;
   else if (SUB[initial]) { state.cat = SUB[initial].cat; state.sub = initial; }
   else if (SUB2[initial]) { state.cat = SUB2[initial].cat; state.sub = SUB2[initial].sub; state.sub2 = initial; }

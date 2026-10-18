@@ -67,12 +67,20 @@ CATEGORIES = [
         "description": "所得税法上の10種類の所得の区分。",
         "overview": "1300",
         # 所得税法（23条〜35条）の順
-        "pages": ["1310", "1330", "1370", "1350", "1400", "1420",
+        "pages": ["1310", "2230", "1330", "1331", "1370", "1350", "1400", "1420",
                   "1480", "1460", "1440", "1463", "1490", "1755", "1520", "1500", "1522", "1521", "1523"],
         # 検索ページで「所得区分」タブの下に出すタブ
         "subtabs": [
-            {"id": "rishi", "name": "利子所得", "pages": ["1310"]},
-            {"id": "haito", "name": "配当所得", "pages": ["1330"]},
+            {"id": "rishi", "name": "利子所得", "pages": ["1310", "2230"],
+             "children": [
+                 {"id": "rishi-sogo", "name": "総合課税", "pages": ["1310"]},
+                 {"id": "rishi-bunri", "name": "分離課税", "pages": ["1310", "2230"]},
+             ]},
+            {"id": "haito", "name": "配当所得", "pages": ["1330", "1331"],
+             "children": [
+                 {"id": "haito-sogo", "name": "総合課税", "pages": ["1330"]},
+                 {"id": "haito-bunri", "name": "分離課税", "pages": ["1331"]},
+             ]},
             {"id": "fudosan", "name": "不動産所得", "pages": ["1370"]},
             {"id": "jigyo", "name": "事業所得", "pages": ["1350"]},
             {"id": "kyuyo", "name": "給与所得", "pages": ["1400"]},
@@ -460,7 +468,8 @@ def add_examples(pages, ta_pages, kihon, path=EXAMPLES, key="examples"):
             if label is None or _plain(ex["quote"]) not in _plain(md):
                 errors.append(f"  No.{page['code']} {ex['text']}: {ex['src']} に「{ex['quote']}」が見つかりません")
                 continue
-            page[key].append({"text": ex["text"], "source": label, "url": url, "other": ex.get("other", "")})
+            page[key].append({"text": ex["text"], "source": label, "url": url,
+                              "other": ex.get("other", ""), "tax": ex.get("tax", "")})
     if errors:
         raise SystemExit(f"{path.name} の出典を確認してください。\n" + "\n".join(errors))
 
@@ -511,11 +520,13 @@ def render_md(cat, overview, entries):
                       f"- **読み**: {e['yomi']}"]
             if e["summary"]:
                 lines.append(f"- **要旨**: {e['summary']}")
-            for heading, items in (("具体例", [x for x in e.get("examples", []) if not x["other"]]),
-                                   ("当たらない例", [x for x in e.get("examples", []) if x["other"]])):
+            exs = e.get("examples", [])
+            for heading, items in (("具体例", [x for x in exs if not x["other"] and not x.get("tax")]),
+                                   ("課税方法", [x for x in exs if x.get("tax")]),
+                                   ("当たらない例", [x for x in exs if x["other"]])):
                 if items:
                     lines.append(f"- **{heading}**:")
-                    lines += [f"  - {x['text']}" + (f" → {x['other']}" if x["other"] else "")
+                    lines += [f"  - {x['text']}" + (f" → {x['other'] or x.get('tax')}" if x["other"] or x.get("tax") else "")
                               + f"（[{x['source']}]({x['url']})）" for x in items]
             lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
                       demote(e["content_md"]), "", "</details>", ""]
@@ -541,8 +552,13 @@ def search_items(result):
     """検索ページ用に全カテゴリの項目を1つのリストにする。"""
     items = []
     sub_of = {code: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for code in t["pages"]}
-    sub2_of = {code: c["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])
-               for c in t.get("children", []) for code in c["pages"]}
+    # 3段目のタブは、1つのページが複数のタブに属することがある（No.1310 は総合課税と分離課税の両方）
+    sub2_of = {}
+    for cat in CATEGORIES:
+        for t in cat.get("subtabs", []):
+            for c in t.get("children", []):
+                for code in c["pages"]:
+                    sub2_of.setdefault(code, []).append(c["id"])
     sub_ids = [t["id"] for cat in CATEGORIES for t in cat.get("subtabs", [])] + \
         [c["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for c in t.get("children", [])]
     assert len(sub_ids) == len(set(sub_ids)), "下のタブの id が重複しています"
@@ -551,7 +567,7 @@ def search_items(result):
     def page_item(cat_id, page, kind):
         return {
             "id": f"no{page['code']}", "cat": cat_id, "sub": sub_of.get(page["code"], ""),
-            "sub2": sub2_of.get(page["code"], ""), "kind": kind,
+            "sub2": sub2_of.get(page["code"], []), "kind": kind,
             "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],

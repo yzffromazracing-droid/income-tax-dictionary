@@ -325,37 +325,112 @@
               "text": "銀行などの預貯金の利子",
               "source": "No.1310",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国債、地方債、社債などの公社債の利子",
               "source": "No.1310",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "合同運用信託の収益の分配",
               "source": "No.1310",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "公社債投資信託・公募公社債等運用投資信託の収益の分配",
               "source": "No.1310",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "定期積金の中途解約前・満期後の期間に対応して支払われる利子",
               "source": "所基通23-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/01.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "学校債・組合債などの利子",
               "source": "所基通35-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": "雑所得"
+              "other": "雑所得",
+              "tax": ""
+            },
+            {
+              "text": "預貯金の利子など、原則的な利子所得（支払の際に源泉徴収され、確定申告はできない）",
+              "source": "No.1310",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
+              "other": "",
+              "tax": "源泉分離課税"
+            },
+            {
+              "text": "同族会社が発行した社債の利子で、その同族会社の判定の基礎となる株主やその親族等が受けるもの",
+              "source": "No.1310",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
+              "other": "",
+              "tax": "総合課税"
+            },
+            {
+              "text": "国債・地方債・上場公社債などの特定公社債等の利子",
+              "source": "No.1310",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
+              "other": "",
+              "tax": "申告分離課税（申告不要も選べる）"
+            }
+          ]
+        },
+        {
+          "code": "2230",
+          "term": "源泉分離課税制度",
+          "title": "No.2230 源泉分離課税制度",
+          "summary": "源泉分離課税制度とは、他の所得と全く分離して、所得を支払う者がその所得の支払の際に一定の税率で所得税を源泉徴収し、それだけで所得税の納税が完結するというものです。",
+          "legal_basis": "所法174、209の2、209の3、措法3、8の2、41の9、41の10、41の12、復興財確法8、9、10、13、28、防衛財確法5の4、5の5、5の6、5の9、5の26",
+          "as_of": "令和8年4月1日現在法令等",
+          "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2230.htm",
+          "content_md": "### 概要\n\n源泉分離課税制度とは、他の所得と全く分離して、所得を支払う者がその所得の支払の際に一定の税率で所得税を源泉徴収し、それだけで所得税の納税が完結するというものです。\n\n#### 対象となる所得\n\n源泉分離課税の対象となるのは、主に次の所得です。\n\n（1） [利子所得](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)に該当する利子等（総合課税または申告分離課税の対象となるものを除く。）\n\n（2） 私募の特定目的信託のうち、社債的受益権の収益の分配に係る配当\n\n（3） 私募公社債等運用投資信託の収益の分配に係る配当\n\n（4） 懸賞金付預貯金等の懸賞金等\n\n（5） 次の[金融類似商品](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1520.htm)の補てん金等\n\nイ 定期積金の給付補てん金\n\nロ 銀行法第2条第4項の契約に基づく給付補てん金\n\nハ 一定の契約により支払われる抵当証券の利息\n\nニ 貴金属などの売戻し条件付売買の利益\n\nホ 外貨建預貯金で、その元本と利子をあらかじめ定められた利率により円または他の外国通貨に換算して支払うこととされている一定の換算差益\n\nヘ 一時払養老保険や一時払損害保険などの差益（保険期間等が5年以下のものおよび保険期間等が5年を超えるもので保険期間等の初日から5年以内に解約したものの差益に限ります。）\n\n（6） [一定の割引債の償還差益](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1510.htm)\n\n### 計算方法・計算式\n\n（1）上記「対象となる所得」（1）、（2）、（3）、（4）、（5）の場合\n\n収入金額等の20.315パーセント（所得税が15.315パーセント、地方税が5パーセント）が源泉徴収されます。\n\n（2）上記「対象となる所得」の（6）の場合\n\n償還差益の18.378パーセント（特定のものは16.336パーセント）が源泉徴収されます。\n\n（注） 平成25年1月1日から令和29年12月31日（※）までの間に生ずる所得については、所得税とともに復興特別所得税が併せて源泉徴収されます。\n\nなお、令和8年度税制改正により、防衛特別所得税の創設並びに復興特別所得税の税率の引下げおよび課税期間の延長が行われ、令和9年以後に適用されます（改正前と改正後とで、防衛特別所得税及び復興特別所得税の合計税率に変更はありませんので、改正前後で、源泉徴収税額の計算方法に変更は生じません。）。\n\n※　令和8年度税制改正による延長後の課税期間となります。",
+          "yomi": "げんせんぶんりかぜいせいど",
+          "examples": [
+            {
+              "text": "預貯金の利子など、利子所得に当たる利子等（総合課税・申告分離課税の対象を除く）",
+              "source": "No.2230",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2230.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "懸賞金付預貯金等の懸賞金等",
+              "source": "No.2230",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2230.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "定期積金の給付補てん金などの金融類似商品の補てん金等",
+              "source": "No.2230",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2230.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "一定の割引債の償還差益",
+              "source": "No.2230",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2230.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "支払の際に20.315%（所得税15.315%、地方税5%）が源泉徴収され、それだけで納税が完結する",
+              "source": "No.2230",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2230.htm",
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -374,37 +449,91 @@
               "text": "株主や出資者が法人から受ける剰余金や利益の配当",
               "source": "No.1330",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "法人から受ける剰余金の分配、基金利息",
               "source": "No.1330",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "投資法人からの金銭の分配",
               "source": "No.1330",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "公社債投資信託・公募公社債等運用投資信託以外の投資信託の収益の分配",
               "source": "No.1330",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "特定受益証券発行信託の収益の分配",
               "source": "No.1330",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "株主等である地位に基づいて法人から受ける経済的な利益",
               "source": "所基通24-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/01.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
+            }
+          ]
+        },
+        {
+          "code": "1331",
+          "term": "上場株式等の配当等に係る申告分離課税制度",
+          "title": "No.1331 上場株式等の配当等に係る申告分離課税制度",
+          "summary": "上場株式等 の配当等（「大口株主等」（注1）が受ける上場株式等の配当等を除きます。以下同じです。）については、総合課税に代えて他の所得の金額と区分して税金を計算する申告分離課税を選択することができます（注2）。",
+          "legal_basis": "所法24、措法8の4、8の5、9、9の3、37の11、37の12の2、復興財確法13、28、防衛財確法5の9、5の26",
+          "as_of": "令和8年4月1日現在法令等",
+          "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+          "content_md": "### 概要\n\n[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm) の配当等（「大口株主等」（注1）が受ける[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等を除きます。以下同じです。）については、総合課税に代えて他の所得の金額と区分して税金を計算する申告分離課税を選択することができます（注2）。\n\nなお、[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等を申告する場合には、その申告する[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等の全額について、総合課税と申告分離課税のいずれかを選択することになります（総合課税を選択した場合については、[コード1330「配当金を受け取ったとき(配当所得)」](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm) を参照してください。）。\n\nまた、申告分離課税の税率は、20.315パーセント（所得税および復興特別所得税15.315パーセント（注3）、地方税5パーセント）の税率が適用されます。\n\n（注1） このコードに掲げる「大口株主等」とは、[コード1330「配当金を受け取ったとき(配当所得)」](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)に掲げる大口株主等のほか、令和5年10月1日以後に内国法人から支払われる[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等について、その配当等の支払に係る基準日においてその支払いを受ける者とその者を判定の基礎となる株主として選定した場合に同族会社に該当する法人を合算して、その上場株式等の保有割合がその内国法人の発行済株式等の総数等の3パーセント以上となる場合の、その支払を受ける者を含みます。\n\n「大口株主等」が支払いを受ける[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等は総合課税の対象となり、申告分離課税や[確定申告不要制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)（[少額配当である場合](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)を除きます。）を選択することはできません。\n\n（注2） 特定公社債等の利子等を申告する場合には、その利子等の金額はすべて、申告分離課税の対象とされますが、[確定申告不要制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)により申告しないこともできます。詳しくは、[コードNo.1310「利息を受け取ったとき(利子所得)」](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm)を参照してください。\n\n（注3） 平成25年から令和29年の各年分の確定申告においては、所得税と復興特別所得税（その年分の基準所得税額の2.1パーセント）を併せて申告・納付することになります。\n\n#### 内容\n\n上記「概要」の内容を含め、[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等の課税関係は、以下の図のとおりとなります。\n\n（注1） 申告不要、申告分離課税、総合課税のいずれによるかは確定申告において選択し、確定申告において選択した、または、選択しなかった方法は、その後、修正申告や更正の請求において変更することはできません。\n\n（注2） 「大口株主等」が支払いを受ける[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等は、総合課税の対象となり、申告分離課税や[確定申告不要制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)（[少額配当である場合](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm) を除きます。）を選択することはできません。\n\n#### 上場株式等の配当等（大口株主等が支払いを受ける上場株式等の配当等を除きます。）の源泉徴収\n\n15.315パーセント（他に地方税5パーセント）の税率により所得税および復興特別所得税が（注）源泉徴収されます。\n\nなお、大口株主等（[コード1330「配当金を受け取ったとき(配当所得)」](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)に掲げる大口株主等をいいます。）が支払いを受ける[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等は、20.42パーセントの税率により所得税および復興特別所得税の源泉徴収が行われます。\n\n（注） 平成25年1月1日から令和29年12月31日までの間に支払を受ける配当等については所得税とともに復興特別所得税が源泉徴収されます。\n\n※　令和9年1月1日以後に生ずる所得については、復興特別所得税の税率が1.1パーセントに引き下げられ、防衛特別所得税（源泉徴収すべき所得税の額の1％相当額）が併せて源泉徴収されます。なお、合計税率に変更はありませんので、源泉徴収税額の計算方法に変更は生じません。\n\n#### 配当控除の適用\n\n申告分離課税を選択した[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当所得については、[配当控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)の適用はありません。\n\n#### 上場株式等に係る譲渡損失がある場合\n\n上場株式等に係る譲渡損失の金額がある場合またはその年の前年以前3年内の各年に生じた上場株式等に係る譲渡損失の金額のうち、前年以前で控除されていないものがある場合には、一定の要件の下、申告分離課税を選択した[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当所得等の金額から控除することができます（当該[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当所得等の金額を限度とします。）。\n\n詳しくは、[コードNo.1474「上場株式等に係る譲渡損失の損益通算及び繰越控除」](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1474.htm)を参照してください。\n\n#### その他\n\n[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等に関する課税関係の主な部分を整理すると、次のとおりです。\n\n|  | 確定申告をする | 確定申告をする | 確定申告をしない<br>（[確定申告不要制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)適用） |\n|---|---|---|---|\n|  | 総合課税を選択 | 申告分離課税を選択 | 確定申告をしない<br>（[確定申告不要制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)適用） |\n| 借入金利子の控除 | あり | あり | なし |\n| 税率（注） | 累進税率 | 所得税　15.315％　地方税　5％ |  |\n| 配当控除 | あり(※1) | なし | なし |\n| 上場株式等の譲渡損失との損益通算 | なし | あり | なし |\n| 扶養控除等の判定 | 合計所得金額に含まれる | 合計所得金額に含まれる<br>（※2） | 合計所得金額に含まれない |\n\n（注） 平成25年から令和29年の各年分の確定申告においては、所得税と復興特別所得税（その年分の基準所得税額の2.1パーセント）を併せて申告・納税することになります。なお、令和9年分以後は、復興特別所得税の税率が、基準所得税額の1.1パーセントとなり、防衛特別所得税を、基準所得税額の1パーセントの税率で、所得税および復興特別所得税と合わせて申告・納付します。\n\n※1 外国法人から受ける配当等、特定目的信託に係る配当等、特定目的会社から支払を受ける配当等、投資法人から支払を受ける配当等、特定受益証券発行信託の収益の分配に係る配当等などは、配当控除の対象となりません。詳しくは、[コード1250「配当所得があるとき(配当控除)」](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm)を参照してください。\n\n※2　上場株式等に係る譲渡損失と申告分離課税を選択した[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)に係る配当所得との[損益通算の特例](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1474.htm)の適用を受けている場合にはその適用後の金額、[上場株式等に係る譲渡損失の繰越控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1474.htm)の適用を受けている場合にはその適用前の金額になります。",
+          "yomi": "じょうじょうかぶしきとうのはいとうとうにかかるしんこくぶんりかぜいせいど",
+          "examples": [
+            {
+              "text": "上場株式等の配当等（大口株主等が受けるものを除く）を、総合課税に代えて申告分離課税で申告",
+              "source": "No.1331",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "申告分離課税の税率は20.315%（所得税・復興特別所得税15.315%、地方税5%）",
+              "source": "No.1331",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "上場株式等の譲渡損失と損益通算できる",
+              "source": "No.1331",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+              "other": "",
+              "tax": ""
+            },
+            {
+              "text": "申告分離課税を選んだ配当の配当控除",
+              "source": "No.1331",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+              "other": "受けられない",
+              "tax": ""
+            },
+            {
+              "text": "大口株主等が受ける上場株式等の配当等",
+              "source": "No.1331",
+              "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+              "other": "",
+              "tax": "総合課税"
             }
           ]
         },
@@ -423,61 +552,71 @@
               "text": "土地や建物などの不動産の貸付け（地代・家賃）",
               "source": "No.1370",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "食事を出さないアパート・貸間の所得",
               "source": "所基通26-4",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "借地権など不動産の上に存する権利の設定・貸付け",
               "source": "No.1370",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "船舶や航空機の貸付け",
               "source": "No.1370",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "名義書換料、承諾料、更新料、頭金",
               "source": "No.1370",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "敷金や保証金のうち返還を要しないもの",
               "source": "No.1370",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "共益費などの名目で受け取る電気代、水道代、掃除代",
               "source": "No.1370",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1370.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "広告のために土地、家屋の屋上・側面、塀などを使わせる所得",
               "source": "所基通26-5",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "有料駐車場で、他人の車を自己の責任で保管しない場合の所得",
               "source": "所基通27-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "下宿のように食事を出す場合の所得",
               "source": "所基通26-4",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": "事業所得又は雑所得"
+              "other": "事業所得又は雑所得",
+              "tax": ""
             }
           ]
         },
@@ -496,49 +635,57 @@
               "text": "農業、漁業、製造業、卸売業、小売業、サービス業などの事業から生ずる所得",
               "source": "No.1350",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1350.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "事業上、取引先や使用人に貸し付けた貸付金の利子",
               "source": "所基通27-5",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "新聞販売店の折込広告収入",
               "source": "所基通27-5",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "浴場業、飲食業などで広告を掲示して得る収入",
               "source": "所基通27-5",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "医師・歯科医師が休日・夜間の診療で地方公共団体等から受ける委嘱料等",
               "source": "所基通27-5",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "貸衣装業の衣装類など、事業の性質上反復して譲渡する事業用固定資産の譲渡",
               "source": "所基通27-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "有料駐車場で、他人の車を自己の責任で保管する場合の所得（事業所得又は雑所得）",
               "source": "所基通27-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/02.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "不動産の貸付けや山林の譲渡による所得",
               "source": "No.1350",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1350.htm",
-              "other": "原則として不動産所得や山林所得"
+              "other": "原則として不動産所得や山林所得",
+              "tax": ""
             }
           ]
         },
@@ -557,37 +704,43 @@
               "text": "俸給、給料、賃金、歳費、賞与",
               "source": "No.1400",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "勤務先から商品などを無償または低い価額で譲り受けたこと（現物給与）",
               "source": "No.1400",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "勤務先から土地や建物などを無償または低い使用料で借り受けたこと",
               "source": "No.1400",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "勤務先から金銭を無利息または低い利息で借り受けたこと",
               "source": "No.1400",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "宿直料・日直料（勤務1回につき4,000円までは課税しない取扱いあり）",
               "source": "所基通28-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/03.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "雇用契約等に基づいて支給される結婚・出産等の祝金品（社会通念上相当なものは課税しない）",
               "source": "所基通28-5",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/03.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -606,43 +759,50 @@
               "text": "退職により勤務先から受ける退職手当",
               "source": "No.1420",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "社会保険制度などにより退職に基因して支給される一時金",
               "source": "No.1420",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "確定拠出年金（企業型・個人型）の老齢給付金として受ける一時金",
               "source": "No.1420",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "労働基準法第20条により支払われる解雇予告手当",
               "source": "No.1420",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "賃金の支払の確保等に関する法律第7条により退職した労働者が弁済を受ける未払賃金",
               "source": "No.1420",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "使用人から役員になった人に、使用人であった期間の退職手当等として支払われる給与",
               "source": "所基通30-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/04.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "退職の際に支払われても、引き続き勤務している人の賞与等と同性質のもの",
               "source": "所基通30-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/04.htm",
-              "other": "退職所得以外"
+              "other": "退職所得以外",
+              "tax": ""
             }
           ]
         },
@@ -661,31 +821,36 @@
               "text": "山林を伐採して譲渡したことによる所得",
               "source": "No.1480",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "山林を立木のままで譲渡したことによる所得",
               "source": "所基通32-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "伐採した山林を自己の家屋の建築など家事のために消費した場合（消費時の時価が収入金額）",
               "source": "No.1480",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "取得してから5年以内に譲渡した山林",
               "source": "No.1480",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm",
-              "other": "事業所得又は雑所得"
+              "other": "事業所得又は雑所得",
+              "tax": ""
             },
             {
               "text": "山林とともに譲渡した、その山林が生えている土地",
               "source": "所基通32-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/06.htm",
-              "other": "山林所得以外（土地は譲渡所得）"
+              "other": "山林所得以外（土地は譲渡所得）",
+              "tax": ""
             }
           ]
         },
@@ -704,25 +869,29 @@
               "text": "ゴルフ会員権の譲渡",
               "source": "No.1460",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "金地金の譲渡",
               "source": "No.1460",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "自己の研究成果である特許権などの譲渡（所有期間にかかわらず長期譲渡所得）",
               "source": "No.1460",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "使用可能期間1年未満または取得価額10万円未満の減価償却資産の譲渡",
               "source": "No.1460",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1460.htm",
-              "other": "譲渡所得以外"
+              "other": "譲渡所得以外",
+              "tax": ""
             }
           ]
         },
@@ -741,31 +910,36 @@
               "text": "土地や建物の譲渡",
               "source": "No.1440",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "マイホーム（居住用財産）の譲渡",
               "source": "No.1440",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "収用等による土地建物の譲渡",
               "source": "No.1440",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "借家権の譲渡",
               "source": "所基通33-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/07.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "事業用の商品などの棚卸資産や山林の譲渡",
               "source": "No.1440",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
-              "other": "譲渡所得以外"
+              "other": "譲渡所得以外",
+              "tax": ""
             }
           ]
         },
@@ -784,19 +958,22 @@
               "text": "上場株式等の譲渡による所得（上場株式等に係る譲渡所得等）",
               "source": "No.1463",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "上場株式等以外の株式等（一般株式等）の譲渡による所得",
               "source": "No.1463",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "株式等の譲渡による所得は、他の所得と区分して税金を計算する（申告分離課税）",
               "source": "No.1463",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -815,49 +992,57 @@
               "text": "懸賞や福引きの賞金品（業務に関して受けるものを除く）",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "競馬や競輪の払戻金（営利を目的とする継続的行為から生じたものを除く）",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "生命保険の一時金や損害保険の満期返戻金等",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "法人から贈与された金品（業務に関して受けるもの、継続的に受けるものを除く）",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "遺失物拾得者や埋蔵物発見者の受ける報労金等",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "資産の移転等の費用に充てるため受けた交付金のうち、目的の支出に充てなかったもの",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "労働基準法第114条により支払を受ける付加金",
               "source": "所基通34-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/08.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "年間を通じてほぼ全てのレースで馬券を購入し続けるなど、営利を目的とする継続的行為から生じた馬券の払戻金",
               "source": "所基通34-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/08.htm",
-              "other": "雑所得"
+              "other": "雑所得",
+              "tax": ""
             }
           ]
         },
@@ -876,25 +1061,29 @@
               "text": "保険料を負担した本人が、生命保険の満期保険金等を一時金で受け取った場合",
               "source": "No.1755",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1755.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "満期保険金等を年金で受け取った場合",
               "source": "No.1755",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1755.htm",
-              "other": "雑所得"
+              "other": "雑所得",
+              "tax": ""
             },
             {
               "text": "保険料の負担者と満期保険金の受取人が異なる場合",
               "source": "No.1755",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1755.htm",
-              "other": "贈与税"
+              "other": "贈与税",
+              "tax": ""
             },
             {
               "text": "一時払養老保険等で保険期間が5年以下のもの、5年を超えるもので5年以内に解約したもの",
               "source": "No.1755",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1755.htm",
-              "other": "源泉分離課税"
+              "other": "源泉分離課税",
+              "tax": ""
             }
           ]
         },
@@ -913,31 +1102,36 @@
               "text": "一時払養老保険・一時払損害保険などの差益（保険期間5年以下、または5年以内に解約したもの）",
               "source": "No.1520",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1520.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "一時払個人年金保険（確定年金）を契約から5年以内・年金支払開始前に解約したときの差益",
               "source": "No.1520",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1520.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "懸賞金付預貯金等の懸賞金等",
               "source": "No.1490",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "税率20.315%（所得税15.315%、地方税5%）の源泉徴収だけで課税関係が終わる（確定申告に含めない）",
               "source": "No.1520",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1520.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "扶養親族などの判定に使う合計所得金額にも含まれない",
               "source": "No.1520",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1520.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -956,67 +1150,78 @@
               "text": "公的年金等",
               "source": "No.1300",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "非営業用貸金の利子",
               "source": "No.1300",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "副業に係る所得（原稿料やシェアリングエコノミーに係る所得など）",
               "source": "No.1300",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "生命保険契約等に基づく年金",
               "source": "No.1300",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "原稿・さし絵・作曲・デザインの報酬、放送謝金、著作権の使用料、講演料など（事業所得と認められるものを除く）",
               "source": "所基通35-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "動産（船舶・航空機を除く）の貸付けによる所得",
               "source": "所基通35-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "工業所有権の使用料に係る所得",
               "source": "所基通35-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "金銭の貸付けによる所得（事業所得と認められるものを除く）",
               "source": "所基通35-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "保有期間が5年以内の山林の伐採・譲渡による所得（事業所得と認められるものを除く）",
               "source": "所基通35-2",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "税金の還付加算金",
               "source": "所基通35-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "学校債・組合債などの利子",
               "source": "所基通35-1",
               "url": "https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/04/09.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1035,19 +1240,22 @@
               "text": "商品先物取引等の決済（商品の受渡しが行われるものを除く）",
               "source": "No.1522",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "金融商品取引法上の先物取引・指数先物取引・オプション取引の決済",
               "source": "No.1522",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "先物取引に係る雑所得等は、他の所得と区分して所得税15%（他に地方税5%）で課税される",
               "source": "No.1522",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1066,19 +1274,22 @@
               "text": "取引所のFXや、金融商品取引業者等を相手方とする店頭FXの差金等決済による差益",
               "source": "No.1521",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1521.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "市場デリバティブ取引にも店頭デリバティブ取引にも当たらないFXの差益",
               "source": "No.1521",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1521.htm",
-              "other": "雑所得（総合課税）"
+              "other": "雑所得（総合課税）",
+              "tax": ""
             },
             {
               "text": "FXの差損と、先物取引に係る雑所得等以外の所得（給与所得など）との損益通算",
               "source": "No.1521",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1521.htm",
-              "other": "できない"
+              "other": "できない",
+              "tax": ""
             }
           ]
         },
@@ -1097,7 +1308,8 @@
               "text": "先物取引に係る雑所得等の損失を、翌年以後3年間繰り越して控除",
               "source": "No.1523",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1523.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         }
@@ -1122,85 +1334,99 @@
             "text": "青色申告ができるのは、不動産所得・事業所得・山林所得のある人",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "青色申告をしようとする年の3月15日までに「青色申告承認申請書」を所轄税務署長に提出する",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "その年の1月16日以後に新しく業務を始めた場合は、業務を始めた日から2か月以内に申請する",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "記帳は正規の簿記（貸借対照表と損益計算書を作れる記帳）が原則。現金出納帳・売掛帳などによる簡易な記帳でもよい",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "帳簿と書類は原則7年間保存（請求書・見積書・納品書など5年間でよい書類もある）",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "特典①　青色申告特別控除：所得金額から55万円（一定の要件を満たせば65万円）または10万円を控除",
             "source": "No.2072",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "65万円の控除には、55万円の要件に加えて電子帳簿保存かe-Taxによる電子申告が必要",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "特典②　青色事業専従者給与：生計を一にする15歳以上の親族で事業に専ら従事する人への給与を、届出の範囲内で必要経費にできる",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "青色事業専従者として給与を受ける人は、同一生計配偶者や扶養親族になれない",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "特典③　貸倒引当金：事業所得の青色申告者は、年末の貸金の帳簿価額の合計額の5.5%以下を貸倒引当金に繰り入れて必要経費にできる",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "特典④　純損失の繰越し：控除しきれない純損失を翌年以後3年間繰り越して控除できる",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "特典⑤　純損失の繰戻し：前年も青色申告なら、純損失を前年分に繰り戻して前年分の所得税の還付を受けられる",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "白色申告では親族への給与は必要経費にならず、事業専従者控除（配偶者86万円、その他の親族は1人50万円が上限）になる",
             "source": "No.2075",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2075.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           },
           {
             "text": "やめるときは、やめようとする年分の確定申告期限までに「所得税の青色申告の取りやめ届出書」を提出する",
             "source": "No.2070",
             "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm",
-            "other": ""
+            "other": "",
+            "tax": ""
           }
         ],
         "related_tsutatsu": [
@@ -1444,37 +1670,43 @@
               "text": "震災・風水害・冷害・雪害・落雷など自然現象の異変による災害で受けた損害",
               "source": "No.1110",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "火災・火薬類の爆発など人為による異常な災害で受けた損害",
               "source": "No.1110",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "害虫などの生物による異常な災害で受けた損害",
               "source": "No.1110",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "盗難による損害",
               "source": "No.1110",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "横領による損害",
               "source": "No.1110",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "別荘など趣味・娯楽・保養・鑑賞の目的で持つ資産（生活に通常必要でない資産）の損害",
               "source": "No.1110",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -1493,73 +1725,85 @@
               "text": "医師・歯科医師による診療や治療の対価",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "風邪をひいたときの風邪薬など、治療・療養に必要な医薬品の購入代金",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "あん摩マッサージ指圧師・はり師・きゅう師・柔道整復師による治療のための施術",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "助産師による分べんの介助の対価",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "介護保険制度で提供された一定の施設・居宅サービスの自己負担額",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "診療を受けるための通院費、入院の際の部屋代や食事代",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "治療に直接必要な義手・義足・松葉杖・補聴器・義歯・眼鏡などの購入費用",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "おおむね6か月以上寝たきりで医師の治療を受けている人のおむつ代（医師の証明が必要）",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "日本骨髄バンク・日本臓器移植ネットワークに支払う移植のあっせんの患者負担金",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "健康診断の費用や医師などへの謝礼金",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": "原則として対象外"
+              "other": "原則として対象外",
+              "tax": ""
             },
             {
               "text": "ビタミン剤など病気の予防や健康増進のための医薬品",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "疲れを癒す・体調を整えるといった、治療に直接関係のないマッサージなど",
               "source": "No.1122",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -1578,37 +1822,43 @@
               "text": "ドラッグストアで買えるスイッチOTC医薬品などの購入費",
               "source": "No.1129",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "必要な「一定の取組」の例：保険者が行う人間ドックや各種健（検）診",
               "source": "No.1129",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "必要な「一定の取組」の例：定期予防接種やインフルエンザワクチンの予防接種",
               "source": "No.1129",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "必要な「一定の取組」の例：勤務先で受ける定期健康診断",
               "source": "No.1129",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "必要な「一定の取組」の例：特定健康診査（メタボ健診）・特定保健指導",
               "source": "No.1129",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "必要な「一定の取組」の例：市区町村のがん検診",
               "source": "No.1129",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1627,43 +1877,50 @@
               "text": "健康保険・厚生年金保険・国民年金の保険料（被保険者として負担するもの）",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国民健康保険の保険料（国民健康保険税）",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "後期高齢者医療制度（高齢者の医療の確保に関する法律）の保険料",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "介護保険料",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "雇用保険の被保険者として負担する労働保険料",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国民年金基金の掛金",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "公務員共済組合・私学共済などの掛金",
               "source": "No.1130",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1682,19 +1939,22 @@
               "text": "小規模企業共済の掛金（中小企業基盤整備機構との共済契約）",
               "source": "No.1135",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "確定拠出年金の企業型年金加入者掛金・個人型年金（iDeCo）加入者掛金",
               "source": "No.1135",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "地方公共団体の心身障害者扶養共済制度の掛金",
               "source": "No.1135",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1713,19 +1973,22 @@
               "text": "生命保険料（平成24年1月1日以後に締結した契約は新生命保険料）",
               "source": "No.1141",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1141.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "介護医療保険料（病気やけがで医療費を支払ったことにより保険金が支払われる契約など）",
               "source": "No.1141",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1141.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "個人年金保険料（平成24年1月1日以後に締結した契約は新個人年金保険料）",
               "source": "No.1141",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1141.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1744,25 +2007,29 @@
               "text": "損害保険契約のうち地震等損害部分の保険料",
               "source": "No.1145",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "農業協同組合などの建物更生共済・火災共済の掛金",
               "source": "No.1146",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "消費生活協同組合連合会の火災共済・自然災害共済の掛金",
               "source": "No.1146",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "平成18年12月31日までに結んだ満期返戻金のある長期の損害保険（旧長期損害保険）の保険料（経過措置）",
               "source": "No.1145",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1781,43 +2048,50 @@
               "text": "国や地方公共団体に対する寄附金",
               "source": "No.1150",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "ふるさと納税（自分の選んだ自治体への寄附。寄附額のうち2,000円を超える部分が控除の対象）",
               "source": "No.1155",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "公益法人等に対する寄附金で財務大臣が指定したもの",
               "source": "No.1150",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "公益社団法人・公益財団法人、学校法人、社会福祉法人、更生保護法人などの特定公益増進法人に対する寄附金",
               "source": "No.1150",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "日本赤十字社に対する寄附金",
               "source": "No.1150",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "政党（支部を含む）・政治資金団体などに対する政治活動に関する寄附金（一定のもの）",
               "source": "No.1150",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "認定NPO法人等に対する寄附金（特定非営利活動に係る事業に関連するもの）",
               "source": "No.1150",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1836,43 +2110,50 @@
               "text": "身体障害者手帳に身体上の障害がある人として記載されている人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "精神障害者保健福祉手帳の交付を受けている人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "児童相談所などの判定により知的障害者と判定された人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "65歳以上で、障害の程度が障害者に準ずるとして市町村長等の認定を受けている人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "戦傷病者手帳の交付を受けている人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "原子爆弾被爆者として厚生労働大臣の認定を受けている人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "引き続き6か月以上、身体の障害により寝たきりで複雑な介護を必要とする人",
               "source": "No.1160",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1891,13 +2172,15 @@
               "text": "夫と離婚した後に婚姻をしておらず、扶養親族がいて、合計所得金額が500万円以下の人",
               "source": "No.1170",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "夫と死別した後に婚姻をしていない人（または夫の生死が明らかでない一定の人）で、合計所得金額が500万円以下の人（扶養親族の要件なし）",
               "source": "No.1170",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1916,7 +2199,8 @@
               "text": "生計を一にする子がいて、合計所得金額が500万円以下で、事実上婚姻関係と同様の事情にある人がいない人",
               "source": "No.1171",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1935,7 +2219,8 @@
               "text": "妻と死別・離婚した後に婚姻をしておらず、生計を一にする子がいて、合計所得金額が500万円以下の人（令和元年分以前）",
               "source": "No.1172",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1172.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -1954,25 +2239,29 @@
               "text": "小学校・中学校・高等学校・大学・高等専門学校などの学生・生徒で、給与など勤労による所得がある人",
               "source": "No.1175",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国・地方公共団体・学校法人などが設置した一定の専修学校・各種学校の生徒",
               "source": "No.1175",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "認定職業訓練を行う職業訓練法人で一定の課程を履修している人",
               "source": "No.1175",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "勤労による所得以外の所得が10万円を超える学生",
               "source": "No.1175",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -1991,19 +2280,22 @@
               "text": "生計を一にする民法上の配偶者で、合計所得金額が62万円以下（令和8年分以後）の人",
               "source": "No.1191",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "内縁関係の人",
               "source": "No.1191",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "青色事業専従者として給与を受けている配偶者、白色申告者の事業専従者である配偶者",
               "source": "No.1191",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2022,13 +2314,15 @@
               "text": "合計所得金額が62万円超133万円以下（令和8年分以後）の配偶者がいる人",
               "source": "No.1195",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "本人の合計所得金額が1,000万円を超える人",
               "source": "No.1195",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2047,31 +2341,36 @@
               "text": "生計を一にする16歳以上の子や親など、配偶者以外の親族（6親等内の血族・3親等内の姻族）",
               "source": "No.1180",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "都道府県知事から養育を委託された児童（里子）",
               "source": "No.1180",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "留学により国内に住所・居所がなくなった30歳以上70歳未満の非居住者の扶養親族",
               "source": "No.1180",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "生活費・教育費として年38万円以上の送金を受けている30歳以上70歳未満の非居住者の扶養親族",
               "source": "No.1180",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "その年12月31日現在で16歳未満の扶養親族",
               "source": "No.1180",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm",
-              "other": "扶養控除の対象外"
+              "other": "扶養控除の対象外",
+              "tax": ""
             }
           ]
         },
@@ -2090,7 +2389,8 @@
               "text": "生計を一にする19歳以上23歳未満の子など（合計所得金額123万円以下で、控除対象扶養親族に当たらない人）",
               "source": "No.1177",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1177.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -2109,19 +2409,22 @@
               "text": "合計所得金額132万円以下の人：104万円（令和8年分・令和9年分）",
               "source": "No.1199",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "合計所得金額655万円超2,350万円以下の人：62万円（令和8年分・令和9年分）",
               "source": "No.1199",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "合計所得金額2,500万円を超える人：0円",
               "source": "No.1199",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         }
@@ -2158,37 +2461,43 @@
               "text": "日本国内に本店のある法人から受ける剰余金の配当・利益の配当（総合課税を選んだもの）",
               "source": "No.1250",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "証券投資信託の収益の分配金（控除率は剰余金の配当等の半分）",
               "source": "No.1250",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "外国法人から受ける配当等",
               "source": "No.1250",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "投資法人から受ける配当等",
               "source": "No.1250",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "基金利息",
               "source": "No.1250",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "確定申告不要制度や申告分離課税を選んだ配当",
               "source": "No.1250",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2207,37 +2516,43 @@
               "text": "外国の法令により納めた所得税に相当する税（外国所得税）",
               "source": "No.1240",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "超過所得税など、所得の特定の部分にかかる外国の税",
               "source": "No.1240",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "外国の所得税の附加税",
               "source": "No.1240",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "納めた後に任意に還付を請求できる税",
               "source": "No.1240",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm",
-              "other": "外国所得税に含まれない"
+              "other": "外国所得税に含まれない",
+              "tax": ""
             },
             {
               "text": "NISA口座内の上場株式等の配当等に課される外国所得税",
               "source": "No.1240",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "非居住者だった期間に生じた所得に課された外国所得税",
               "source": "No.1240",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2256,19 +2571,22 @@
               "text": "国内の恒久的施設に帰属する所得について、外国で納めた所得税に相当する税",
               "source": "No.1241",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1241.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国外にある資産の運用・保有により生じた所得に外国で課された税",
               "source": "No.1241",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1241.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "非居住者の居住地国で、利子・配当などに源泉徴収に類する方法で課される税",
               "source": "No.1241",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1241.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2287,25 +2605,29 @@
               "text": "製品の製造や技術の改良・考案・発明の試験研究に使った原材料費・人件費・経費",
               "source": "No.1270",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "他の者に試験研究を委託するために支払う費用",
               "source": "No.1270",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国の試験研究機関や大学などと共同で行う試験研究の費用（特別試験研究費）",
               "source": "No.1270",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "白色申告者の試験研究費",
               "source": "No.1270",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1270.htm",
-              "other": "対象外（青色申告者のみ）"
+              "other": "対象外（青色申告者のみ）",
+              "tax": ""
             }
           ]
         },
@@ -2324,19 +2646,22 @@
               "text": "地域再生法の拡充型・移転型事業の計画の認定を受けた青色申告の事業者で、雇用者の数が増えた場合",
               "source": "No.1284",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1284.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "親族など個人の特殊関係者（雇用者の数に含まれない）",
               "source": "No.1284",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1284.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             },
             {
               "text": "適用年・前年に事業主都合で離職した雇用者がいる場合",
               "source": "No.1284",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1284.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2355,19 +2680,22 @@
               "text": "令和元年〜3年に国内雇用者への給与等支給額を増やした青色申告の個人（旧制度）",
               "source": "No.1286",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1286.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "中小事業者で、継続雇用者給与等支給額が前年より1.5%以上増えた場合",
               "source": "No.1286",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1286.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "親族など個人と特殊の関係のある人への給与（国内雇用者に含まれない）",
               "source": "No.1286",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1286.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2386,19 +2714,22 @@
               "text": "令和4年〜9年に国内雇用者への給与等支給額を増やした青色申告の個人",
               "source": "No.1288",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1288.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "中小事業者（従業員1,000人以下）で、雇用者給与等支給額が前年より2.5%以上増えた場合",
               "source": "No.1288",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1288.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "あわせて教育訓練費を前年より10%以上増やした場合（控除率の上乗せ）",
               "source": "No.1288",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1288.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -2417,31 +2748,36 @@
               "text": "住宅ローン等でマイホームを新築・取得・増改築等した場合（住宅借入金等特別控除）",
               "source": "No.1210",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "住宅ローン等を使わずに既存住宅の耐震改修をした場合",
               "source": "No.1210",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "住宅ローン等を使わずにバリアフリー・省エネ・多世帯同居・子育て対応の改修工事をした場合",
               "source": "No.1210",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "認定住宅等を新築等した場合",
               "source": "No.1210",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "令和4年以後に住宅ローン等で特定の増改築等をした場合の特定増改築等住宅借入金等特別控除",
               "source": "No.1210",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1210.htm",
-              "other": "受けられない"
+              "other": "受けられない",
+              "tax": ""
             }
           ]
         },
@@ -2460,19 +2796,22 @@
               "text": "政党とその支部、政治資金団体などへの寄附金",
               "source": "No.1260",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "寄附金控除（所得控除）とどちらか有利な方を選べる",
               "source": "No.1260",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "控除額は（寄附金の合計額−2千円）×30%（100円未満切捨て）",
               "source": "No.1260",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         },
@@ -2491,19 +2830,22 @@
               "text": "認定NPO法人等への、特定非営利活動に係る事業に関連する寄附金",
               "source": "No.1263",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "控除額は（寄附金の合計額−2千円）×40%（100円未満切捨て）",
               "source": "No.1263",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "寄附をした人に特別の利益が及ぶと認められる寄附",
               "source": "No.1263",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
-              "other": "対象外"
+              "other": "対象外",
+              "tax": ""
             }
           ]
         },
@@ -2522,31 +2864,36 @@
               "text": "公益社団法人・公益財団法人への寄附金",
               "source": "No.1266",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "学校法人への寄附金",
               "source": "No.1266",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "社会福祉法人・更生保護法人への寄附金",
               "source": "No.1266",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国立大学法人・公立大学法人などへの、学生の修学支援の事業に充てられる寄附金",
               "source": "No.1266",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             },
             {
               "text": "国立大学法人などへの、学生や不安定な雇用状態にある研究者の研究助成に充てられる寄附金",
               "source": "No.1266",
               "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
-              "other": ""
+              "other": "",
+              "tax": ""
             }
           ]
         }
