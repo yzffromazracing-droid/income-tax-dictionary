@@ -1,6 +1,6 @@
-# income-tax-dictionary
+# 所得税区分辞書（income-tax-dictionary）
 
-国税庁ホームページの[タックスアンサー（所得税）](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)と[法令解釈通達](https://www.nta.go.jp/law/tsutatsu/menu.htm)をもとに作成した所得税の辞書です。
+国税庁ホームページの[タックスアンサー（所得税）](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)と[法令解釈通達](https://www.nta.go.jp/law/tsutatsu/menu.htm)をもとに作成した「所得税区分辞書」です。
 
 ## 検索
 

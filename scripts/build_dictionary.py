@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""国税庁タックスアンサー（所得税）から所得税の辞書を生成する。
+"""国税庁タックスアンサー（所得税）と法令解釈通達から「所得税区分辞書」を生成する。
 
 カテゴリ:
   - 非課税     : No.2011「課税される所得と非課税所得」の表から各非課税所得を項目化
@@ -545,7 +545,7 @@ def main():
     DATA.mkdir(exist_ok=True)
     DOCS.mkdir(exist_ok=True)
     result = {
-        "title": "所得税の辞書",
+        "title": "所得税区分辞書",
         "source": "国税庁 タックスアンサー（よくある税の質問）所得税・法令解釈通達",
         "source_url": BASE + "/taxes/shiraberu/taxanswer/code/index.htm",
         "generated_at": datetime.date.today().isoformat(),
