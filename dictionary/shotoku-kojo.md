@@ -1116,8 +1116,8 @@ e-Tax（電子申告）で確定申告する場合については、[コードNo
 
 | 区分 | 区分 | 控除額 |
 |---|---|---|
-| 一般の[控除対象扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word8) | 一般の[控除対象扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word8) | 38万円 |
-| [特定扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word9) | [特定扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word9) | 63万円 |
+| 一般の[控除対象扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word8) |  | 38万円 |
+| [特定扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word9) |  | 63万円 |
 | [老人扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word10) | 同居老親等以外の者 | 48万円 |
 | [老人扶養親族](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word10) | [同居老親等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/yogo/senmon.htm#word11) | 58万円 |
 

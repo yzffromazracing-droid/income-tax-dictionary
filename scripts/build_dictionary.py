@@ -29,6 +29,10 @@ ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / ".cache"
 DATA = ROOT / "data"
 DOCS = ROOT / "dictionary"
+SITE = ROOT / "docs"
+TEMPLATE = Path(__file__).resolve().parent / "search_template.html"
+CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun",
+              "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku"}
 
 CATEGORIES = [
     {
@@ -128,9 +132,11 @@ def table_to_md(table):
             value = text_of(cell).replace("\n", "<br>").replace("|", "｜")
             rs = int(cell.get("rowspan", 1) or 1)
             cs = int(cell.get("colspan", 1) or 1)
+            in_head = bool(cell.find_parent("thead")) or (table.thead is None and r == 0)
             for dr in range(rs):
                 for dc in range(cs):
-                    grid[(r + dr, c + dc)] = value
+                    # 横結合は見出し以外では先頭セルのみに値を入れる（検索ページで colspan に戻す）
+                    grid[(r + dr, c + dc)] = value if dc == 0 or in_head else ""
             c += cs
     if not grid:
         return ""
@@ -343,6 +349,59 @@ def demote(md):
     return re.sub(r"^(#{3,5}) ", lambda m: "#" * (len(m.group(1)) + 1) + " ", md, flags=re.M)
 
 
+def search_items(result):
+    """検索ページ用に全カテゴリの項目を1つのリストにする。"""
+    items = []
+
+    def page_item(cat_id, page, kind):
+        return {
+            "id": f"no{page['code']}", "cat": cat_id, "kind": kind,
+            "term": page["term"], "code": page["code"], "title": page["title"],
+            "summary": page["summary"], "basis": page["legal_basis"],
+            "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
+        }
+
+    for cat in result["categories"]:
+        items.append(page_item(cat["id"], cat["overview"], "overview"))
+        for i, e in enumerate(cat["entries"], 1):
+            if cat["id"] == "hikazei":
+                items.append({
+                    "id": f"hk{i}", "cat": cat["id"], "kind": "hikazei",
+                    "term": e["term"], "alias": e["alias"], "group": e["group"],
+                    "basis": e["legal_basis"], "asOf": cat["overview"]["as_of"],
+                    "url": e["source_url"], "summary": "",
+                    "related": [{"title": r["title"], "summary": r["summary"],
+                                 "url": r["source_url"]} for r in e["related"]],
+                })
+            else:
+                items.append(page_item(cat["id"], e, "entry"))
+    for n, it in enumerate(items):
+        it["order"] = n
+    return items
+
+
+def render_search_page(result):
+    """1ファイルで動く検索ページ（docs/index.html）を生成する。"""
+    as_of = next((c["overview"]["as_of"] for c in result["categories"] if c["overview"]["as_of"]), "")
+    data = {
+        "source": result["source"],
+        "source_url": result["source_url"],
+        "generated_at": result["generated_at"],
+        "as_of": as_of,
+        "categories": [{"id": c["id"], "name": c["name"], "description": c["description"],
+                        "color": CAT_COLORS[c["id"]]} for c in result["categories"]],
+        "items": search_items(result),
+    }
+    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    head, body = TEMPLATE.read_text(encoding="utf-8").split("<!--BODY-->")
+    body = body.replace("__DATA__", payload)
+    html = ('<!doctype html>\n<html lang="ja">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            + head.strip() + "\n</head>\n<body>\n" + body.strip() + "\n</body>\n</html>\n")
+    SITE.mkdir(exist_ok=True)
+    (SITE / "index.html").write_text(html, encoding="utf-8")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--refresh", action="store_true", help="キャッシュを使わず再取得する")
@@ -375,6 +434,7 @@ def main():
 
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    render_search_page(result)
 
 
 if __name__ == "__main__":
