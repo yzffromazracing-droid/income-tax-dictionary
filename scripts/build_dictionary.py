@@ -48,8 +48,22 @@ CATEGORIES = [
         "name": "所得区分",
         "description": "所得税法上の10種類の所得の区分。",
         "overview": "1300",
-        "pages": ["1310", "1330", "1350", "1370", "1400", "1420",
-                  "1440", "1460", "1480", "1490", "1500"],
+        # 所得税法（23条〜35条）の順
+        "pages": ["1310", "1330", "1370", "1350", "1400", "1420",
+                  "1480", "1440", "1460", "1490", "1500"],
+        # 検索ページで「所得区分」タブの下に出すタブ
+        "subtabs": [
+            {"id": "rishi", "name": "利子所得", "pages": ["1310"]},
+            {"id": "haito", "name": "配当所得", "pages": ["1330"]},
+            {"id": "fudosan", "name": "不動産所得", "pages": ["1370"]},
+            {"id": "jigyo", "name": "事業所得", "pages": ["1350"]},
+            {"id": "kyuyo", "name": "給与所得", "pages": ["1400"]},
+            {"id": "taishoku", "name": "退職所得", "pages": ["1420"]},
+            {"id": "sanrin", "name": "山林所得", "pages": ["1480"]},
+            {"id": "joto", "name": "譲渡所得", "pages": ["1440", "1460"]},
+            {"id": "ichiji", "name": "一時所得", "pages": ["1490"]},
+            {"id": "zatsu", "name": "雑所得", "pages": ["1500"]},
+        ],
     },
     {
         "id": "shotoku-kojo",
@@ -409,10 +423,11 @@ def demote(md):
 def search_items(result):
     """検索ページ用に全カテゴリの項目を1つのリストにする。"""
     items = []
+    sub_of = {code: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for code in t["pages"]}
 
     def page_item(cat_id, page, kind):
         return {
-            "id": f"no{page['code']}", "cat": cat_id, "kind": kind,
+            "id": f"no{page['code']}", "cat": cat_id, "sub": sub_of.get(page["code"], ""), "kind": kind,
             "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
@@ -446,7 +461,9 @@ def render_search_page(result, yomi_pairs):
         "generated_at": result["generated_at"],
         "as_of": as_of,
         "categories": [{"id": c["id"], "name": c["name"], "description": c["description"],
-                        "color": CAT_COLORS[c["id"]]} for c in result["categories"]],
+                        "color": CAT_COLORS[c["id"]],
+                        "subtabs": [{"id": t["id"], "name": t["name"]} for t in conf.get("subtabs", [])]}
+                       for c, conf in zip(result["categories"], CATEGORIES)],
         "items": search_items(result),
         # ひらがな入力を漢字表記に置き換えるための読み辞書（漢字を含む語のみ）
         "yomi": [[s, r] for s, r in yomi_pairs if KANJI.search(s) or re.search(r"[A-Za-z]", s)],
