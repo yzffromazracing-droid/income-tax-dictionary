@@ -31,6 +31,7 @@ DATA = ROOT / "data"
 DOCS = ROOT / "dictionary"
 SITE = ROOT / "docs"
 TEMPLATE = Path(__file__).resolve().parent / "search_template.html"
+YOMI = DATA / "yomi.tsv"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku"}
 
@@ -295,6 +296,54 @@ def extract_hikazei(soup, refresh):
     return entries
 
 
+KANJI = re.compile(r"[\u3400-\u9fff々〆]")
+
+
+def load_yomi():
+    """読み辞書（表記と読みの組）を読み込む。"""
+    pairs = []
+    for n, line in enumerate(YOMI.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip() or line.startswith("#"):
+            continue
+        surface, reading = line.split("\t")
+        if not re.fullmatch(r"[ぁ-んー]+", reading):
+            raise SystemExit(f"{YOMI.name}:{n}: 読みはひらがなで書いてください: {line}")
+        pairs.append((surface, reading))
+    return pairs
+
+
+def to_yomi(text, table, maxlen):
+    """読み辞書を最長一致で当てて読みを作る。読めなかった漢字も返す。"""
+    out, missing, i = [], [], 0
+    while i < len(text):
+        for n in range(min(maxlen, len(text) - i), 0, -1):
+            if text[i:i + n] in table:
+                out.append(table[text[i:i + n]])
+                i += n
+                break
+        else:
+            ch = text[i]
+            if KANJI.match(ch):
+                missing.append(ch)
+            elif re.match(r"[ァ-ヶ]", ch):
+                out.append(chr(ord(ch) - 0x60))
+            elif re.match(r"[ぁ-んー]", ch):
+                out.append(ch)
+            i += 1
+    return "".join(out), missing
+
+
+def add_yomi(pages, table, maxlen):
+    missing = {}
+    for page in pages:
+        page["yomi"], miss = to_yomi(page["term"], table, maxlen)
+        if miss:
+            missing[page["term"]] = "".join(miss)
+    if missing:
+        detail = "\n".join(f"  {t}: {m}" for t, m in missing.items())
+        raise SystemExit(f"{YOMI.name} に読みがない漢字があります。追加してください。\n{detail}")
+
+
 def render_md(cat, overview, entries):
     lines = [f"# {cat['name']}", "", cat["description"], ""]
     lines.append(f"出典: 国税庁タックスアンサー [{overview['title']}]({overview['source_url']})"
@@ -321,7 +370,7 @@ def render_md(cat, overview, entries):
             for e in entries:
                 if e["group"] != g:
                     continue
-                lines += [f"#### {e['term']}", ""]
+                lines += [f"#### {e['term']}", "", f"- **読み**: {e['yomi']}"]
                 if e["alias"]:
                     lines.append(f"- **通称**: {e['alias']}")
                 if e["legal_basis"]:
@@ -333,7 +382,8 @@ def render_md(cat, overview, entries):
     else:
         lines += ["## 用語", ""]
         for e in entries:
-            lines += [f'<a id="no{e["code"]}"></a>', "", f"### {e['term']}", ""]
+            lines += [f'<a id="no{e["code"]}"></a>', "", f"### {e['term']}", "",
+                      f"- **読み**: {e['yomi']}"]
             lines.append(f"- **タックスアンサー**: [No.{e['code']}]({e['source_url']})"
                          + (f"（{e['as_of']}）" if e["as_of"] else ""))
             if e["legal_basis"]:
@@ -356,7 +406,7 @@ def search_items(result):
     def page_item(cat_id, page, kind):
         return {
             "id": f"no{page['code']}", "cat": cat_id, "kind": kind,
-            "term": page["term"], "code": page["code"], "title": page["title"],
+            "term": page["term"], "yomi": page["yomi"], "code": page["code"], "title": page["title"],
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
         }
@@ -367,7 +417,7 @@ def search_items(result):
             if cat["id"] == "hikazei":
                 items.append({
                     "id": f"hk{i}", "cat": cat["id"], "kind": "hikazei",
-                    "term": e["term"], "alias": e["alias"], "group": e["group"],
+                    "term": e["term"], "yomi": e["yomi"], "alias": e["alias"], "group": e["group"],
                     "basis": e["legal_basis"], "asOf": cat["overview"]["as_of"],
                     "url": e["source_url"], "summary": "",
                     "related": [{"title": r["title"], "summary": r["summary"],
@@ -380,7 +430,7 @@ def search_items(result):
     return items
 
 
-def render_search_page(result):
+def render_search_page(result, yomi_pairs):
     """1ファイルで動く検索ページ（docs/index.html）を生成する。"""
     as_of = next((c["overview"]["as_of"] for c in result["categories"] if c["overview"]["as_of"]), "")
     data = {
@@ -391,6 +441,8 @@ def render_search_page(result):
         "categories": [{"id": c["id"], "name": c["name"], "description": c["description"],
                         "color": CAT_COLORS[c["id"]]} for c in result["categories"]],
         "items": search_items(result),
+        # ひらがな入力を漢字表記に置き換えるための読み辞書（漢字を含む語のみ）
+        "yomi": [[s, r] for s, r in yomi_pairs if KANJI.search(s) or re.search(r"[A-Za-z]", s)],
     }
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     head, body = TEMPLATE.read_text(encoding="utf-8").split("<!--BODY-->")
@@ -416,12 +468,16 @@ def main():
         "generated_at": datetime.date.today().isoformat(),
         "categories": [],
     }
+    yomi_pairs = load_yomi()
+    table = dict(yomi_pairs)
+    maxlen = max(len(s) for s in table)
     for cat in CATEGORIES:
         overview, soup = parse_page(cat["overview"], fetch(cat["overview"], args.refresh))
         if cat["id"] == "hikazei":
             entries = extract_hikazei(soup, args.refresh)
         else:
             entries = [parse_page(c, fetch(c, args.refresh))[0] for c in cat["pages"]]
+        add_yomi([overview] + entries, table, maxlen)
         result["categories"].append({
             "id": cat["id"],
             "name": cat["name"],
@@ -434,7 +490,7 @@ def main():
 
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    render_search_page(result)
+    render_search_page(result, yomi_pairs)
 
 
 if __name__ == "__main__":

@@ -115,6 +115,7 @@ main.wrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr
 .result .row { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
 .result .term { font-weight: 700; min-width: 0; }
 .result .code { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: auto; }
+.result .ry { font-size: 11.5px; color: var(--muted); letter-spacing: .04em; overflow-wrap: anywhere; }
 .result .snip { font-size: 12.5px; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .pill {
   font-size: 11px; color: var(--c); border: 1px solid currentColor; border-radius: 4px;
@@ -133,7 +134,8 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 }
 .back { display: none; font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; padding: 0 0 12px; cursor: pointer; }
 .detail .eyebrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
-.detail h2 { font-family: var(--font-display); font-size: 27px; line-height: 1.4; margin: 6px 0 14px; text-wrap: balance; }
+.detail h2 { font-family: var(--font-display); font-size: 27px; line-height: 1.4; margin: 6px 0 2px; text-wrap: balance; }
+.detail .yomi { margin: 0 0 14px; font-size: 12.5px; color: var(--muted); letter-spacing: .06em; overflow-wrap: anywhere; }
 .meta { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 13px; margin: 0 0 18px; padding: 12px 0; border-block: 1px solid var(--line); }
 .meta dt { color: var(--muted); }
 .meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
@@ -182,7 +184,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     </div>
     <div class="searchbox">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
-      <input id="q" type="search" autocomplete="off" placeholder="用語・金額・条文で検索（例：扶養、123万円、所法9、NISA）" aria-label="検索">
+      <input id="q" type="search" autocomplete="off" placeholder="用語・読み・金額・条文で検索（例：ふよう、123万円、所法9、NISA）" aria-label="検索">
       <kbd id="kbd">/</kbd>
       <button class="clear" id="clear" type="button" hidden>クリア</button>
     </div>
@@ -249,25 +251,54 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     it.n = {
       term: norm(it.term), alias: norm(it.alias || ""), law: norm(it.basis || ""),
       code: it.code ? "no." + it.code + " " + it.code : "",
-      summary: norm(it.summary || ""), group: norm(it.group || ""), body: norm(it.plainBody)
+      summary: norm(it.summary || ""), group: norm(it.group || ""), body: norm(it.plainBody),
+      yomi: it.yomi || ""
     };
   });
 
-  function tokens(q) { return norm(q).split(/\s+/).filter(Boolean); }
+  // 読み辞書: ひらがなの入力を、読みがその入力で始まる漢字表記に広げる（例: ふよう → 扶養、扶養親族…）
+  var YOMI = DATA.yomi.map(function (p) { return { s: norm(p[0]), r: p[1] }; });
+  function isKana(t) { return /^[ぁ-んー]+$/.test(t); }
+  function expand(t) {
+    var alts = [t];
+    if (isKana(t) && t.length >= 2) {
+      YOMI.forEach(function (y) {
+        if (y.r.indexOf(t) === 0 && alts.indexOf(y.s) < 0) alts.push(y.s);
+      });
+    }
+    return alts;
+  }
+  // 各語を { t: 入力, alts: [入力, 漢字表記…] } にする
+  function tokens(q) {
+    return norm(q).split(/\s+/).filter(Boolean).map(function (t) { return { t: t, alts: expand(t) }; });
+  }
+  function flat(toks) {
+    var out = [];
+    toks.forEach(function (k) { k.alts.forEach(function (a) { if (out.indexOf(a) < 0) out.push(a); }); });
+    return out.sort(function (a, b) { return b.length - a.length; });
+  }
+  function anyIn(h, alts) {
+    for (var i = 0; i < alts.length; i++) if (h.indexOf(alts[i]) >= 0) return true;
+    return false;
+  }
 
   function score(it, toks) {
     var s = 0;
     for (var i = 0; i < toks.length; i++) {
-      var t = toks[i], n = it.n, hit = 0;
+      var t = toks[i].t, alts = toks[i].alts, n = it.n, hit = 0;
       if (n.term === t) hit += 40;
       if (n.term.indexOf(t) === 0) hit += 16;
-      if (n.term.indexOf(t) >= 0) hit += 20;
-      if (n.alias.indexOf(t) >= 0) hit += 14;
+      if (anyIn(n.term, alts)) hit += 20;
+      if (n.yomi && n.yomi === t) hit += 36;
+      else if (n.yomi.indexOf(t) === 0) hit += 22;
+      else if (t.length >= 2 && n.yomi.indexOf(t) >= 0) hit += 16;
+      if (anyIn(n.alias, alts)) hit += 14;
       if (n.code.indexOf(t) >= 0) hit += 14;
       if (n.law.indexOf(t) >= 0) hit += 6;
-      if (n.group.indexOf(t) >= 0) hit += 4;
-      if (n.summary.indexOf(t) >= 0) hit += 4;
-      var c = count(n.body, t);
+      if (anyIn(n.group, alts)) hit += 4;
+      if (anyIn(n.summary, alts)) hit += 4;
+      var c = 0;
+      alts.forEach(function (a) { c += count(n.body, a); });
       if (c) hit += 1 + Math.min(c, 8) * 0.25;
       if (!hit) return 0;
       s += hit;
@@ -306,7 +337,10 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var text = it.summary || it.plainBody.trim() || [it.group, it.basis].filter(Boolean).join("・");
     if (toks.length) {
       var src = it.summary + " " + it.plainBody, m = normMap(src), best = -1;
-      for (var i = 0; i < toks.length && best < 0; i++) best = m.text.indexOf(toks[i]);
+      for (var i = 0; i < toks.length; i++) {
+        var at0 = m.text.indexOf(toks[i]);
+        if (at0 >= 0 && (best < 0 || at0 < best)) best = at0;
+      }
       if (best >= 0) {
         var at = m.map[best], start = Math.max(0, at - 28);
         text = (start > 0 ? "…" : "") + src.slice(start, start + 110).trim();
@@ -413,7 +447,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   }
 
   function render() {
-    var r = search(), toks = r.toks, counts = { all: r.all.length };
+    var r = search(), toks = flat(r.toks), kana = r.toks.filter(function (k) { return isKana(k.t); }).map(function (k) { return k.t; }), counts = { all: r.all.length };
     r.all.forEach(function (x) { counts[x.it.cat] = (counts[x.it.cat] || 0) + 1; });
     renderFilters(counts);
     var shown = r.all.filter(function (x) { return state.cat === "all" || x.it.cat === state.cat; });
@@ -436,6 +470,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
         '<span class="row">' + (toks.length ? '<span class="pill">' + esc(CAT[it.cat].name) + "</span>" : "") +
         '<span class="term">' + highlight(it.term, toks) + "</span>" +
         (it.code ? '<span class="code">No.' + it.code + "</span>" : "") + "</span>" +
+        (kana.length && anyIn(it.n.yomi, kana) && !anyIn(it.n.term, toks) ? '<span class="ry">' + highlight(it.yomi, kana) + "</span>" : "") +
         '<span class="snip">' + snippet(it, toks) + "</span></button>";
     });
     if (shown.length > list.length) html += '<button class="more" type="button" id="more">さらに ' + (shown.length - list.length) + " 件を表示</button>";
@@ -465,11 +500,12 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function renderDetail() {
     var it = BY_ID[state.current];
     if (!it) { detailEl.innerHTML = ""; return; }
-    var c = CAT[it.cat], toks = tokens(state.q), h = "";
+    var c = CAT[it.cat], toks = flat(tokens(state.q)), h = "";
     h += '<button class="back" type="button" id="back">← 一覧へ戻る</button>';
     h += '<div class="eyebrow" style="' + catStyle(it.cat) + '"><span class="pill">' + esc(c.name) + "</span>" +
       (it.kind === "overview" ? "<span>あらまし</span>" : "") + (it.group ? "<span>" + esc(it.group) + "</span>" : "") + "</div>";
     h += "<h2>" + esc(it.term) + "</h2>";
+    if (it.yomi) h += '<p class="yomi">' + esc(it.yomi) + "</p>";
     h += '<dl class="meta">';
     if (it.code) h += '<dt>タックスアンサー</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(it.title) + "</a></dd>";
     else h += '<dt>出典</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">No.2011 課税される所得と非課税所得</a></dd>';
@@ -497,6 +533,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     h += '<p class="source">この内容は国税庁ホームページのタックスアンサーを転載・整形したものです。最新の内容は<a href="' + esc(it.url) + '" target="_blank" rel="noopener">出典ページ</a>で確認してください。</p>';
     detailEl.innerHTML = h;
     markIn(detailEl.querySelector("h2"), toks);
+    if (it.yomi) markIn(detailEl.querySelector(".yomi"), toks);
     Array.prototype.forEach.call(detailEl.querySelectorAll(".body, .related, .lead"), function (el) { markIn(el, toks); });
   }
 
