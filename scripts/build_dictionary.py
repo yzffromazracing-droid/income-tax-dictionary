@@ -6,6 +6,7 @@
   - 所得区分   : No.1300 と 10種類の所得の各ページ
   - 所得控除   : No.1100 と各所得控除のページ
   - 税額控除   : No.1200 と各税額控除のページ
+  - 通達       : 法令解釈通達の所得税基本通達と個別通達（所得税関係）。scripts/tsutatsu.py
 
 使い方:
   python3 scripts/build_dictionary.py            # 取得（キャッシュ利用）して生成
@@ -33,7 +34,12 @@ SITE = ROOT / "docs"
 TEMPLATE = Path(__file__).resolve().parent / "search_template.html"
 YOMI = DATA / "yomi.tsv"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun",
-              "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku"}
+              "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
+TSUTATSU_TAB = {
+    "id": "tsutatsu", "name": "通達", "color": "tsutatsu",
+    "description": "国税庁の法令解釈通達（所得税基本通達と所得税関係の個別通達）。",
+    "subtabs": [{"id": "kihon", "name": "基本通達"}, {"id": "kobetsu", "name": "個別通達"}],
+}
 
 CATEGORIES = [
     {
@@ -452,7 +458,7 @@ def search_items(result):
     return items
 
 
-def render_search_page(result, yomi_pairs):
+def render_search_page(result, yomi_pairs, tsutatsu_items):
     """1ファイルで動く検索ページ（docs/index.html）を生成する。"""
     as_of = next((c["overview"]["as_of"] for c in result["categories"] if c["overview"]["as_of"]), "")
     data = {
@@ -463,8 +469,8 @@ def render_search_page(result, yomi_pairs):
         "categories": [{"id": c["id"], "name": c["name"], "description": c["description"],
                         "color": CAT_COLORS[c["id"]],
                         "subtabs": [{"id": t["id"], "name": t["name"]} for t in conf.get("subtabs", [])]}
-                       for c, conf in zip(result["categories"], CATEGORIES)],
-        "items": search_items(result),
+                       for c, conf in zip(result["categories"], CATEGORIES)] + [TSUTATSU_TAB],
+        "items": search_items(result) + tsutatsu_items,
         # ひらがな入力を漢字表記に置き換えるための読み辞書（漢字を含む語のみ）
         "yomi": [[s, r] for s, r in yomi_pairs if KANJI.search(s) or re.search(r"[A-Za-z]", s)],
     }
@@ -487,7 +493,7 @@ def main():
     DOCS.mkdir(exist_ok=True)
     result = {
         "title": "所得税の辞書",
-        "source": "国税庁 タックスアンサー（よくある税の質問）所得税",
+        "source": "国税庁 タックスアンサー（よくある税の質問）所得税・法令解釈通達",
         "source_url": BASE + "/taxes/shiraberu/taxanswer/code/index.htm",
         "generated_at": datetime.date.today().isoformat(),
         "categories": [],
@@ -512,9 +518,17 @@ def main():
         (DOCS / f"{cat['id']}.md").write_text(render_md(cat, overview, entries), encoding="utf-8")
         print(f"{cat['name']}: {len(entries)} 項目", file=sys.stderr)
 
+    import tsutatsu
+    kihon = tsutatsu.build_kihon(args.refresh)
+    kobetsu = tsutatsu.build_kobetsu(args.refresh)
+    result["tsutatsu"] = {"kihon": kihon, "kobetsu": kobetsu}
+    (DOCS / "tsutatsu-kihon.md").write_text(tsutatsu.render_kihon_md(kihon), encoding="utf-8")
+    (DOCS / "tsutatsu-kobetsu.md").write_text(tsutatsu.render_kobetsu_md(kobetsu), encoding="utf-8")
+    print(f"通達: 基本通達 {len(kihon)} 項目、個別通達 {len(kobetsu)} 項目", file=sys.stderr)
+
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    render_search_page(result, yomi_pairs)
+    render_search_page(result, yomi_pairs, tsutatsu.search_items(kihon, kobetsu))
 
 
 if __name__ == "__main__":

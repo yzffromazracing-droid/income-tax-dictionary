@@ -19,6 +19,7 @@
   --c-kubun: #1f4d8c;
   --c-shotoku: #8d4a08;
   --c-zeigaku: #7b2c6c;
+  --c-tsutatsu: #4d5a2a;
   --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
   --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -28,14 +29,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
     --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2;
+    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
   --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2;
+  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -183,7 +184,7 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .source { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
 .source p { margin: 0; }
 .source .meta { border: 0; padding: 0; margin: 0 0 10px; color: var(--ink); }
-.rule { border-top: 1px solid var(--line); margin: 0 0 18px; }
+.rule { border-top: 1px solid var(--line); margin: 12px 0 18px; }
 
 footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
 
@@ -197,9 +198,11 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   .searchbox kbd { display: none; }
   .status { display: none; }
   .tabs { flex: 1; }
-  .tab { flex: 1 1 0; justify-content: center; gap: 4px; padding: 8px 2px 9px; font-size: 13.5px; }
+  /* 5つのタブを1行に収めるため、件数はタブ名の下に小さく出し、検索中だけ表示する */
+  .tab { flex: 1 1 0; flex-direction: column; justify-content: center; gap: 0; padding: 8px 0 7px; font-size: 13.5px; }
   .tab .dot { display: none; }
-  .tab .n { padding: 0 5px; }
+  .tab .n { background: none; padding: 0; font-size: 10.5px; line-height: 1.3; }
+  body:not(.searching) .tab .n { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .result { transition: background-color .12s; }
@@ -210,11 +213,11 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   <div class="wrap">
     <div class="brand">
       <h1>所得税用語検索</h1>
-      <p>国税庁タックスアンサーをもとにした 非課税・所得区分・所得控除・税額控除 の辞書</p>
+      <p>国税庁タックスアンサーと法令解釈通達をもとにした 非課税・所得区分・所得控除・税額控除・通達 の辞書</p>
     </div>
     <div class="searchbox">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
-      <input id="q" type="search" autocomplete="off" placeholder="用語・読み・金額・条文で検索（例：ふよう、123万円、所法9、NISA）" aria-label="検索">
+      <input id="q" type="search" autocomplete="off" placeholder="用語・読み・金額・条文・通達番号で検索（例：ふよう、123万円、所法9、36-30）" aria-label="検索">
       <kbd id="kbd">/</kbd>
       <button class="clear" id="clear" type="button" hidden>クリア</button>
     </div>
@@ -256,9 +259,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     return n.replace(/[ァ-ヶ]/g, function (k) { return String.fromCharCode(k.charCodeAt(0) - 0x60); });
   }
   function norm(s) {
-    var out = "";
-    for (var i = 0; i < s.length; i++) out += normChar(s[i]);
-    return out;
+    return s.normalize("NFKC").toLowerCase()
+      .replace(/[ァ-ヶ]/g, function (k) { return String.fromCharCode(k.charCodeAt(0) - 0x60); });
   }
   // 元文字列の位置を保ったまま正規化する（ハイライト用）
   function normMap(s) {
@@ -287,7 +289,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     it.plainBody = plain(it.md) + " " + rel;
     it.n = {
       term: norm(it.term), alias: norm(it.alias || ""), law: norm(it.basis || ""),
-      code: it.code ? "no." + it.code + " " + it.code : "",
+      code: it.code ? "no." + it.code + " " + it.code : norm(it.label || ""),
       summary: norm(it.summary || ""), group: norm(it.group || ""), body: norm(it.plainBody),
       yomi: it.yomi || ""
     };
@@ -373,15 +375,17 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function snippet(it, toks) {
     var text = it.summary || it.plainBody.trim() || [it.group, it.basis].filter(Boolean).join("・");
     if (toks.length) {
-      var src = it.summary + " " + it.plainBody, m = normMap(src), best = -1;
-      for (var i = 0; i < toks.length; i++) {
-        var at0 = m.text.indexOf(toks[i]);
-        if (at0 >= 0 && (best < 0 || at0 < best)) best = at0;
-      }
-      if (best >= 0) {
-        var at = m.map[best], start = Math.max(0, at - 28);
+      // 要旨→本文の順に最初の一致を探す。本文は長いので、正規化済みの本文で位置の見当を付けてから周辺だけ調べる
+      [[it.summary || "", it.n.summary], [it.plainBody, it.n.body]].some(function (pair) {
+        var src = pair[0], approx = -1;
+        toks.forEach(function (t) { var a = pair[1].indexOf(t); if (a >= 0 && (approx < 0 || a < approx)) approx = a; });
+        if (approx < 0) return false;
+        var off = Math.max(0, approx - 80), win = src.slice(off, approx + 240), m = normMap(win), best = -1;
+        toks.forEach(function (t) { var a = m.text.indexOf(t); if (a >= 0 && (best < 0 || a < best)) best = a; });
+        var at = off + (best >= 0 ? m.map[best] : approx - off), start = Math.max(0, at - 28);
         text = (start > 0 ? "…" : "") + src.slice(start, start + 110).trim();
-      }
+        return true;
+      });
     }
     return highlight(text.slice(0, 140), toks);
   }
@@ -527,6 +531,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var shown = state.sub === "all" ? inCat : inCat.filter(function (x) { return x.it.sub === state.sub; });
     setHeaderH();
     $("status").textContent = toks.length ? ITEMS.length + "語中 " + r.all.length + "件が一致" : ITEMS.length + "語を収録";
+    document.body.classList.toggle("searching", toks.length > 0);
     $("clear").hidden = !state.q;
     $("kbd").hidden = !!state.q;
 
@@ -547,6 +552,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
       detailEl.innerHTML = "";
       return;
     }
+    var pos = state.current ? shown.findIndex(function (x) { return x.it.id === state.current; }) : -1;
+    if (pos >= state.limit) state.limit = pos + 20;
     var html = "", lastGroup = null, list = shown.slice(0, state.limit);
     list.forEach(function (x) {
       var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && SUB[it.sub].name) || "用語");
@@ -557,7 +564,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
       html += '<button class="result" type="button" data-id="' + it.id + '" style="' + catStyle(it.cat) + '" aria-current="' + (state.current === it.id) + '">' +
         '<span class="row">' + (toks.length && it.kind === "overview" ? '<span class="tag">あらまし</span>' : "") +
         '<span class="term">' + highlight(it.term, toks) + "</span>" +
-        (it.code ? '<span class="code">No.' + it.code + "</span>" : "") + "</span>" +
+        (it.code ? '<span class="code">No.' + it.code + "</span>" : it.label ? '<span class="code">' + esc(it.label) + "</span>" : "") + "</span>" +
         (kana.length && anyIn(it.n.yomi, kana) && !anyIn(it.n.term, toks) ? '<span class="ry">' + highlight(it.yomi, kana) + "</span>" : "") +
         '<span class="snip">' + snippet(it, toks) + "</span></button>";
     });
@@ -591,7 +598,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var c = CAT[it.cat], toks = flat(tokens(state.q)), h = "";
     h += '<button class="back" type="button" id="back">← 一覧へ戻る</button>';
     h += '<div class="eyebrow" style="' + catStyle(it.cat) + '"><span class="pill">' + esc(c.name) + "</span>" +
-      (it.kind === "overview" ? "<span>あらまし</span>" : "") + (it.group ? "<span>" + esc(it.group) + "</span>" : "") + "</div>";
+      (it.sub && it.kind === "tsutatsu" ? "<span>" + esc(SUB[it.sub].name) + "</span>" : "") +
+      (it.kind === "overview" ? "<span>あらまし</span>" : "") + (it.group ? "<span>" + esc(it.group) + "</span>" : "") +
+      (it.section ? "<span>" + esc(it.section) + "</span>" : "") + "</div>";
     h += "<h2>" + esc(it.term) + "</h2>";
     if (it.yomi) h += '<p class="yomi">' + esc(it.yomi) + "</p>";
     if (it.alias) h += '<dl class="meta"><dt>通称</dt><dd>' + esc(it.alias) + "</dd></dl>";
@@ -617,9 +626,11 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     h += '<div class="source"><dl class="meta">';
     if (it.basis) h += '<dt>根拠法令等</dt><dd class="law">' + esc(it.basis) + "</dd>";
     if (it.asOf) h += "<dt>基準</dt><dd>" + esc(it.asOf) + "</dd>";
-    h += '<dt>タックスアンサー</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
-      esc(it.code ? it.title : "No.2011 課税される所得と非課税所得") + "</a></dd></dl>" +
-      "<p>この内容は国税庁ホームページのタックスアンサーを転載・整形したものです。最新の内容はリンク先で確認してください。</p></div>";
+    if (it.issued) h += "<dt>番号・日付</dt><dd>" + esc(it.issued) + "</dd>";
+    h += "<dt>" + esc(it.srcLabel || "タックスアンサー") + '</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+      esc(it.srcTitle || (it.code ? it.title : "No.2011 課税される所得と非課税所得")) + "</a></dd></dl>" +
+      "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : "タックスアンサー") +
+      "を転載・整形したものです。最新の内容はリンク先で確認してください。</p></div>";
     detailEl.innerHTML = h;
     markIn(detailEl.querySelector("h2"), toks);
     if (it.yomi) markIn(detailEl.querySelector(".yomi"), toks);

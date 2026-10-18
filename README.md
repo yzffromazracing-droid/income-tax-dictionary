@@ -1,6 +1,6 @@
 # income-tax-dictionary
 
-国税庁ホームページの[タックスアンサー（所得税）](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)をもとに作成した所得税の辞書です。
+国税庁ホームページの[タックスアンサー（所得税）](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)と[法令解釈通達](https://www.nta.go.jp/law/tsutatsu/menu.htm)をもとに作成した所得税の辞書です。
 
 ## 検索
 
@@ -9,7 +9,8 @@
 - 用語名・通称・要旨・本文・根拠法令（例: `所法9`）・タックスアンサー番号（例: `1199`）を対象に検索
 - ひらがなの読みでも検索できます（例: `ふよう` → 扶養控除、`じゅうたく` → 本文中の「住宅」「住宅借入金」も対象）
 - スペース区切りで AND 検索、全角/半角・カタカナ/ひらがなの違いは無視
-- 非課税・所得区分・所得控除・税額控除をタブで切り替え（検索中は各タブに一致件数を表示）
+- 非課税・所得区分・所得控除・税額控除・通達をタブで切り替え（検索中は各タブに一致件数を表示）
+- 通達タブの下には基本通達・個別通達のタブがあり、`36-30` や `所基通9-3` のように通達番号でも検索できる
 - 所得区分タブの下には、利子所得から雑所得までの10種類の所得のタブがある
 - `#no1199` のようなリンクで用語を、`#shotoku-kojo` や `#kyuyo`（給与所得）のようなリンクでタブを直接開ける
 - GitHub Pages を「main ブランチの /docs」で公開すれば Web 上でも使えます
@@ -22,11 +23,14 @@
 | 所得区分 | [dictionary/shotoku-kubun.md](dictionary/shotoku-kubun.md) | [No.1300 所得の区分のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm) | 11 |
 | 所得控除 | [dictionary/shotoku-kojo.md](dictionary/shotoku-kojo.md) | [No.1100 所得控除のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1100.htm) | 18 |
 | 税額控除 | [dictionary/zeigaku-kojo.md](dictionary/zeigaku-kojo.md) | [No.1200 税額控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1200.htm) | 11 |
+| 通達（基本通達） | [dictionary/tsutatsu-kihon.md](dictionary/tsutatsu-kihon.md) | [所得税基本通達](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/01.htm) | 1,183 |
+| 通達（個別通達） | [dictionary/tsutatsu-kobetsu.md](dictionary/tsutatsu-kobetsu.md) | [法令解釈通達（所得税関係の個別通達）](https://www.nta.go.jp/law/tsutatsu/menu.htm) | 318 |
 
 - 非課税は No.2011 の「主な非課税所得」の表の各項目を1語として収録し、区分・通称・根拠条文・関連するタックスアンサーを付けています。
 - 所得区分・所得控除・税額控除は、各タックスアンサーのページを1語として収録し、要旨・根拠法令等・本文（表を含む）を載せています。
 - 検索ページは `scripts/search_template.html` をもとに生成されます。
 - 読みは [data/yomi.tsv](data/yomi.tsv)（表記と読みの対応表）から作ります。用語名はこの表で区切って読みを組み立て、読めない漢字が残るとビルドがエラーで止まるので、その語を表に追加してください。本文を読みで検索できるのも、この表にある語に限られます。
+- 通達は `scripts/tsutatsu.py` で取得します。基本通達は「2-1」などの通達番号ごとに1語、個別通達は通達ごとに1語です（申告所得税・源泉所得税・譲渡・山林所得・租税特別措置法の各関係。5ページを超える通達はページごとに分けています。一部改正通達は含みません）。
 - 機械処理用のデータは [data/income_tax_dictionary.json](data/income_tax_dictionary.json) にあります。
 
 収録内容は各ページに記載の「令和8年4月1日現在法令等」に基づきます。最新の内容・個別の判断は必ず出典ページをご確認ください。
