@@ -1,0 +1,835 @@
+<title>所得税区分辞書</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Old+Mincho:wght@700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 検索ヘッダーを上部に固定し、広い画面では「結果一覧｜本文」の2ペイン、狭い画面では一覧→本文の切替 */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #18212d;
+  --muted: #586373;
+  --line: #d9dfe7;
+  --accent: #1f4d8c;
+  --accent-soft: #e4ecf7;
+  --mark: #ffe7a0;
+  --mark-ink: #18212d;
+  --c-hikazei: #0b7466;
+  --c-kubun: #1f4d8c;
+  --c-shotoku: #8d4a08;
+  --c-zeigaku: #7b2c6c;
+  --c-tsutatsu: #4d5a2a;
+  --c-aoiro: #3f3fb8;
+  --c-kiji: #8a5a00;
+  --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --header-h: 0px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
+    --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
+    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
+  --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
+  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 15px; line-height: 1.7; margin: 0;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, .result:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.wrap {
+  max-width: 1240px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ヘッダー */
+header.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+header.top .wrap { padding-block: 14px 12px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.brand h1 { font-family: var(--font-display); font-size: 20px; margin: 0; letter-spacing: .04em; }
+.searchbox { position: relative; }
+.searchbox input {
+  width: 100%; font: inherit; font-size: 17px; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 84px 10px 40px;
+}
+.searchbox input::placeholder { color: var(--muted); }
+.searchbox input::-webkit-search-cancel-button { display: none; }
+.searchbox svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: none; stroke: var(--muted); stroke-width: 2; }
+.searchbox kbd, .searchbox .clear {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+}
+.searchbox kbd {
+  font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px;
+}
+.searchbox .clear {
+  font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; cursor: pointer; padding: 4px 6px;
+}
+/* カテゴリのタブ */
+.tabbar { display: flex; align-items: flex-end; gap: 12px; margin-bottom: -12px; min-width: 0; }
+.tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  font: inherit; font-size: 14.5px; cursor: pointer; color: var(--muted); white-space: nowrap;
+  background: transparent; border: 0; border-bottom: 3px solid transparent;
+  padding: 8px 14px 9px; display: inline-flex; gap: 7px; align-items: center;
+}
+.tab:hover { color: var(--ink); }
+.tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.tab .n {
+  font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+  background: var(--bg); border-radius: 999px; padding: 0 7px; line-height: 1.6;
+}
+.tab .n.zero { opacity: .5; }
+.tab[aria-selected="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--c); }
+.tab[aria-selected="true"] .n { color: var(--ink); }
+/* 所得区分の下のタブ（所得の種類） */
+header.top.has-sub .tabbar { margin-bottom: 0; border-bottom: 1px solid var(--line); }
+.subtabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; padding-top: 2px; }
+.subtabs::-webkit-scrollbar { display: none; }
+@media (min-width: 861px) { .subtabs { flex-wrap: wrap; } }
+.subtab {
+  font: inherit; font-size: 13px; cursor: pointer; color: var(--muted); white-space: nowrap;
+  background: transparent; border: 1px solid transparent; border-radius: 999px;
+  padding: 3px 12px; display: inline-flex; gap: 5px; align-items: center;
+}
+.subtab:hover { color: var(--ink); border-color: var(--line); }
+.subtab[aria-selected="true"] { color: var(--ink); font-weight: 700; background: var(--accent-soft); border-color: var(--line); }
+.subtab .n { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.subtab .n.zero { opacity: .5; }
+/* 3段目のタブ（譲渡所得の課税方法など） */
+.subtabs.sub2 { align-items: center; padding-top: 0; }
+.subtabs.sub2::before { content: "└"; color: var(--muted); margin: 0 4px 0 10px; }
+.subtabs.sub2 .subtab { font-size: 12.5px; padding: 2px 10px; }
+.status { margin-left: auto; padding-bottom: 12px; color: var(--muted); font-size: 12.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* 本体 */
+main.wrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 24px; padding-block: 18px 40px; }
+.list { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.group-label {
+  font-size: 12px; letter-spacing: .08em; color: var(--muted); padding: 14px 10px 4px;
+  display: flex; align-items: center; gap: 8px;
+}
+.group-label:first-child { padding-top: 0; }
+.tag { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; white-space: nowrap; line-height: 1.6; }
+.empty .others { display: flex; flex-wrap: wrap; gap: 8px; }
+.empty .others button { font: inherit; font-size: 13px; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.result {
+  display: grid; gap: 2px; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; width: 100%;
+}
+.result:hover { background: var(--accent-soft); }
+.result[aria-current="true"] { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.result .row { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
+.result .term { font-weight: 700; min-width: 0; }
+.result .code { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: auto; }
+.result .ry { font-size: 11.5px; color: var(--muted); letter-spacing: .04em; overflow-wrap: anywhere; }
+.result .snip { font-size: 12.5px; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pill {
+  font-size: 11px; color: var(--c); border: 1px solid currentColor; border-radius: 4px;
+  padding: 0 5px; white-space: nowrap; line-height: 1.6;
+}
+mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padding: 0 1px; }
+.more { font: inherit; font-size: 13px; color: var(--accent); background: none; border: 1px dashed var(--line); border-radius: 6px; padding: 8px; cursor: pointer; margin-top: 6px; }
+.empty { color: var(--muted); padding: 24px 10px; }
+.empty p { margin: 0 0 10px; }
+
+.detail {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 26px 32px 32px; min-width: 0; align-self: start;
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--header-h) + 18px);
+  max-height: calc(100vh - var(--header-h) - 36px - env(safe-area-inset-top, 0px)); overflow-y: auto;
+}
+.back { display: none; font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; padding: 0 0 12px; cursor: pointer; }
+.detail .eyebrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.detail h2 { font-family: var(--font-display); font-size: 27px; line-height: 1.4; margin: 6px 0 2px; text-wrap: balance; }
+.detail .yomi { margin: 0 0 14px; font-size: 12.5px; color: var(--muted); letter-spacing: .06em; overflow-wrap: anywhere; }
+.meta { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 13px; margin: 0 0 18px; padding: 12px 0; border-block: 1px solid var(--line); }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.law { font-family: var(--font-mono); font-size: 12px; }
+.body { max-width: 72ch; overflow-wrap: anywhere; }
+.body h3 { font-size: 17px; margin: 28px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+.body h4 { font-size: 15.5px; margin: 20px 0 6px; }
+.body h5, .body h6 { font-size: 14.5px; margin: 16px 0 4px; color: var(--muted); }
+.body p { margin: 0 0 10px; }
+.body ul { margin: 0 0 12px; padding-left: 1.4em; }
+.body li { margin: 2px 0; }
+.tbl { overflow-x: auto; margin: 6px 0 14px; }
+.tbl table { border-collapse: collapse; font-size: 13px; min-width: 100%; }
+.tbl th, .tbl td { border: 1px solid var(--line); padding: 6px 9px; vertical-align: top; text-align: left; }
+.tbl th { background: var(--bg); font-weight: 700; }
+.tbl td { font-variant-numeric: tabular-nums; }
+.examples ul { padding-left: 1.2em; }
+.examples li { margin: 4px 0; }
+.examples .to { margin-left: 6px; font-weight: 700; }
+.examples .src { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: 4px; }
+.examples .src:hover { color: var(--accent); }
+.related { margin: 0 0 16px; padding-left: 1.4em; }
+.related li { margin: 2px 0; }
+.source { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+.source p { margin: 0; }
+.source .meta { border: 0; padding: 0; margin: 0 0 10px; color: var(--ink); }
+.rule { border-top: 1px solid var(--line); margin: 12px 0 18px; }
+
+footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
+
+@media (max-width: 860px) {
+  main.wrap { grid-template-columns: minmax(0, 1fr); }
+  .detail { position: static; max-height: none; overflow: visible; padding: 18px 16px 24px; }
+  .detail h2 { font-size: 23px; }
+  .back { display: inline-block; }
+  body.reading .list { display: none; }
+  body:not(.reading) .detail { display: none; }
+  .searchbox kbd { display: none; }
+  .status { display: none; }
+  .tabs { flex: 1; }
+  /* 5つのタブを1行に収めるため、件数はタブ名の下に小さく出し、検索中だけ表示する */
+  .tab { flex: 0 0 auto; flex-direction: column; justify-content: center; gap: 0; padding: 8px 9px 7px; font-size: 13px; }
+  .tab .dot { display: none; }
+  .tab .n { background: none; padding: 0; font-size: 10.5px; line-height: 1.3; }
+  body:not(.searching) .tab .n { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .result { transition: background-color .12s; }
+}
+</style>
+<!--BODY-->
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>所得税区分辞書</h1>
+    </div>
+    <div class="searchbox">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+      <input id="q" type="search" autocomplete="off" placeholder="用語・読み・金額・条文・通達番号で検索（例：ふよう、123万円、所法9、36-30）" aria-label="検索">
+      <kbd id="kbd">/</kbd>
+      <button class="clear" id="clear" type="button" hidden>クリア</button>
+    </div>
+    <div class="tabbar">
+      <div class="tabs" id="tabs" role="tablist" aria-label="カテゴリ"></div>
+      <span class="status" id="status"></span>
+    </div>
+    <div class="subtabs" id="subtabs" role="tablist" aria-label="所得の種類" hidden></div>
+    <div class="subtabs sub2" id="subtabs2" role="tablist" aria-label="課税方法" hidden></div>
+  </div>
+</header>
+<main class="wrap">
+  <nav class="list" id="list" role="tabpanel" aria-label="用語の一覧"></nav>
+  <article class="detail" id="detail" aria-live="polite"></article>
+</main>
+<footer class="wrap" id="foot"></footer>
+
+<script id="dict-data" type="application/json">__DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("dict-data").textContent);
+  var CATS = DATA.categories;
+  var CAT = {};
+  CATS.forEach(function (c) { CAT[c.id] = c; });
+  var ITEMS = DATA.items;
+  var BY_ID = {};
+  ITEMS.forEach(function (it) { BY_ID[it.id] = it; });
+
+  var $ = function (id) { return document.getElementById(id); };
+  var qEl = $("q"), listEl = $("list"), detailEl = $("detail"), tabsEl = $("tabs");
+  var state = { q: "", cat: CATS[0].id, sub: "all", sub2: "all", current: null, limit: 60 };
+  var subtabsEl = $("subtabs");
+  var SUB = {};
+  var SUB2 = {};
+  CATS.forEach(function (c) {
+    c.subtabs.forEach(function (t) {
+      SUB[t.id] = { cat: c.id, name: t.name, children: t.children || [] };
+      (t.children || []).forEach(function (k) { SUB2[k.id] = { cat: c.id, sub: t.id, name: k.name }; });
+    });
+  });
+  var subtabs2El = document.getElementById("subtabs2");
+
+  // ---- 正規化（全角/半角・カタカナ/ひらがな・大文字小文字を同一視） ----
+  function normChar(ch) {
+    var n = ch.normalize("NFKC").toLowerCase();
+    return n.replace(/[ァ-ヶ]/g, function (k) { return String.fromCharCode(k.charCodeAt(0) - 0x60); });
+  }
+  function norm(s) {
+    return s.normalize("NFKC").toLowerCase()
+      .replace(/[ァ-ヶ]/g, function (k) { return String.fromCharCode(k.charCodeAt(0) - 0x60); });
+  }
+  // 元文字列の位置を保ったまま正規化する（ハイライト用）
+  function normMap(s) {
+    var out = "", map = [];
+    for (var i = 0; i < s.length; i++) {
+      var n = normChar(s[i]);
+      for (var j = 0; j < n.length; j++) map.push(i);
+      out += n;
+    }
+    return { text: out, map: map };
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function plain(md) {
+    return (md || "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/<br>/g, " ")
+      .replace(/^#+\s*/gm, "").replace(/\*\*/g, "").replace(/^\s*-\s+/gm, "").replace(/\|/g, " ")
+      .replace(/-{3,}/g, " ").replace(/[ \t]+/g, " ");
+  }
+
+  // ---- インデックス ----
+  ITEMS.forEach(function (it) {
+    var rel = (it.examples || []).map(function (x) { return x.text + " " + (x.other || x.tax || ""); })
+      .concat((it.related || []).map(function (r) { return r.title; })).join(" ");
+    it.plainBody = plain(it.md) + " " + rel;
+    it.n = {
+      term: norm(it.term), alias: norm(it.alias || ""), law: norm(it.basis || ""),
+      code: it.code ? "no." + it.code + " " + it.code : norm(it.label || ""),
+      summary: norm(it.summary || ""), group: norm(it.group || ""), body: norm(it.plainBody),
+      yomi: it.yomi || ""
+    };
+  });
+
+  // 読み辞書: ひらがなの入力を、読みがその入力で始まる漢字表記に広げる（例: ふよう → 扶養、扶養親族…）
+  var YOMI = DATA.yomi.map(function (p) { return { s: norm(p[0]), r: p[1] }; });
+  function isKana(t) { return /^[ぁ-んー]+$/.test(t); }
+  function expand(t) {
+    var alts = [t];
+    if (isKana(t) && t.length >= 2) {
+      YOMI.forEach(function (y) {
+        if (y.r.indexOf(t) === 0 && alts.indexOf(y.s) < 0) alts.push(y.s);
+      });
+    }
+    return alts;
+  }
+  // 各語を { t: 入力, alts: [入力, 漢字表記…] } にする
+  function tokens(q) {
+    return norm(q).split(/\s+/).filter(Boolean).map(function (t) { return { t: t, alts: expand(t) }; });
+  }
+  function flat(toks) {
+    var out = [];
+    toks.forEach(function (k) { k.alts.forEach(function (a) { if (out.indexOf(a) < 0) out.push(a); }); });
+    return out.sort(function (a, b) { return b.length - a.length; });
+  }
+  function anyIn(h, alts) {
+    for (var i = 0; i < alts.length; i++) if (h.indexOf(alts[i]) >= 0) return true;
+    return false;
+  }
+
+  function score(it, toks) {
+    var s = 0;
+    for (var i = 0; i < toks.length; i++) {
+      var t = toks[i].t, alts = toks[i].alts, n = it.n, hit = 0;
+      if (n.term === t) hit += 40;
+      if (n.term.indexOf(t) === 0) hit += 16;
+      if (anyIn(n.term, alts)) hit += 20;
+      if (n.yomi && n.yomi === t) hit += 36;
+      else if (n.yomi.indexOf(t) === 0) hit += 22;
+      else if (t.length >= 2 && n.yomi.indexOf(t) >= 0) hit += 16;
+      if (anyIn(n.alias, alts)) hit += 14;
+      if (n.code.indexOf(t) >= 0) hit += 14;
+      if (n.law.indexOf(t) >= 0) hit += 6;
+      if (anyIn(n.group, alts)) hit += 4;
+      if (anyIn(n.summary, alts)) hit += 4;
+      var c = 0;
+      alts.forEach(function (a) { c += count(n.body, a); });
+      if (c) hit += 1 + Math.min(c, 8) * 0.25;
+      if (!hit) return 0;
+      s += hit;
+    }
+    if (it.kind === "overview") s -= 0.5;
+    return s;
+  }
+  function count(h, t) {
+    var c = 0, i = h.indexOf(t);
+    while (i >= 0 && c < 50) { c++; i = h.indexOf(t, i + t.length); }
+    return c;
+  }
+
+  // ---- ハイライト ----
+  function highlight(text, toks) {
+    if (!toks.length) return esc(text);
+    var m = normMap(text), ranges = [];
+    toks.forEach(function (t) {
+      var i = m.text.indexOf(t);
+      while (i >= 0) {
+        ranges.push([m.map[i], m.map[i + t.length - 1] + 1]);
+        i = m.text.indexOf(t, i + t.length);
+      }
+    });
+    if (!ranges.length) return esc(text);
+    ranges.sort(function (a, b) { return a[0] - b[0]; });
+    var out = "", pos = 0;
+    ranges.forEach(function (r) {
+      if (r[0] < pos) return;
+      out += esc(text.slice(pos, r[0])) + "<mark>" + esc(text.slice(r[0], r[1])) + "</mark>";
+      pos = r[1];
+    });
+    return out + esc(text.slice(pos));
+  }
+  function snippet(it, toks) {
+    var text = it.summary || it.plainBody.trim() || [it.group, it.basis].filter(Boolean).join("・");
+    if (toks.length) {
+      // 要旨→本文の順に最初の一致を探す。本文は長いので、正規化済みの本文で位置の見当を付けてから周辺だけ調べる
+      [[it.summary || "", it.n.summary], [it.plainBody, it.n.body]].some(function (pair) {
+        var src = pair[0], approx = -1;
+        toks.forEach(function (t) { var a = pair[1].indexOf(t); if (a >= 0 && (approx < 0 || a < approx)) approx = a; });
+        if (approx < 0) return false;
+        var off = Math.max(0, approx - 80), win = src.slice(off, approx + 240), m = normMap(win), best = -1;
+        toks.forEach(function (t) { var a = m.text.indexOf(t); if (a >= 0 && (best < 0 || a < best)) best = a; });
+        var at = off + (best >= 0 ? m.map[best] : approx - off), start = Math.max(0, at - 28);
+        text = (start > 0 ? "…" : "") + src.slice(start, start + 110).trim();
+        return true;
+      });
+    }
+    return highlight(text.slice(0, 140), toks);
+  }
+
+  // ---- Markdown（本文の表記に限った簡易変換。HTMLはすべてエスケープ） ----
+  function inline(s) {
+    var h = esc(s).replace(/&lt;br&gt;/g, "<br>");
+    h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, function (_, t, u) {
+      return '<a href="' + u + '" target="_blank" rel="noopener">' + t + "</a>";
+    });
+    return h.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  }
+  // 横に結合されていたセルを colspan に戻す（見出しは同じ値の連続、本文は空セル）
+  function tableRow(cells, tag) {
+    var out = [], prev = null;
+    cells.forEach(function (c) {
+      var merge = prev && (tag === "th" ? c === prev.text : c === "" && prev.text !== "");
+      if (merge) { prev.span++; return; }
+      prev = { text: c, span: 1 };
+      out.push(prev);
+    });
+    return "<tr>" + out.map(function (c) {
+      return "<" + tag + (c.span > 1 ? ' colspan="' + c.span + '"' : "") + ">" + inline(c.text) + "</" + tag + ">";
+    }).join("") + "</tr>";
+  }
+  function mdToHtml(md) {
+    var blocks = (md || "").split(/\n{2,}/), out = [];
+    blocks.forEach(function (b) {
+      var lines = b.split("\n");
+      var h = /^(#{1,6})\s+(.*)$/.exec(lines[0]);
+      if (h && lines.length === 1) {
+        var lv = Math.min(6, Math.max(3, h[1].length));
+        out.push("<h" + lv + ">" + inline(h[2]) + "</h" + lv + ">");
+        return;
+      }
+      if (lines.every(function (l) { return /^\|/.test(l); }) && lines.length >= 2) {
+        var rows = lines.filter(function (l) { return !/^\|(-+\|)+\s*$/.test(l); }).map(function (l) {
+          return l.replace(/^\|\s?|\s?\|\s*$/g, "").split(" | ");
+        });
+        var t = '<div class="tbl"><table><thead>' + tableRow(rows[0], "th") + "</thead><tbody>";
+        rows.slice(1).forEach(function (r) { t += tableRow(r, "td"); });
+        out.push(t + "</tbody></table></div>");
+        return;
+      }
+      if (lines.length > 1 && !/^\|/.test(lines[0]) && /^\|/.test(lines[1])) {
+        // 表の見出し（キャプション）+ 表
+        out.push("<p><strong>" + inline(lines[0].replace(/\*\*/g, "")) + "</strong></p>");
+        out.push(mdToHtml(lines.slice(1).join("\n")));
+        return;
+      }
+      if (lines.every(function (l) { return /^\s*- /.test(l); })) {
+        var html = "", depth = -1;
+        lines.forEach(function (l) {
+          var d = Math.floor(/^\s*/.exec(l)[0].length / 2);
+          while (depth < d) { html += "<ul>"; depth++; }
+          while (depth > d) { html += "</ul>"; depth--; }
+          html += "<li>" + inline(l.replace(/^\s*- /, "")) + "</li>";
+        });
+        while (depth-- >= 0) html += "</ul>";
+        out.push(html);
+        return;
+      }
+      out.push("<p>" + lines.map(inline).join("<br>") + "</p>");
+    });
+    return out.join("");
+  }
+  function markIn(root, toks) {
+    if (!toks.length) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      var h = highlight(node.nodeValue, toks);
+      if (h.indexOf("<mark>") < 0) return;
+      var span = document.createElement("span");
+      span.innerHTML = h;
+      node.parentNode.replaceChild(span, node);
+    });
+  }
+
+  // ---- 描画 ----
+  function catStyle(id) { return "--c: var(--c-" + CAT[id].color + ")"; }
+
+  function renderTabs(counts) {
+    tabsEl.innerHTML = CATS.map(function (c) {
+      var on = state.cat === c.id, n = counts[c.id] || 0;
+      return '<button class="tab" type="button" role="tab" id="tab-' + c.id + '" data-cat="' + c.id + '" style="' + catStyle(c.id) +
+        '" aria-selected="' + on + '" tabindex="' + (on ? 0 : -1) + '"><span class="dot"></span>' + esc(c.name) +
+        '<span class="n' + (n ? "" : " zero") + '">' + n + "</span></button>";
+    }).join("");
+    // スマホでは横にスクロールするので、選んでいるタブが見える位置に動かす
+    var sel = $("tab-" + state.cat);
+    if (sel) tabsEl.scrollLeft = sel.offsetLeft - (tabsEl.clientWidth - sel.offsetWidth) / 2;
+    listEl.setAttribute("aria-labelledby", "tab-" + state.cat);
+  }
+  // 下のタブ（所得区分なら利子所得〜雑所得）。先頭は「すべて」
+  function renderSubtabs(cat, counts, total, searching) {
+    var subs = CAT[cat].subtabs;
+    subtabsEl.hidden = !subs.length;
+    document.querySelector("header.top").classList.toggle("has-sub", subs.length > 0);
+    if (!subs.length) { subtabsEl.innerHTML = ""; return; }
+    var tabs = [{ id: "all", name: "すべて", n: total }].concat(subs.map(function (t) { return { id: t.id, name: t.name, n: counts[t.id] || 0 }; }));
+    subtabsEl.innerHTML = tabs.map(function (t) {
+      var on = state.sub === t.id;
+      return '<button class="subtab" type="button" role="tab" id="sub-' + t.id + '" data-sub="' + t.id + '" aria-selected="' + on +
+        '" tabindex="' + (on ? 0 : -1) + '">' + esc(t.name) +
+        (searching ? '<span class="n' + (t.n ? "" : " zero") + '">' + t.n + "</span>" : "") + "</button>";
+    }).join("");
+    var sel = $("sub-" + state.sub);
+    if (sel) subtabsEl.scrollLeft = sel.offsetLeft - (subtabsEl.clientWidth - sel.offsetWidth) / 2;
+  }
+  // 3段目のタブ（選んでいる下のタブに children があるときだけ出す）
+  function renderSubtabs2(counts, total, searching) {
+    var kids = state.sub !== "all" && SUB[state.sub] ? SUB[state.sub].children : [];
+    subtabs2El.hidden = !kids.length;
+    if (!kids.length) { subtabs2El.innerHTML = ""; return; }
+    var tabs = [{ id: "all", name: "すべて", n: total }].concat(kids.map(function (k) { return { id: k.id, name: k.name, n: counts[k.id] || 0 }; }));
+    subtabs2El.innerHTML = tabs.map(function (t) {
+      var on = state.sub2 === t.id;
+      return '<button class="subtab" type="button" role="tab" id="sub2-' + t.id + '" data-sub2="' + t.id + '" aria-selected="' + on +
+        '" tabindex="' + (on ? 0 : -1) + '">' + esc(t.name) +
+        (searching ? '<span class="n' + (t.n ? "" : " zero") + '">' + t.n + "</span>" : "") + "</button>";
+    }).join("");
+  }
+  // 項目が属する下のタブ（複数のことがある）
+  function subsOf(it) { return it.subs && it.subs.length ? it.subs : (it.sub ? [it.sub] : []); }
+  // 一覧の見出し：「退職所得（分離課税）」のように下のタブと3段目のタブの名前
+  function groupLabel(it) {
+    // 「すべて」では、複数の所得に共通のページ（No.2220 など）を「不動産所得・事業所得・給与所得（総合課税）」とまとめる
+    var subs = state.sub !== "all" ? [state.sub] : subsOf(it);
+    var kids = state.sub2 !== "all" ? [state.sub2] : (it.sub2 || []).filter(function (k) { return subs.indexOf(SUB2[k].sub) >= 0; });
+    var names = [];
+    kids.forEach(function (k) { if (names.indexOf(SUB2[k].name) < 0) names.push(SUB2[k].name); });
+    return subs.map(function (k) { return SUB[k].name; }).join("・") + (names.length ? "（" + names.join("・") + "）" : "");
+  }
+  function setSub2(id) {
+    var refocus = subtabs2El.contains(document.activeElement);
+    state.sub2 = id; state.limit = 60; state.current = null;
+    document.body.classList.remove("reading");
+    render();
+    if (refocus) $("sub2-" + id).focus();
+  }
+  function setSub(id) {
+    var refocus = subtabsEl.contains(document.activeElement);
+    state.sub = id; state.sub2 = "all"; state.limit = 60; state.current = null;
+    document.body.classList.remove("reading");
+    render();
+    if (refocus) $("sub-" + id).focus();
+  }
+  function setTab(id) {
+    var refocus = tabsEl.contains(document.activeElement);
+    state.cat = id; state.sub = "all"; state.sub2 = "all"; state.limit = 60; state.current = null;
+    document.body.classList.remove("reading");
+    render();
+    if (refocus) $("tab-" + id).focus();
+  }
+
+  function search() {
+    var toks = tokens(state.q), res = [];
+    ITEMS.forEach(function (it) {
+      var s = toks.length ? score(it, toks) : 1;
+      if (s > 0) res.push({ it: it, s: s });
+    });
+    if (toks.length) res.sort(function (a, b) { return b.s - a.s || a.it.order - b.it.order; });
+    return { toks: toks, all: res };
+  }
+
+  function render() {
+    var r = search(), toks = flat(r.toks), kana = r.toks.filter(function (k) { return isKana(k.t); }).map(function (k) { return k.t; }), counts = { all: r.all.length };
+    r.all.forEach(function (x) { counts[x.it.cat] = (counts[x.it.cat] || 0) + 1; });
+    // 検索語を変えたとき、今のタブで1件も当たらなければ最上位の結果があるタブへ移る
+    if (state.autoTab && toks.length && !counts[state.cat] && r.all.length) state.cat = r.all[0].it.cat;
+    state.autoTab = false;
+    renderTabs(counts);
+    var inCat = r.all.filter(function (x) { return x.it.cat === state.cat; }), subCounts = {};
+    inCat.forEach(function (x) { subsOf(x.it).forEach(function (k) { subCounts[k] = (subCounts[k] || 0) + 1; }); });
+    renderSubtabs(state.cat, subCounts, inCat.length, toks.length > 0);
+    var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return subsOf(x.it).indexOf(state.sub) >= 0; }), sub2Counts = {};
+    inSub.forEach(function (x) { (x.it.sub2 || []).forEach(function (k) { sub2Counts[k] = (sub2Counts[k] || 0) + 1; }); });
+    if (!SUB2[state.sub2] || SUB2[state.sub2].sub !== state.sub) state.sub2 = "all";
+    renderSubtabs2(sub2Counts, inSub.length, toks.length > 0);
+    var shown = state.sub2 === "all" ? inSub : inSub.filter(function (x) { return (x.it.sub2 || []).indexOf(state.sub2) >= 0; });
+    // 複数のタブに属するページ（No.2240 など）は、そのタブ本来のページの後ろに並べる
+    if (!toks.length && state.sub !== "all") {
+      shown = shown.filter(function (x) { return x.it.sub === state.sub; })
+        .concat(shown.filter(function (x) { return x.it.sub !== state.sub; }));
+    }
+    setHeaderH();
+    $("status").textContent = toks.length ? ITEMS.length + "語中 " + r.all.length + "件が一致" : ITEMS.length + "語を収録";
+    document.body.classList.toggle("searching", toks.length > 0);
+    $("clear").hidden = !state.q;
+    $("kbd").hidden = !!state.q;
+
+    if (!shown.length && inSub.length) {
+      var kids = SUB[state.sub].children.filter(function (k) { return sub2Counts[k.id]; });
+      listEl.innerHTML = '<div class="empty"><p>「' + esc(state.q) + "」に一致する用語は" + esc(SUB2[state.sub2].name) + "にはありません。</p>" +
+        '<div class="others">' + kids.map(function (k) { return '<button type="button" data-sub2="' + k.id + '">' + esc(k.name) + " " + sub2Counts[k.id] + "件</button>"; }).join("") +
+        '<button type="button" data-sub2="all">すべて ' + inSub.length + "件</button></div></div>";
+      detailEl.innerHTML = "";
+      return;
+    }
+    if (!shown.length && inCat.length) {
+      var subs = CAT[state.cat].subtabs.filter(function (t) { return subCounts[t.id]; });
+      listEl.innerHTML = '<div class="empty"><p>「' + esc(state.q) + "」に一致する用語は" + esc(SUB[state.sub].name) + "にはありません。</p>" +
+        '<div class="others">' + subs.map(function (t) { return '<button type="button" data-sub="' + t.id + '">' + esc(t.name) + " " + subCounts[t.id] + "件</button>"; }).join("") +
+        '<button type="button" data-sub="all">すべて ' + inCat.length + "件</button></div></div>";
+      detailEl.innerHTML = "";
+      return;
+    }
+    if (!shown.length) {
+      var others = CATS.filter(function (c) { return counts[c.id]; });
+      listEl.innerHTML = '<div class="empty"><p>「' + esc(state.q) + "」に一致する用語は" + (others.length ? "このタブにはありません。" : "ありません。") + "</p>" +
+        (others.length
+          ? '<div class="others">' + others.map(function (c) { return '<button type="button" data-cat="' + c.id + '">' + esc(c.name) + " " + counts[c.id] + "件</button>"; }).join("") + "</div>"
+          : "<p>言葉を短くするか、別の言い方（例：「住宅ローン」→「住宅借入金」）で探してください。</p>") + "</div>";
+      detailEl.innerHTML = "";
+      return;
+    }
+    var pos = state.current ? shown.findIndex(function (x) { return x.it.id === state.current; }) : -1;
+    if (pos >= state.limit) state.limit = pos + 20;
+    var html = "", lastGroup = null, list = shown.slice(0, state.limit);
+    list.forEach(function (x) {
+      var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && groupLabel(it)) || "用語");
+      if (!toks.length && group !== lastGroup) {
+        html += '<div class="group-label">' + esc(group) + "</div>";
+        lastGroup = group;
+      }
+      html += '<button class="result" type="button" data-id="' + it.id + '" style="' + catStyle(it.cat) + '" aria-current="' + (state.current === it.id) + '">' +
+        '<span class="row">' + (toks.length && it.kind === "overview" ? '<span class="tag">あらまし</span>' : "") +
+        '<span class="term">' + highlight(it.term, toks) + "</span>" +
+        (it.code ? '<span class="code">No.' + it.code + "</span>" : it.label ? '<span class="code">' + esc(it.label) + "</span>" : "") + "</span>" +
+        (kana.length && anyIn(it.n.yomi, kana) && !anyIn(it.n.term, toks) ? '<span class="ry">' + highlight(it.yomi, kana) + "</span>" : "") +
+        '<span class="snip">' + snippet(it, toks) + "</span></button>";
+    });
+    if (shown.length > list.length) html += '<button class="more" type="button" id="more">さらに ' + (shown.length - list.length) + " 件を表示</button>";
+    listEl.innerHTML = html;
+    if (!state.current || !shown.some(function (x) { return x.it.id === state.current; })) {
+      if (window.innerWidth > 860) select(shown[0].it.id, false);
+    } else {
+      renderDetail();
+    }
+  }
+
+  // 別のタブの項目へ移る（検索語は消して、その項目のタブを開く）
+  function jumpTo(id) {
+    var it = BY_ID[id];
+    if (!it) return;
+    if (it.cat !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
+      qEl.value = ""; state.q = "";
+      state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
+    }
+    state.current = id;
+    render();
+    select(id, true);
+  }
+  function select(id, focusDetail) {
+    if (!BY_ID[id]) return;
+    state.current = id;
+    Array.prototype.forEach.call(listEl.querySelectorAll(".result"), function (b) {
+      b.setAttribute("aria-current", String(b.getAttribute("data-id") === id));
+    });
+    renderDetail();
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    if (focusDetail) {
+      document.body.classList.add("reading");
+      if (window.innerWidth <= 860) window.scrollTo(0, 0);
+    }
+    detailEl.scrollTop = 0;
+  }
+
+  // 要点・具体例・課税方法・当たらない例（出典付き）
+  function examplesHtml(it) {
+    var ex = it.examples || [], h = "";
+    [["要点", it.points || []], ["具体例", ex.filter(function (x) { return !x.other && !x.tax; })],
+     ["課税方法", ex.filter(function (x) { return x.tax; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
+      if (!g[1].length) return;
+      h += '<div class="body examples"><h3>' + g[0] + "</h3><ul>" + g[1].map(function (x) {
+        var to = x.other || x.tax;
+        return "<li>" + esc(x.text) + (to ? '<span class="to">→ ' + esc(to) + "</span>" : "") +
+          ' <a class="src" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.source) + "</a></li>";
+      }).join("") + "</ul></div>";
+    });
+    return h;
+  }
+  function renderDetail() {
+    var it = BY_ID[state.current];
+    if (!it) { detailEl.innerHTML = ""; return; }
+    var c = CAT[it.cat], toks = flat(tokens(state.q)), h = "";
+    h += '<button class="back" type="button" id="back">← 一覧へ戻る</button>';
+    h += '<div class="eyebrow" style="' + catStyle(it.cat) + '"><span class="pill">' + esc(c.name) + "</span>" +
+      (it.sub && (it.kind === "tsutatsu" || it.kind === "kiji") ? "<span>" + esc(SUB[it.sub].name) + "</span>" : "") +
+      (it.kind === "overview" ? "<span>あらまし</span>" : "") + (it.group ? "<span>" + esc(it.group) + "</span>" : "") +
+      (it.section ? "<span>" + esc(it.section) + "</span>" : "") + "</div>";
+    h += "<h2>" + esc(it.term) + "</h2>";
+    if (it.yomi) h += '<p class="yomi">' + esc(it.yomi) + "</p>";
+    if (it.alias) h += '<dl class="meta"><dt>通称</dt><dd>' + esc(it.alias) + "</dd></dl>";
+    else h += '<div class="rule"></div>';
+    if (it.kind === "hikazei") {
+      h += examplesHtml(it);
+      if (it.related && it.related.length) {
+        h += '<div class="body"><h3>関連するタックスアンサー</h3></div><ul class="related">';
+        it.related.forEach(function (r) {
+          h += '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.title) + "</a></li>";
+        });
+        h += "</ul>";
+      }
+      var sib = ITEMS.filter(function (x) { return x.kind === "hikazei" && x.group === it.group && x.id !== it.id; });
+      if (sib.length) {
+        h += '<div class="body"><h3>同じ区分（' + esc(it.group) + "）の非課税所得</h3><ul>" +
+          sib.map(function (x) { return '<li><a href="#' + x.id + '" data-jump="' + x.id + '">' + esc(x.term) + "</a></li>"; }).join("") + "</ul></div>";
+      }
+    } else {
+      h += examplesHtml(it);
+      h += '<div class="body">' + mdToHtml(it.md) + "</div>";
+      if (it.relatedTsutatsu && it.relatedTsutatsu.length) {
+        h += '<div class="body"><h3>関連する通達（所得税基本通達）</h3><ul>' + it.relatedTsutatsu.map(function (t) {
+          return '<li><a href="#' + t.id + '" data-jump="' + t.id + '">' + esc(t.term) + "</a></li>";
+        }).join("") + "</ul></div>";
+      }
+    }
+    // 根拠法令等・基準・タックスアンサーは本文の後ろにまとめる
+    h += '<div class="source"><dl class="meta">';
+    if (it.basis) h += '<dt>根拠法令等</dt><dd class="law">' + esc(it.basis) + "</dd>";
+    if (it.asOf) h += "<dt>基準</dt><dd>" + esc(it.asOf) + "</dd>";
+    if (it.issued) h += "<dt>番号・日付</dt><dd>" + esc(it.issued) + "</dd>";
+    h += "<dt>" + esc(it.srcLabel || "タックスアンサー") + '</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+      esc(it.srcTitle || (it.code ? it.title : "No.2011 課税される所得と非課税所得")) + "</a></dd></dl>" +
+      "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : it.kind === "kiji" ? it.srcLabel : "タックスアンサー") +
+      "を転載・整形したものです。最新の内容はリンク先で確認してください。</p></div>";
+    detailEl.innerHTML = h;
+    markIn(detailEl.querySelector("h2"), toks);
+    if (it.yomi) markIn(detailEl.querySelector(".yomi"), toks);
+    Array.prototype.forEach.call(detailEl.querySelectorAll(".body, .related, .meta"), function (el) { markIn(el, toks); });
+  }
+
+  // ---- イベント ----
+  var timer = null;
+  qEl.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      state.q = qEl.value.trim(); state.limit = 60; state.current = null; state.autoTab = true; state.sub = "all"; state.sub2 = "all";
+      document.body.classList.remove("reading");
+      render();
+    }, 80);
+  });
+  $("clear").addEventListener("click", function () { qEl.value = ""; state.q = ""; state.current = null; render(); qEl.focus(); });
+  tabsEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".tab");
+    if (b) setTab(b.getAttribute("data-cat"));
+  });
+  subtabsEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".subtab");
+    if (b) setSub(b.getAttribute("data-sub"));
+  });
+  subtabs2El.addEventListener("click", function (e) {
+    var b = e.target.closest(".subtab");
+    if (b) setSub2(b.getAttribute("data-sub2"));
+  });
+  subtabs2El.addEventListener("keydown", function (e) {
+    var ids = ["all"].concat(SUB[state.sub].children.map(function (k) { return k.id; }));
+    var i = ids.indexOf(state.sub2), n = ids.length;
+    var next = { ArrowRight: (i + 1) % n, ArrowLeft: (i + n - 1) % n, Home: 0, End: n - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    setSub2(ids[next]);
+  });
+  subtabsEl.addEventListener("keydown", function (e) {
+    var ids = ["all"].concat(CAT[state.cat].subtabs.map(function (t) { return t.id; }));
+    var i = ids.indexOf(state.sub), n = ids.length;
+    var next = { ArrowRight: (i + 1) % n, ArrowLeft: (i + n - 1) % n, Home: 0, End: n - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    setSub(ids[next]);
+  });
+  tabsEl.addEventListener("keydown", function (e) {
+    var i = CATS.map(function (c) { return c.id; }).indexOf(state.cat), n = CATS.length;
+    var next = { ArrowRight: (i + 1) % n, ArrowLeft: (i + n - 1) % n, Home: 0, End: n - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    setTab(CATS[next].id);
+  });
+  listEl.addEventListener("click", function (e) {
+    if (e.target.id === "more") { state.limit += 200; render(); return; }
+    var t = e.target.closest("[data-cat]");
+    if (t) { setTab(t.getAttribute("data-cat")); return; }
+    var u = e.target.closest("[data-sub]");
+    if (u) { setSub(u.getAttribute("data-sub")); return; }
+    var w = e.target.closest("[data-sub2]");
+    if (w) { setSub2(w.getAttribute("data-sub2")); return; }
+    var b = e.target.closest(".result");
+    if (b) select(b.getAttribute("data-id"), true);
+  });
+  listEl.addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    var btns = Array.prototype.slice.call(listEl.querySelectorAll(".result"));
+    var i = btns.indexOf(document.activeElement);
+    if (i < 0) return;
+    e.preventDefault();
+    var next = btns[Math.max(0, Math.min(btns.length - 1, i + (e.key === "ArrowDown" ? 1 : -1)))];
+    next.focus();
+    if (window.innerWidth > 860) select(next.getAttribute("data-id"), false);
+  });
+  detailEl.addEventListener("click", function (e) {
+    if (e.target.id === "back") { document.body.classList.remove("reading"); return; }
+    var j = e.target.closest("[data-jump]");
+    if (j) { e.preventDefault(); jumpTo(j.getAttribute("data-jump")); }
+  });
+  qEl.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown") { var f = listEl.querySelector(".result"); if (f) { e.preventDefault(); f.focus(); } }
+    if (e.key === "Enter") { var g = listEl.querySelector(".result"); if (g) select(g.getAttribute("data-id"), true); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && document.activeElement !== qEl) { e.preventDefault(); qEl.focus(); qEl.select(); }
+  });
+  function setHeaderH() {
+    document.documentElement.style.setProperty("--header-h", document.querySelector("header.top").offsetHeight + "px");
+  }
+  window.addEventListener("resize", setHeaderH);
+
+  $("foot").innerHTML = "出典: <a href=\"" + esc(DATA.source_url) + "\" target=\"_blank\" rel=\"noopener\">" + esc(DATA.source) + "</a>（" + esc(DATA.as_of) + "）。国税庁の公式サービスではありません。生成日 " + esc(DATA.generated_at) + "。";
+
+  var initial = (location.hash || "").slice(1);
+  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; state.sub2 = (BY_ID[initial].sub2 || []).length === 1 ? BY_ID[initial].sub2[0] : "all"; }
+  else if (CAT[initial]) state.cat = initial;
+  else if (SUB[initial]) { state.cat = SUB[initial].cat; state.sub = initial; }
+  else if (SUB2[initial]) { state.cat = SUB2[initial].cat; state.sub = SUB2[initial].sub; state.sub2 = initial; }
+  render();
+  setHeaderH();
+  if (BY_ID[initial]) select(initial, window.innerWidth <= 860);
+})();
+</script>
