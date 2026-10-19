@@ -275,7 +275,7 @@ def render_kihon_md(entries):
 
 
 def render_kobetsu_md(entries):
-    lines = ["# 個別通達（所得税関係）", ""]
+    lines = ["# 個別通達（所得税関係）", "", f"{SPLIT_PAGES}ページを超える通達はページごとに分けています。", ""]
     group = circular = None
     for e in entries:
         if e["group"] != group:
