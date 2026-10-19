@@ -1,7 +1,5 @@
 # 所得税区分辞書（income-tax-dictionary）
 
-国税庁ホームページの[タックスアンサー（所得税）](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)と[法令解釈通達](https://www.nta.go.jp/law/tsutatsu/menu.htm)をもとに作成した「所得税区分辞書」です。
-
 ## 検索
 
 [docs/index.html](docs/index.html) をブラウザで開くと、全カテゴリの用語をまとめて検索できます（1ファイルで動作し、サーバー不要）。
