@@ -24,8 +24,8 @@
 | 青色申告 | [dictionary/aoiro.md](dictionary/aoiro.md) | [No.2070 青色申告制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm) | 4 |
 | 所得控除 | [dictionary/shotoku-kojo.md](dictionary/shotoku-kojo.md) | [No.1100 所得控除のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1100.htm) | 18 |
 | 税額控除 | [dictionary/zeigaku-kojo.md](dictionary/zeigaku-kojo.md) | [No.1200 税額控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1200.htm) | 11 |
-| 国税庁の記事（タックスアンサー） | [dictionary/kiji-taxanswer.md](dictionary/kiji-taxanswer.md) | [タックスアンサー コード一覧](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)の所得税・源泉所得税・譲渡所得 | （集計中） |
-| 国税庁の記事（質疑応答事例） | [dictionary/kiji-shitsugi.md](dictionary/kiji-shitsugi.md) | [質疑応答事例](https://www.nta.go.jp/law/shitsugi/01.htm)の所得税・源泉所得税・譲渡所得 | （集計中） |
+| 国税庁の記事（タックスアンサー） | [dictionary/kiji-taxanswer.md](dictionary/kiji-taxanswer.md) | [タックスアンサー コード一覧](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)の所得税・源泉所得税・譲渡所得 | 346 |
+| 国税庁の記事（質疑応答事例） | [dictionary/kiji-shitsugi.md](dictionary/kiji-shitsugi.md) | [質疑応答事例](https://www.nta.go.jp/law/shitsugi/01.htm)の所得税・源泉所得税・譲渡所得 | 669 |
 | 通達（基本通達） | [dictionary/tsutatsu-kihon.md](dictionary/tsutatsu-kihon.md) | [所得税基本通達](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/01.htm) | 1,183 |
 | 通達（個別通達） | [dictionary/tsutatsu-kobetsu.md](dictionary/tsutatsu-kobetsu.md) | [法令解釈通達（所得税関係の個別通達）](https://www.nta.go.jp/law/tsutatsu/menu.htm) | 318 |
 

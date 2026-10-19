@@ -226,6 +226,10 @@ def inline(node):
         return ""
     if node.name == "br":
         return "\n"
+    if node.name == "img":  # 表や図が画像のときは代替テキストを残す
+        alt = clean(node.get("alt") or "")
+        # 番号のアイコン（「1」など）のような短いものは、そのまま文字として残す
+        return alt if len(alt) <= 3 else f"［図：{alt}］"
     inner = "".join(inline(c) for c in node.children)
     if node.name == "a" and node.get("href"):
         href = node["href"]

@@ -422,6 +422,8 @@
 
 上記「概要」の内容を含め、[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等の課税関係は、以下の図のとおりとなります。
 
+［図：控除限度額の計算式］
+
 （注1） 申告不要、申告分離課税、総合課税のいずれによるかは確定申告において選択し、確定申告において選択した、または、選択しなかった方法は、その後、修正申告や更正の請求において変更することはできません。
 
 （注2） 「大口株主等」が支払いを受ける[上場株式等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm)の配当等は、総合課税の対象となり、申告分離課税や[確定申告不要制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm)（[少額配当である場合](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm) を除きます。）を選択することはできません。
