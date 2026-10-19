@@ -21,6 +21,7 @@
   --c-zeigaku: #7b2c6c;
   --c-tsutatsu: #4d5a2a;
   --c-aoiro: #3f3fb8;
+  --c-kiji: #8a5a00;
   --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
   --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -30,14 +31,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
     --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5;
+    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
   --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5;
+  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -211,7 +212,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   .status { display: none; }
   .tabs { flex: 1; }
   /* 5つのタブを1行に収めるため、件数はタブ名の下に小さく出し、検索中だけ表示する */
-  .tab { flex: 1 1 0; flex-direction: column; justify-content: center; gap: 0; padding: 8px 0 7px; font-size: 12.5px; letter-spacing: -.02em; }
+  .tab { flex: 0 0 auto; flex-direction: column; justify-content: center; gap: 0; padding: 8px 9px 7px; font-size: 13px; }
   .tab .dot { display: none; }
   .tab .n { background: none; padding: 0; font-size: 10.5px; line-height: 1.3; }
   body:not(.searching) .tab .n { display: none; }
@@ -225,7 +226,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   <div class="wrap">
     <div class="brand">
       <h1>所得税区分辞書</h1>
-      <p>国税庁タックスアンサーと法令解釈通達をもとにした 非課税・所得区分・青色申告・所得控除・税額控除・通達 の辞書</p>
+      <p>国税庁タックスアンサーと法令解釈通達をもとにした 非課税・所得区分・青色申告・所得控除・税額控除・国税庁の記事・通達 の辞書</p>
     </div>
     <div class="searchbox">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
@@ -496,6 +497,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
         '" aria-selected="' + on + '" tabindex="' + (on ? 0 : -1) + '"><span class="dot"></span>' + esc(c.name) +
         '<span class="n' + (n ? "" : " zero") + '">' + n + "</span></button>";
     }).join("");
+    // スマホでは横にスクロールするので、選んでいるタブが見える位置に動かす
+    var sel = $("tab-" + state.cat);
+    if (sel) tabsEl.scrollLeft = sel.offsetLeft - (tabsEl.clientWidth - sel.offsetWidth) / 2;
     listEl.setAttribute("aria-labelledby", "tab-" + state.cat);
   }
   // 下のタブ（所得区分なら利子所得〜雑所得）。先頭は「すべて」
@@ -693,7 +697,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var c = CAT[it.cat], toks = flat(tokens(state.q)), h = "";
     h += '<button class="back" type="button" id="back">← 一覧へ戻る</button>';
     h += '<div class="eyebrow" style="' + catStyle(it.cat) + '"><span class="pill">' + esc(c.name) + "</span>" +
-      (it.sub && it.kind === "tsutatsu" ? "<span>" + esc(SUB[it.sub].name) + "</span>" : "") +
+      (it.sub && (it.kind === "tsutatsu" || it.kind === "kiji") ? "<span>" + esc(SUB[it.sub].name) + "</span>" : "") +
       (it.kind === "overview" ? "<span>あらまし</span>" : "") + (it.group ? "<span>" + esc(it.group) + "</span>" : "") +
       (it.section ? "<span>" + esc(it.section) + "</span>" : "") + "</div>";
     h += "<h2>" + esc(it.term) + "</h2>";
@@ -731,7 +735,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (it.issued) h += "<dt>番号・日付</dt><dd>" + esc(it.issued) + "</dd>";
     h += "<dt>" + esc(it.srcLabel || "タックスアンサー") + '</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
       esc(it.srcTitle || (it.code ? it.title : "No.2011 課税される所得と非課税所得")) + "</a></dd></dl>" +
-      "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : "タックスアンサー") +
+      "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : it.kind === "kiji" ? it.srcLabel : "タックスアンサー") +
       "を転載・整形したものです。最新の内容はリンク先で確認してください。</p></div>";
     detailEl.innerHTML = h;
     markIn(detailEl.querySelector("h2"), toks);

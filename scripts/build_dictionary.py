@@ -7,6 +7,7 @@
   - 青色申告   : No.2070 と青色申告特別控除・青色事業専従者給与・届出などのページ（要点と関連通達つき）
   - 所得控除   : No.1100 と各所得控除のページ
   - 税額控除   : No.1200 と各税額控除のページ
+  - 国税庁の記事: タックスアンサーと質疑応答事例（所得税・源泉所得税・譲渡所得）。scripts/kiji.py
   - 通達       : 法令解釈通達の所得税基本通達と個別通達（所得税関係）。scripts/tsutatsu.py
 
 使い方:
@@ -42,6 +43,16 @@ AOIRO_EXAMPLES = DATA / "aoiro_examples.json"
 HIKAZEI_EXAMPLES = DATA / "hikazei_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
+KIJI_TAB = {
+    "id": "kiji", "name": "国税庁の記事", "color": "kiji",
+    "description": "国税庁ホームページのタックスアンサーと質疑応答事例（所得税・源泉所得税・譲渡所得）。",
+    "subtabs": [
+        {"id": "taxanswer", "name": "タックスアンサー", "children": [
+            {"id": "ta-shotoku", "name": "所得税"}, {"id": "ta-gensen", "name": "源泉所得税"}, {"id": "ta-joto", "name": "譲渡所得"}]},
+        {"id": "shitsugi", "name": "質疑応答事例", "children": [
+            {"id": "qa-shotoku", "name": "所得税"}, {"id": "qa-gensen", "name": "源泉所得税"}, {"id": "qa-joto", "name": "譲渡所得"}]},
+    ],
+}
 TSUTATSU_TAB = {
     "id": "tsutatsu", "name": "通達", "color": "tsutatsu",
     "description": "国税庁の法令解釈通達（所得税基本通達と所得税関係の個別通達）。",
@@ -629,7 +640,7 @@ def search_items(result):
     return items
 
 
-def render_search_page(result, yomi_pairs, tsutatsu_items):
+def render_search_page(result, yomi_pairs, extra_items):
     """1ファイルで動く検索ページ（docs/index.html）を生成する。"""
     as_of = next((c["overview"]["as_of"] for c in result["categories"] if c["overview"]["as_of"]), "")
     data = {
@@ -642,8 +653,8 @@ def render_search_page(result, yomi_pairs, tsutatsu_items):
                         "subtabs": [{"id": t["id"], "name": t["name"],
                                      "children": [{"id": c["id"], "name": c["name"]} for c in t.get("children", [])]}
                                     for t in conf.get("subtabs", [])]}
-                       for c, conf in zip(result["categories"], CATEGORIES)] + [TSUTATSU_TAB],
-        "items": search_items(result) + tsutatsu_items,
+                       for c, conf in zip(result["categories"], CATEGORIES)] + [KIJI_TAB, TSUTATSU_TAB],
+        "items": search_items(result) + extra_items,
         # ひらがな入力を漢字表記に置き換えるための読み辞書（漢字を含む語のみ）
         "yomi": [[s, r] for s, r in yomi_pairs if KANJI.search(s) or re.search(r"[A-Za-z]", s)],
     }
@@ -713,9 +724,24 @@ def main():
     (DOCS / "tsutatsu-kobetsu.md").write_text(tsutatsu.render_kobetsu_md(kobetsu), encoding="utf-8")
     print(f"通達: 基本通達 {len(kihon)} 項目、個別通達 {len(kobetsu)} 項目", file=sys.stderr)
 
+    import kiji
+    taxanswer = kiji.build_taxanswer(args.refresh)
+    shitsugi = kiji.build_shitsugi(args.refresh)
+    result["kiji"] = {"taxanswer": taxanswer, "shitsugi": shitsugi}
+    (DOCS / "kiji-taxanswer.md").write_text(kiji.render_md(
+        "タックスアンサー（所得税・源泉所得税・譲渡所得）",
+        "国税庁ホームページのタックスアンサーのうち、コード一覧の「所得税」「源泉所得税」「譲渡所得」に載っているページを収録。",
+        taxanswer, "ta"), encoding="utf-8")
+    (DOCS / "kiji-shitsugi.md").write_text(kiji.render_md(
+        "質疑応答事例（所得税・源泉所得税・譲渡所得）",
+        "国税庁ホームページの質疑応答事例のうち、「所得税」「源泉所得税」「譲渡所得」の事例を収録。",
+        shitsugi, "qa"), encoding="utf-8")
+    print(f"国税庁の記事: タックスアンサー {len(taxanswer)} 件、質疑応答事例 {len(shitsugi)} 件", file=sys.stderr)
+
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    render_search_page(result, yomi_pairs, tsutatsu.search_items(kihon, kobetsu))
+    render_search_page(result, yomi_pairs,
+                       kiji.search_items(taxanswer, shitsugi) + tsutatsu.search_items(kihon, kobetsu))
 
 
 if __name__ == "__main__":
