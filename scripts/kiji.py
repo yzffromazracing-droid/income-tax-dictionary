@@ -93,8 +93,8 @@ def _first_para(md, heading):
 
 # ---- 出力 ----
 
-def render_md(title, description, entries, kind):
-    lines = [f"# {title}", "", description, ""]
+def render_md(title, entries, kind):
+    lines = [f"# {title}", ""]
     field = group = None
     for e in entries:
         if e["field_name"] != field:

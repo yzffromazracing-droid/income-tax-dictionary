@@ -257,7 +257,7 @@ ISSUED = re.compile(r"(明治|大正|昭和|平成|令和)\s*[0-9０-９元]+年
 
 
 def render_kihon_md(entries):
-    lines = ["# 所得税基本通達", "", "国税庁ホームページの法令解釈通達「所得税基本通達」を通達番号ごとに収録。", ""]
+    lines = ["# 所得税基本通達", ""]
     hen = sho = group = None
     for e in entries:
         if (e["hen"], e["sho"]) != (hen, sho):
@@ -275,9 +275,7 @@ def render_kihon_md(entries):
 
 
 def render_kobetsu_md(entries):
-    lines = ["# 個別通達（所得税関係）", "",
-             "国税庁ホームページの法令解釈通達のうち、所得税関係の個別通達を収録。"
-             f"{SPLIT_PAGES}ページを超える通達はページごとに分けています。", ""]
+    lines = ["# 個別通達（所得税関係）", ""]
     group = circular = None
     for e in entries:
         if e["group"] != group:

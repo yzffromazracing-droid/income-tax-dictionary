@@ -171,7 +171,6 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .meta dt { color: var(--muted); }
 .meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .law { font-family: var(--font-mono); font-size: 12px; }
-.lead { font-size: 16px; margin: 0 0 18px; }
 .body { max-width: 72ch; overflow-wrap: anywhere; }
 .body h3 { font-size: 17px; margin: 28px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
 .body h4 { font-size: 15.5px; margin: 20px 0 6px; }
@@ -701,7 +700,6 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (it.alias) h += '<dl class="meta"><dt>通称</dt><dd>' + esc(it.alias) + "</dd></dl>";
     else h += '<div class="rule"></div>';
     if (it.kind === "hikazei") {
-      h += '<p class="lead">' + esc(c.description) + "</p>";
       h += examplesHtml(it);
       if (it.related && it.related.length) {
         h += '<div class="body"><h3>関連するタックスアンサー</h3></div><ul class="related">';
@@ -736,7 +734,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     detailEl.innerHTML = h;
     markIn(detailEl.querySelector("h2"), toks);
     if (it.yomi) markIn(detailEl.querySelector(".yomi"), toks);
-    Array.prototype.forEach.call(detailEl.querySelectorAll(".body, .related, .lead, .meta"), function (el) { markIn(el, toks); });
+    Array.prototype.forEach.call(detailEl.querySelectorAll(".body, .related, .meta"), function (el) { markIn(el, toks); });
   }
 
   // ---- イベント ----

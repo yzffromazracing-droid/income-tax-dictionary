@@ -45,7 +45,6 @@ CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 KIJI_TAB = {
     "id": "kiji", "name": "国税庁の記事", "color": "kiji",
-    "description": "国税庁ホームページのタックスアンサーと質疑応答事例（所得税・源泉所得税・譲渡所得）。",
     "subtabs": [
         {"id": "taxanswer", "name": "タックスアンサー", "children": [
             {"id": "ta-shotoku", "name": "所得税"}, {"id": "ta-gensen", "name": "源泉所得税"}, {"id": "ta-joto", "name": "譲渡所得"}]},
@@ -55,7 +54,6 @@ KIJI_TAB = {
 }
 TSUTATSU_TAB = {
     "id": "tsutatsu", "name": "通達", "color": "tsutatsu",
-    "description": "国税庁の法令解釈通達（所得税基本通達と所得税関係の個別通達）。",
     "subtabs": [{"id": "kihon", "name": "基本通達"}, {"id": "kobetsu", "name": "個別通達"}],
 }
 
@@ -63,7 +61,6 @@ CATEGORIES = [
     {
         "id": "hikazei",
         "name": "非課税",
-        "description": "社会政策その他の見地から所得税を課さないこととされている所得（非課税所得）。",
         "overview": "2011",
         "pages": [],  # 表から抽出する
         # No.2011 の表の「区分」ごとのタブ（pages の代わりに group で振り分ける）
@@ -77,7 +74,6 @@ CATEGORIES = [
     {
         "id": "shotoku-kubun",
         "name": "所得区分",
-        "description": "所得税法上の10種類の所得の区分。",
         "overview": "1300",
         # 所得税法（23条〜35条）の順
         "pages": ["1310", "2230", "1330", "1331", "1370", "1350", "1400", "2220", "1420",
@@ -129,7 +125,6 @@ CATEGORIES = [
     {
         "id": "aoiro",
         "name": "青色申告",
-        "description": "一定水準の記帳をし、その記帳に基づいて正しい申告をする人が受けられる青色申告の制度と、その特典・手続。",
         "overview": "2070",
         "pages": ["2072", "2075", "2090", "2080"],
         "subtabs": [
@@ -144,7 +139,6 @@ CATEGORIES = [
     {
         "id": "shotoku-kojo",
         "name": "所得控除",
-        "description": "所得金額から差し引かれる金額（所得控除）。",
         "overview": "1100",
         # 所得税法（72条〜86条）の順
         "pages": ["1110", "1120", "1129", "1130", "1135", "1140", "1145",
@@ -173,7 +167,6 @@ CATEGORIES = [
     {
         "id": "zeigaku-kojo",
         "name": "税額控除",
-        "description": "税金から差し引かれる金額（税額控除）。",
         "overview": "1200",
         # 所得税法（92条・95条）、租税特別措置法（10条〜41条の18の3）の順
         "pages": ["1250", "1240", "1241", "1270", "1284", "1286", "1288",
@@ -534,7 +527,7 @@ def render_md(cat, overview, entries):
         summary = ["## 要点", ""] + [f"- {x['text']}（[{x['source']}]({x['url']})）" for x in overview["points"]] + [""] + summary
 
     # 並び: 説明 → 概要 → 目次 → 用語 → 根拠法令等・出典
-    lines = [f"# {cat['name']}", "", cat["description"], ""] + summary + ["## 目次", ""]
+    lines = [f"# {cat['name']}", ""] + summary + ["## 目次", ""]
     if cat["id"] == "hikazei":
         groups = list(dict.fromkeys(e["group"] for e in entries))
         for g in groups:
@@ -651,7 +644,7 @@ def render_search_page(result, yomi_pairs, extra_items):
         "source_url": result["source_url"],
         "generated_at": result["generated_at"],
         "as_of": as_of,
-        "categories": [{"id": c["id"], "name": c["name"], "description": c["description"],
+        "categories": [{"id": c["id"], "name": c["name"],
                         "color": CAT_COLORS[c["id"]],
                         "subtabs": [{"id": t["id"], "name": t["name"],
                                      "children": [{"id": c["id"], "name": c["name"]} for c in t.get("children", [])]}
@@ -715,7 +708,6 @@ def main():
         result["categories"].append({
             "id": cat["id"],
             "name": cat["name"],
-            "description": cat["description"],
             "overview": overview,
             "entries": entries,
         })
@@ -733,11 +725,9 @@ def main():
     result["kiji"] = {"taxanswer": taxanswer, "shitsugi": shitsugi}
     (DOCS / "kiji-taxanswer.md").write_text(kiji.render_md(
         "タックスアンサー（所得税・源泉所得税・譲渡所得）",
-        "国税庁ホームページのタックスアンサーのうち、コード一覧の「所得税」「源泉所得税」「譲渡所得」に載っているページを収録。",
         taxanswer, "ta"), encoding="utf-8")
     (DOCS / "kiji-shitsugi.md").write_text(kiji.render_md(
         "質疑応答事例（所得税・源泉所得税・譲渡所得）",
-        "国税庁ホームページの質疑応答事例のうち、「所得税」「源泉所得税」「譲渡所得」の事例を収録。",
         shitsugi, "qa"), encoding="utf-8")
     print(f"国税庁の記事: タックスアンサー {len(taxanswer)} 件、質疑応答事例 {len(shitsugi)} 件", file=sys.stderr)
 
