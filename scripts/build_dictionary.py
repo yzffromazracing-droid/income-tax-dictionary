@@ -559,8 +559,7 @@ def render_md(cat, overview, entries):
                     lines.append(f"- **通称**: {e['alias']}")
                 lines += _example_lines(e.get("examples", []))
                 for r in e["related"]:
-                    lines.append(f"- **関連**: [{r['title']}]({r['source_url']})"
-                                 + (f" — {r['summary']}" if r["summary"] else ""))
+                    lines.append(f"- **関連**: [{r['title']}]({r['source_url']})")
                 if e["legal_basis"]:
                     lines.append(f"- **根拠法令**: {e['legal_basis']}")
                 lines.append("")

@@ -190,10 +190,8 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .examples .to { margin-left: 6px; font-weight: 700; }
 .examples .src { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: 4px; }
 .examples .src:hover { color: var(--accent); }
-.related { display: grid; gap: 12px; margin: 0 0 16px; padding: 0; list-style: none; }
-.related li { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
-.related a { font-weight: 700; }
-.related p { margin: 4px 0 0; font-size: 13.5px; color: var(--muted); }
+.related { margin: 0 0 16px; padding-left: 1.4em; }
+.related li { margin: 2px 0; }
 .source { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
 .source p { margin: 0; }
 .source .meta { border: 0; padding: 0; margin: 0 0 10px; color: var(--ink); }
@@ -306,8 +304,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
 
   // ---- インデックス ----
   ITEMS.forEach(function (it) {
-    var rel = (it.related || []).map(function (r) { return r.title + " " + r.summary; })
-      .concat((it.examples || []).map(function (x) { return x.text + " " + x.other; })).join(" ");
+    var rel = (it.examples || []).map(function (x) { return x.text + " " + (x.other || x.tax || ""); })
+      .concat((it.related || []).map(function (r) { return r.title; })).join(" ");
     it.plainBody = plain(it.md) + " " + rel;
     it.n = {
       term: norm(it.term), alias: norm(it.alias || ""), law: norm(it.basis || ""),
@@ -710,7 +708,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
       if (it.related && it.related.length) {
         h += '<div class="body"><h3>関連するタックスアンサー</h3></div><ul class="related">';
         it.related.forEach(function (r) {
-          h += '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.title) + "</a><p>" + esc(r.summary) + "</p></li>";
+          h += '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.title) + "</a></li>";
         });
         h += "</ul>";
       }

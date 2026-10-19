@@ -74,7 +74,7 @@
 - **具体例**:
   - 身体障害者手帳の交付を受けている人や障害年金を受けている人などの、預貯金・合同運用信託などの元本350万円までの利子（障害者等のマル優）（[No.1313](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm)）
   - 障害者等が持つ国債・地方債の額面350万円までの利子（障害者等の特別マル優。マル優とは別枠）（[No.1313](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm)）
-- **関連**: [No.1313 障害者等のマル優(非課税貯蓄)](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm) — 預貯金や公社債などの利子は、原則としてその支払の際に、15.315パーセント（他に地方税5パーセント）の税率を乗じて算出した所得税および復興特別所得税（令和9年以後は所得税、防衛特別所得税および復興特別所得税）が源泉徴収され、それだけで納税を完結させることができます。
+- **関連**: [No.1313 障害者等のマル優(非課税貯蓄)](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1313.htm)
 - **根拠法令**: 所法10
 
 #### 勤労者財産形成住宅貯蓄の利子等
@@ -84,7 +84,7 @@
   - 55歳未満の勤労者が給与天引きで積み立てる財形住宅貯蓄の利子（財形年金貯蓄と合わせて550万円まで）（[No.1316](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm)）
 - **当たらない例**:
   - 財形住宅貯蓄を住宅取得などの目的以外で払い出した場合 → 原則5年間さかのぼって課税（[No.1316](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm)）
-- **関連**: [No.1316 財形住宅貯蓄](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm) — 預貯金などの利子は、原則として、その支払の際、一律15.315パーセント（他に地方税5パーセント）の税率を乗じて算出した所得税および復興特別所得税（令和9年以後は所得税、防衛特別所得税および復興特別所得税）が源泉徴収され、これにより納税を完結させることができます（注1）。
+- **関連**: [No.1316 財形住宅貯蓄](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1316.htm)
 - **根拠法令**: 措法4の2
 
 #### 勤労者財産形成年金貯蓄の利子等
@@ -95,7 +95,7 @@
   - 生命保険・生命共済・損害保険による財形年金貯蓄は385万円まで（[No.1319](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm)）
 - **当たらない例**:
   - 財形年金貯蓄を目的以外で払い出した場合 → 原則5年間さかのぼって課税（[No.1319](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm)）
-- **関連**: [No.1319 財形年金貯蓄](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm) — 預貯金などの利子は、原則として、その支払の際、一律15.315パーセント（他に地方税5パーセント）の税率を乗じて算出した所得税および復興特別所得税（令和9年以後は所得税、防衛特別所得税および復興特別所得税）が源泉徴収され、これにより納税を完結させることができます（注1）。
+- **関連**: [No.1319 財形年金貯蓄](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1319.htm)
 - **根拠法令**: 措法4の3
 
 #### 納税準備預金の利子
@@ -122,7 +122,7 @@
   - ジュニアNISA（未成年者口座）で取得した上場株式等の配当等（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
 - **当たらない例**:
   - NISA口座の上場株式等でも、発行者から直接受け取る配当等（株式数比例配分方式でないもの） → 課税（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
-- **関連**: [No.1535 NISA制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm) — （1）　令和6年以降のNISA
+- **関連**: [No.1535 NISA制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)
 - **根拠法令**: 措法9の8、9の9
 
 ### 給与所得・公的年金関係
@@ -135,7 +135,7 @@
   - 亡くなった人の勤務に基づき、勤務先から遺族に支給される年金（[所基通9-2](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/02.htm#a-01)）
 - **当たらない例**:
   - 遺族が受け取る未支給年金 → 一時所得（[No.1605](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1605.htm)）
-- **関連**: [No.1605 遺族の方に支給される公的年金等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1605.htm) — 厚生年金や国民年金などの被保険者であった人が亡くなったときは、遺族の方に対して遺族年金が支給されます。また、恩給を受けていた人が亡くなった場合には、遺族の方に対して遺族恩給が支給されます。
+- **関連**: [No.1605 遺族の方に支給される公的年金等](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1605.htm)
 - **根拠法令**: 所法9①三、所令20
 
 #### 給与所得者に支給される一定の旅費、限度額内の通勤手当、職務の遂行上必要な現物給与
@@ -183,7 +183,7 @@
   - 税制適格ストック・オプションを権利行使して株式を取得したときの経済的利益（課税は株式の売却時まで繰り延べ）（[No.1540](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm)）
 - **課税方法**:
   - ストック・オプション税制で取得した株式を売却したとき → 譲渡所得等として申告分離課税（[No.1540](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm)）
-- **関連**: [No.1540 ストック・オプション税制の適用を受けて取得した株式を譲渡した場合](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm) — いわゆるストック・オプション税制（租税特別措置法第29条の2第1項）(注1)の適用を受けて取得した株式（以下「特定株式」（注2）といいます。）をその取得の日以後に譲渡した場合には、一般株式等に係る譲渡所得等または上場株式等に係る譲渡所得等として申告分離課税の対象となります。
+- **関連**: [No.1540 ストック・オプション税制の適用を受けて取得した株式を譲渡した場合](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1540.htm)
 - **根拠法令**: 措法29の2
 
 ### 譲渡(山林)所得関係
@@ -212,7 +212,7 @@
   - NISAのつみたて投資枠・成長投資枠で取得した上場株式等の売却益（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
 - **当たらない例**:
   - NISA口座で取得した上場株式等の売却損 → 損失はなかったものとみなされる（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
-- **関連**: [No.1535 NISA制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm) — （1）　令和6年以降のNISA
+- **関連**: [No.1535 NISA制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)
 - **根拠法令**: 措法37の14、37の14の2
 
 #### 国や地方公共団体等に財産を寄附した場合の譲渡所得等
@@ -276,7 +276,7 @@
 - **当たらない例**:
   - 配送中の事故でだめになった商品（棚卸資産）について受ける損害賠償金 → 事業所得（[No.1700](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm)）
   - 死亡保険金 → この非課税の対象外（[所基通9-20](https://www.nta.go.jp/law/tsutatsu/kihon/shotoku/02/04.htm#a-05)）
-- **関連**: [No.1700 加害者から治療費、慰謝料及び損害賠償金などを受け取ったとき](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm) — 交通事故などのために、被害者が次のような治療費、慰謝料、損害賠償金などを受け取ったときは、これらの損害賠償金等は非課税となります。
+- **関連**: [No.1700 加害者から治療費、慰謝料及び損害賠償金などを受け取ったとき](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1700.htm)
 - **根拠法令**: 所法9①十八、所令30
 
 #### 公職選挙法の適用を受ける選挙に係る公職の候補者が選挙運動に関し取得する金銭等
