@@ -189,6 +189,26 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .examples .to { margin-left: 6px; font-weight: 700; }
 .examples .src { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: 4px; }
 .examples .src:hover { color: var(--accent); }
+/* 源泉徴収税額表 */
+.zh-lead { margin: 0 0 12px; max-width: 72ch; }
+.calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px 14px; margin: 0 0 10px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+.calc label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--muted); }
+.calc input[type=text] { font: inherit; font-size: 16px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); width: 100%; font-variant-numeric: tabular-nums; }
+.calc input[type=text]:focus { outline: 2px solid var(--c); outline-offset: 1px; }
+.calc .chk { flex-direction: row; align-items: center; gap: 6px; grid-column: 1 / -1; color: var(--ink); }
+.zh-res { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0 0 6px; }
+.zh-res div { border-left: 3px solid var(--c); padding: 2px 0 2px 10px; }
+.zh-res span { display: block; font-size: 12.5px; color: var(--muted); }
+.zh-res b { font-size: 22px; font-variant-numeric: tabular-nums; }
+.zh-how { margin: 0 0 18px; font-size: 12.5px; color: var(--muted); max-width: 72ch; }
+.zh-wrap { max-height: 60vh; overflow: auto; border: 1px solid var(--line); border-radius: 8px; margin: 6px 0 16px; }
+table.zh { border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; width: 100%; }
+table.zh th, table.zh td { padding: 4px 9px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+table.zh thead th { position: sticky; top: 0; z-index: 1; background: var(--surface); box-shadow: inset 0 -1px 0 var(--line); }
+table.zh th:first-child, table.zh td:first-child { text-align: left; }
+table.zh tr.f td { text-align: left; white-space: normal; color: var(--muted); }
+table.zh tr.f td div { max-width: 40em; }
+table.zh tr.hit td { background: color-mix(in srgb, var(--c) 20%, transparent); }
 .related { margin: 0 0 16px; padding-left: 1.4em; }
 .related li { margin: 2px 0; }
 .source { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
@@ -687,6 +707,144 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     });
     return h;
   }
+  // ---- 源泉徴収税額表（月額表・日額表・賞与の算出率の表） ----
+  var zh = { amt: "", n: "0", prev: "", bonus: "", m12: false };
+  function yen(v) { return v == null ? "" : String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+  function num(s) { var d = String(s || "").normalize("NFKC").replace(/[^0-9]/g, ""); return d ? parseInt(d, 10) : null; }
+  function pct(x, rate) { return Math.floor(x * rate / 100 + 1e-6); }
+  // 税額表から税額を求める（col: ko=甲, otsu=乙, hei=丙）。how は当てはめた行や計算式
+  function wageTax(t, amt, n, col) {
+    var k = Math.min(n, 7), extra = Math.max(0, n - 7) * t.over7, b = t.below, v, how, i, r, s, f, u = "その" + t.unit + "の社会保険料等控除後の給与等の金額";
+    if (amt < b.under) {
+      v = col === "ko" ? b.ko[k] : col === "otsu" ? pct(amt, b.otsu_rate) : b.hei;
+      how = yen(b.under) + "円未満" + (col === "otsu" ? "（金額の" + b.otsu_rate + "％）" : "");
+      r = "below";
+    } else {
+      for (i = 0; i < t.rows.length; i++) if (t.rows[i][0] <= amt && amt < t.rows[i][1]) { r = t.rows[i]; break; }
+      if (r) {
+        v = col === "ko" ? r[2 + k] : col === "otsu" ? r[10] : r[11];
+        how = yen(r[0]) + "円以上" + yen(r[1]) + "円未満の行"; r = "r" + i;
+      } else {
+        s = t.steps.filter(function (x) { return x.at === amt; })[0];
+        if (s && (col === "ko" || s[col] != null)) { v = col === "ko" ? s.ko[k] : s[col]; how = yen(amt) + "円の行"; r = "s" + amt; }
+        else if (col === "ko") {
+          f = t.ko.filter(function (x) { return x.over < amt && (x.under == null || amt < x.under); })[0];
+          v = t.steps.filter(function (x) { return x.at === f.over; })[0].ko[k] + pct(amt - f.over, f.rate);
+          how = yen(f.over) + "円の場合の税額に、" + yen(f.over) + "円を超える金額の" + f.rate + "％を加算"; r = "k" + f.over;
+        } else {
+          f = t[col].filter(function (x) { return x.over < amt; }).pop();
+          v = f.base + pct(amt - f.over, f.rate);
+          how = yen(f.base) + "円に、" + yen(f.over) + "円を超える金額の" + f.rate + "％を加算"; r = col + f.over;
+        }
+      }
+    }
+    if (col === "ko" && extra) { v = Math.max(0, v - extra); how += "（7人を超える1人ごとに" + yen(t.over7) + "円を控除）"; }
+    return { tax: v, how: how, row: r, u: u };
+  }
+  function bonusRate(t, prev, n, col) {
+    var k = Math.min(n, 7);
+    for (var i = 0; i < t.rows.length; i++) {
+      var p = col === "ko" ? t.rows[i].ko[k] : t.rows[i].otsu;
+      if (!p) continue;
+      if ((p[0] == null || prev >= p[0] * 1000) && (p[1] == null || prev < p[1] * 1000)) return { rate: t.rows[i].rate, row: "b" + i };
+    }
+  }
+  function bonusTax(t, m, prev, bonus, n, col, m12) {
+    var d = m12 ? 12 : 6, a, b0;
+    if (prev <= 0) {
+      a = wageTax(m, Math.floor(bonus / d), n, col);
+      return { tax: a.tax * d, how: "前月の給与がないため月額表で計算：賞与÷" + d + "＝" + yen(Math.floor(bonus / d)) + "円の税額 " + yen(a.tax) + "円 × " + d };
+    }
+    if (bonus > prev * 10) {
+      a = wageTax(m, Math.floor(bonus / d) + prev, n, col); b0 = wageTax(m, prev, n, col);
+      return { tax: (a.tax - b0.tax) * d, how: "賞与が前月の給与の10倍を超えるため月額表で計算：（" + yen(Math.floor(bonus / d) + prev) + "円の税額 " + yen(a.tax) + "円 − 前月の給与の税額 " + yen(b0.tax) + "円）× " + d };
+    }
+    var r = bonusRate(t, prev, n, col);
+    return { tax: pct(bonus, r.rate), rate: r.rate, row: r.row, how: "賞与の金額 × " + r.rate + "％" };
+  }
+  function zhField(id, label, val, ph) {
+    return '<label>' + esc(label) + '<input type="text" inputmode="numeric" autocomplete="off" id="' + id + '" value="' + esc(val) + '" placeholder="' + esc(ph) + '"></label>';
+  }
+  function zeigakuhyoHtml(it) {
+    var t = it.tbl, h = '<p class="zh-lead">' + esc(it.summary) + "</p>", cols, i;
+    h += '<div class="body"><h3>税額を求める</h3></div><form class="calc" style="' + catStyle(it.cat) + '" onsubmit="return false">';
+    if (t.kind === "shoyo") {
+      h += zhField("zh-prev", "前月の給与等の金額（社会保険料等控除後）", zh.prev, "例：285454") +
+        zhField("zh-bonus", "賞与の金額（社会保険料等控除後）", zh.bonus, "例：389558") +
+        zhField("zh-n", "扶養親族等の数（人）", zh.n, "0") +
+        '<label class="chk"><input type="checkbox" id="zh-12"' + (zh.m12 ? " checked" : "") + '>賞与の計算期間が6か月を超える（月額表で計算するときに使います）</label>';
+    } else {
+      h += zhField("zh-amt", "その" + t.unit + "の給与等の金額（社会保険料等控除後）", zh.amt, t.unit === "月" ? "例：300000" : "例：12000") +
+        zhField("zh-n", "扶養親族等の数（人）", zh.n, "0");
+    }
+    h += '</form><div id="zh-out" style="' + catStyle(it.cat) + '"></div>';
+    h += '<div class="body"><h3>税額表</h3><p>' + esc(it.basis) + "</p></div>";
+    h += '<div class="zh-wrap" id="zh-wrap" style="' + catStyle(it.cat) + '"><table class="zh"><thead><tr>';
+    if (t.kind === "shoyo") {
+      h += "<th>賞与の金額に乗ずべき率</th>";
+      for (i = 0; i < 8; i++) h += "<th>甲 " + i + "人" + (i === 7 ? "以上" : "") + "</th>";
+      h += "<th>乙</th></tr></thead><tbody>";
+      var rng = function (p) { return !p ? "" : p[0] == null ? yen(p[1]) + "千円未満" : p[1] == null ? yen(p[0]) + "千円以上" : yen(p[0]) + "〜" + yen(p[1]) + "千円"; };
+      t.rows.forEach(function (r, j) {
+        h += '<tr data-row="b' + j + '"><td>' + r.rate + "％</td>" + r.ko.map(function (p) { return "<td>" + rng(p) + "</td>"; }).join("") + "<td>" + rng(r.otsu) + "</td></tr>";
+      });
+    } else {
+      var daily = t.kind === "nichigaku", nc = daily ? 13 : 12;
+      h += "<th>以上</th><th>未満</th>";
+      for (i = 0; i < 8; i++) h += "<th>甲 " + i + "人</th>";
+      h += "<th>乙</th>" + (daily ? "<th>丙</th>" : "") + "</tr></thead><tbody>";
+      var b = t.below;
+      h += '<tr data-row="below"><td colspan="2">' + yen(b.under) + "円未満</td>" + b.ko.map(function (v) { return "<td>" + yen(v) + "</td>"; }).join("") +
+        "<td>金額の" + b.otsu_rate + "％</td>" + (daily ? "<td>" + yen(b.hei) + "</td>" : "") + "</tr>";
+      t.rows.forEach(function (r, j) {
+        h += '<tr data-row="r' + j + '">' + r.map(function (v) { return "<td>" + yen(v) + "</td>"; }).join("") + "</tr>";
+      });
+      t.flow.forEach(function (f) {
+        if (f.type === "step") {
+          h += '<tr data-row="s' + f.at + '"><td colspan="2">' + yen(f.at) + "円</td>" + f.ko.map(function (v) { return "<td>" + yen(v) + "</td>"; }).join("") +
+            "<td>" + yen(f.otsu) + "</td>" + (daily ? "<td>" + yen(f.hei) + "</td>" : "") + "</tr>";
+        } else {
+          var key = (f.type === "ko" ? "k" : f.type) + f.range.replace(/[^0-9,].*$/, "").replace(/,/g, "");
+          h += '<tr class="f" data-row="' + key + '"><td colspan="2">' + esc(f.range) + '</td><td colspan="' + (nc - 2) + '"><div>' + esc(f.text) + "</div></td></tr>";
+        }
+      });
+    }
+    h += "</tbody></table></div>";
+    var notes = it.md.split("\n\n").slice(1).join("\n\n");
+    if (notes) h += '<div class="body"><h3>表の注・備考</h3>' + mdToHtml(notes) + "</div>";
+    h += '<div class="body"><p><a href="' + esc(it.fileUrl) + '" target="_blank" rel="noopener">国税庁の Excel ファイル</a>（計算式の部分は1円未満を切り捨てて表示しています）</p></div>';
+    return h;
+  }
+  function updateCalc() {
+    var it = BY_ID[state.current];
+    if (!it || it.kind !== "zeigakuhyo") return;
+    var t = it.tbl, out = $("zh-out"), wrap = $("zh-wrap"), n = num(zh.n) || 0, res = [], hit = null, how = "";
+    if (t.kind === "shoyo") {
+      var prev = num(zh.prev), bonus = num(zh.bonus), m = BY_ID[t.monthly].tbl;
+      if (prev == null || bonus == null) { out.innerHTML = '<p class="zh-how">前月の給与等の金額と賞与の金額を入れると、甲欄・乙欄の税額を表示します（前月の給与がないときは 0 と入れてください）。</p>'; }
+      else {
+        var ko = bonusTax(t, m, prev, bonus, n, "ko", zh.m12), ot = bonusTax(t, m, prev, bonus, n, "otsu", zh.m12);
+        res = [["甲欄（扶養親族等 " + n + "人）", ko], ["乙欄", ot]];
+        hit = ko.row; how = "甲欄：" + ko.how + "／乙欄：" + ot.how;
+      }
+    } else {
+      var amt = num(zh.amt);
+      if (amt == null) { out.innerHTML = '<p class="zh-how">金額を入れると、甲欄・乙欄' + (t.kind === "nichigaku" ? "・丙欄" : "") + "の税額を表示します。</p>"; }
+      else {
+        var cols = [["甲欄（扶養親族等 " + n + "人）", "ko"], ["乙欄", "otsu"]].concat(t.kind === "nichigaku" ? [["丙欄", "hei"]] : []);
+        res = cols.map(function (c) { return [c[0], wageTax(t, amt, n, c[1])]; });
+        hit = res[0][1].row; how = res.map(function (x) { return x[0].replace(/（.*/, "") + "：" + x[1].how; }).join("／");
+      }
+    }
+    if (res.length) {
+      out.innerHTML = '<div class="zh-res">' + res.map(function (x) {
+        return "<div><span>" + esc(x[0]) + (x[1].rate != null ? "　率 " + x[1].rate + "％" : "") + "</span><b>" + yen(x[1].tax) + "</b> 円</div>";
+      }).join("") + '</div><p class="zh-how">' + esc(how) + "</p>";
+    }
+    Array.prototype.forEach.call(wrap.querySelectorAll("tr.hit"), function (r) { r.classList.remove("hit"); });
+    var row = hit && wrap.querySelector('tr[data-row="' + hit + '"]');
+    if (row) { row.classList.add("hit"); wrap.scrollTop = Math.max(0, row.offsetTop - wrap.clientHeight / 2); }
+  }
   function renderDetail() {
     var it = BY_ID[state.current];
     if (!it) { detailEl.innerHTML = ""; return; }
@@ -700,7 +858,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (it.yomi) h += '<p class="yomi">' + esc(it.yomi) + "</p>";
     if (it.alias) h += '<dl class="meta"><dt>通称</dt><dd>' + esc(it.alias) + "</dd></dl>";
     else h += '<div class="rule"></div>';
-    if (it.kind === "hikazei") {
+    if (it.kind === "zeigakuhyo") {
+      h += zeigakuhyoHtml(it);
+    } else if (it.kind === "hikazei") {
       h += examplesHtml(it);
       if (it.related && it.related.length) {
         h += '<div class="body"><h3>関連するタックスアンサー</h3></div><ul class="related">';
@@ -730,12 +890,13 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (it.issued) h += "<dt>番号・日付</dt><dd>" + esc(it.issued) + "</dd>";
     h += "<dt>" + esc(it.srcLabel || "タックスアンサー") + '</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
       esc(it.srcTitle || (it.code ? it.title : "No.2011 課税される所得と非課税所得")) + "</a></dd></dl>" +
-      "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : it.kind === "kiji" ? it.srcLabel : "タックスアンサー") +
+      "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : it.kind === "kiji" || it.kind === "zeigakuhyo" ? it.srcLabel : "タックスアンサー") +
       "を転載・整形したものです。最新の内容はリンク先で確認してください。</p></div>";
     detailEl.innerHTML = h;
     markIn(detailEl.querySelector("h2"), toks);
     if (it.yomi) markIn(detailEl.querySelector(".yomi"), toks);
     Array.prototype.forEach.call(detailEl.querySelectorAll(".body, .related, .meta"), function (el) { markIn(el, toks); });
+    if (it.kind === "zeigakuhyo") updateCalc();
   }
 
   // ---- イベント ----
@@ -805,6 +966,12 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     next.focus();
     if (window.innerWidth > 860) select(next.getAttribute("data-id"), false);
   });
+  detailEl.addEventListener("input", function (e) {
+    var id = e.target.id;
+    if (!/^zh-/.test(id)) return;
+    if (id === "zh-12") zh.m12 = e.target.checked; else zh[id.slice(3)] = e.target.value;
+    updateCalc();
+  });
   detailEl.addEventListener("click", function (e) {
     if (e.target.id === "back") { document.body.classList.remove("reading"); return; }
     var j = e.target.closest("[data-jump]");
@@ -815,7 +982,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (e.key === "Enter") { var g = listEl.querySelector(".result"); if (g) select(g.getAttribute("data-id"), true); }
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "/" && document.activeElement !== qEl) { e.preventDefault(); qEl.focus(); qEl.select(); }
+    if (e.key === "/" && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) { e.preventDefault(); qEl.focus(); qEl.select(); }
   });
   function setHeaderH() {
     document.documentElement.style.setProperty("--header-h", document.querySelector("header.top").offsetHeight + "px");

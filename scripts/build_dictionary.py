@@ -29,7 +29,8 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 BASE = "https://www.nta.go.jp"
 TA = BASE + "/taxes/shiraberu/taxanswer/{}/{}.htm"
 # 「所得税」以外の分野に載っているタックスアンサー（年末調整は「源泉所得税」）
-TA_FOLDERS = {code: "gensen" for code in ["2662", "2665", "2668", "2671", "2672", "2674", "2675", "2676", "2517", "2518"]}
+TA_FOLDERS = {code: "gensen" for code in ["2662", "2665", "2668", "2671", "2672", "2674", "2675", "2676", "2517", "2518",
+                                           "2511", "2523"]}
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / ".cache"
 DATA = ROOT / "data"
@@ -45,6 +46,7 @@ AOIRO_EXAMPLES = DATA / "aoiro_examples.json"
 HIKAZEI_EXAMPLES = DATA / "hikazei_examples.json"
 NENMATSU_POINTS = DATA / "nenmatsu_points.json"
 NENMATSU_EXAMPLES = DATA / "nenmatsu_examples.json"
+ZEIGAKUHYO = DATA / "zeigakuhyo.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "nenmatsu": "nenmatsu", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 KIJI_TAB = {
@@ -172,13 +174,16 @@ CATEGORIES = [
         "id": "nenmatsu",
         "name": "年末調整",
         "overview": "2662",
-        "pages": ["2665", "2674", "2517", "2518", "2668", "2672", "2676", "1230", "2675", "2671", "1900", "1910"],
+        "pages": ["2665", "2674", "2517", "2518", "2668", "2672", "2676", "1230", "2675", "2671", "1900", "1910",
+                  "2511", "2523"],
         "subtabs": [
             {"id": "nc-taisho", "name": "対象となる人", "pages": ["2665", "2674", "2517", "2518"]},
             {"id": "nc-kyuyo", "name": "対象となる給与", "pages": ["2668"]},
             {"id": "nc-kojo", "name": "控除の申告", "pages": ["2672", "2676", "1230"]},
             {"id": "nc-seisan", "name": "精算・やり直し", "pages": ["2675", "2671"]},
             {"id": "nc-shinkoku", "name": "確定申告が必要な場合", "pages": ["1900", "1910"]},
+            # 税額表の使い方のページと、源泉徴収税額表そのもの（data/zeigakuhyo.json、scripts/zeigakuhyo.py）
+            {"id": "nc-zeigakuhyo", "name": "源泉徴収税額表", "pages": ["2511", "2523"]},
         ],
         # 年末調整と給与所得者の源泉徴収に関する申告書の通達（法183条〜198条）
         "related_tsutatsu": r"^法第(183条から第193条まで|19[0-2]条《|194条から第198条まで|195条の[2-4]《|196条《)",
@@ -660,6 +665,27 @@ def search_items(result):
     return items
 
 
+def check_zeigakuhyo(tables, page):
+    """源泉徴収税額表から求めた税額が、No.2523 の計算例（令和8年分）と一致するかを確かめる。"""
+    import zeigakuhyo as z
+    t = {x["id"]: x for x in tables}
+    m, b = t["zh-r08-getsugaku"], t["zh-r08-shoyo"]
+    cases = [  # （求めた値, No.2523 の本文にある値）
+        (z.wage_tax(m, 444541, 1), "16,100円"), (z.wage_tax(m, 166531, 1), "1,510円"),
+        (z.wage_tax(m, 128216, 0), "1,300円"), (z.bonus_rate(b, 285454, 3), "2.042％"),
+        (z.bonus_tax(b, m, 285454, 389558, 3), "7,954円"), (z.bonus_tax(b, m, 166531, 1668062, 1), "87,540円"),
+        (z.bonus_tax(b, m, 0, 769300, 0), "7,800円"),
+    ]
+    body = _plain(page["content_md"])
+    errors = []
+    for got, want in cases:
+        text = f"{got:g}％" if isinstance(got, float) else f"{got:,}円"
+        if text != want or want not in body:
+            errors.append(f"  {text}（No.2523 では {want}）")
+    if errors:
+        raise SystemExit("源泉徴収税額表の計算が No.2523 の計算例と合いません。\n" + "\n".join(errors))
+
+
 def render_search_page(result, yomi_pairs, extra_items):
     """1ファイルで動く検索ページ（docs/index.html）を生成する。"""
     as_of = next((c["overview"]["as_of"] for c in result["categories"] if c["overview"]["as_of"]), "")
@@ -741,6 +767,14 @@ def main():
         (DOCS / f"{cat['id']}.md").write_text(render_md(cat, overview, entries), encoding="utf-8")
         print(f"{cat['name']}: {len(entries)} 項目", file=sys.stderr)
 
+    import zeigakuhyo
+    tables = json.loads(ZEIGAKUHYO.read_text(encoding="utf-8"))
+    nenmatsu = next(c for c in result["categories"] if c["id"] == "nenmatsu")
+    check_zeigakuhyo(tables, next(e for e in nenmatsu["entries"] if e["code"] == "2523"))
+    result["zeigakuhyo"] = tables
+    (DOCS / "gensen-zeigakuhyo.md").write_text(zeigakuhyo.render_md(tables), encoding="utf-8")
+    print(f"源泉徴収税額表: {len(tables)} 表", file=sys.stderr)
+
     result["tsutatsu"] = {"kihon": kihon, "kobetsu": kobetsu}
     (DOCS / "tsutatsu-kihon.md").write_text(tsutatsu.render_kihon_md(kihon), encoding="utf-8")
     (DOCS / "tsutatsu-kobetsu.md").write_text(tsutatsu.render_kobetsu_md(kobetsu), encoding="utf-8")
@@ -760,7 +794,7 @@ def main():
 
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    render_search_page(result, yomi_pairs,
+    render_search_page(result, yomi_pairs, zeigakuhyo.search_items(tables) +
                        kiji.search_items(taxanswer, shitsugi) + tsutatsu.search_items(kihon, kobetsu))
 
 
