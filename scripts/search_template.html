@@ -22,6 +22,7 @@
   --c-tsutatsu: #4d5a2a;
   --c-aoiro: #3f3fb8;
   --c-kiji: #8a5a00;
+  --c-nenmatsu: #a8323e;
   --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
   --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -31,14 +32,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
     --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653;
+    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
   --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653;
+  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -676,7 +677,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function examplesHtml(it) {
     var ex = it.examples || [], h = "";
     [["要点", it.points || []], ["具体例", ex.filter(function (x) { return !x.other && !x.tax; })],
-     ["課税方法", ex.filter(function (x) { return x.tax; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
+     [it.cat === "nenmatsu" ? "取扱い" : "課税方法", ex.filter(function (x) { return x.tax; })], ["当たらない例", ex.filter(function (x) { return x.other; })]].forEach(function (g) {
       if (!g[1].length) return;
       h += '<div class="body examples"><h3>' + g[0] + "</h3><ul>" + g[1].map(function (x) {
         var to = x.other || x.tax;
