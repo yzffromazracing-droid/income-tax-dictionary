@@ -28,6 +28,7 @@
   --c-aoiro: #3f3fb8;
   --c-kiji: #8a5a00;
   --c-nenmatsu: #a8323e;
+  --c-dict: #2f3b4c;
   --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
   --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -37,14 +38,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
     --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b;
+    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b; --c-dict: #c9d3df;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
   --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b;
+  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b; --c-dict: #c9d3df;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -101,7 +102,7 @@ header.top .wrap { padding-block: 14px 12px; display: grid; grid-template-column
 .tab {
   font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; color: var(--c); white-space: nowrap;
   background: transparent; border: 0; border-bottom: 3px solid transparent; border-radius: 8px 8px 0 0;
-  padding: 8px 14px 9px; display: inline-flex; gap: 7px; align-items: center;
+  padding: 8px 9px 9px; display: inline-flex; gap: 6px; align-items: center;
 }
 .tab:hover { background: color-mix(in srgb, var(--c) 8%, transparent); }
 .tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
@@ -152,6 +153,7 @@ main.wrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr
 .result[aria-current="true"] { background: color-mix(in srgb, var(--c) 9%, var(--surface)); border-left-color: var(--c); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, var(--line)); }
 .result .row { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
 .result .term { font-weight: 700; min-width: 0; }
+.result .ctag { font-size: 11px; font-weight: 700; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); border-radius: 999px; padding: 0 7px; white-space: nowrap; line-height: 1.7; }
 .result .code { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: auto; }
 .result .ry { font-size: 11.5px; color: var(--muted); letter-spacing: .04em; overflow-wrap: anywhere; }
 .result .snip { font-size: 12.5px; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -277,19 +279,25 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   "use strict";
   var DATA = JSON.parse(document.getElementById("dict-data").textContent);
   var CATS = DATA.categories;
+  // 「辞書」タブ：すべてのタブの項目をまとめて探す。下のタブは各カテゴリ（d-<カテゴリ>）
+  var DICT = { id: "dict", name: "辞書", color: "dict",
+    subtabs: CATS.map(function (c) { return { id: "d-" + c.id, name: c.name, children: [] }; }) };
+  var TABS = [DICT].concat(CATS);
   var CAT = {};
-  CATS.forEach(function (c) { CAT[c.id] = c; });
+  TABS.forEach(function (c) { CAT[c.id] = c; });
+  var CAT_ORDER = {};
+  CATS.forEach(function (c, i) { CAT_ORDER[c.id] = i; });
   var ITEMS = DATA.items;
   var BY_ID = {};
   ITEMS.forEach(function (it) { BY_ID[it.id] = it; });
 
   var $ = function (id) { return document.getElementById(id); };
   var qEl = $("q"), listEl = $("list"), detailEl = $("detail"), tabsEl = $("tabs");
-  var state = { q: "", cat: CATS[0].id, sub: "all", sub2: "all", current: null, limit: 60 };
+  var state = { q: "", cat: DICT.id, sub: "all", sub2: "all", current: null, limit: 60 };
   var subtabsEl = $("subtabs");
   var SUB = {};
   var SUB2 = {};
-  CATS.forEach(function (c) {
+  TABS.forEach(function (c) {
     c.subtabs.forEach(function (t) {
       SUB[t.id] = { cat: c.id, name: t.name, children: t.children || [] };
       (t.children || []).forEach(function (k) { SUB2[k.id] = { cat: c.id, sub: t.id, name: k.name }; });
@@ -515,7 +523,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
 
   function renderTabs(counts) {
     document.body.setAttribute("style", catStyle(state.cat));
-    tabsEl.innerHTML = CATS.map(function (c) {
+    tabsEl.innerHTML = TABS.map(function (c) {
       var on = state.cat === c.id, n = counts[c.id] || 0;
       return '<button class="tab" type="button" role="tab" id="tab-' + c.id + '" data-cat="' + c.id + '" style="' + catStyle(c.id) +
         '" aria-selected="' + on + '" tabindex="' + (on ? 0 : -1) + '"><span class="dot"></span>' + esc(c.name) +
@@ -535,7 +543,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var tabs = [{ id: "all", name: "すべて", n: total }].concat(subs.map(function (t) { return { id: t.id, name: t.name, n: counts[t.id] || 0 }; }));
     subtabsEl.innerHTML = tabs.map(function (t) {
       var on = state.sub === t.id;
-      return '<button class="subtab" type="button" role="tab" id="sub-' + t.id + '" data-sub="' + t.id + '" aria-selected="' + on +
+      return '<button class="subtab" type="button" role="tab" id="sub-' + t.id + '" data-sub="' + t.id + '"' +
+        (cat === "dict" && t.id !== "all" ? ' style="' + catStyle(t.id.slice(2)) + '"' : "") + ' aria-selected="' + on +
         '" tabindex="' + (on ? 0 : -1) + '">' + esc(t.name) +
         (searching ? '<span class="n' + (t.n ? "" : " zero") + '">' + t.n + "</span>" : "") + "</button>";
     }).join("");
@@ -557,6 +566,8 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   }
   // 項目が属する下のタブ（複数のことがある）
   function subsOf(it) { return it.subs && it.subs.length ? it.subs : (it.sub ? [it.sub] : []); }
+  // 今のタブでの下のタブ（辞書タブではカテゴリ）
+  function subsIn(it) { return state.cat === "dict" ? ["d-" + it.cat] : subsOf(it); }
   // 一覧の見出し：「退職所得（分離課税）」のように下のタブと3段目のタブの名前
   function groupLabel(it) {
     // 「すべて」では、複数の所得に共通のページ（No.2220 など）を「不動産所得・事業所得・給与所得（総合課税）」とまとめる
@@ -601,20 +612,23 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function render() {
     var r = search(), toks = flat(r.toks), kana = r.toks.filter(function (k) { return isKana(k.t); }).map(function (k) { return k.t; }), counts = { all: r.all.length };
     r.all.forEach(function (x) { counts[x.it.cat] = (counts[x.it.cat] || 0) + 1; });
+    counts.dict = r.all.length;
     // 検索語を変えたとき、今のタブで1件も当たらなければ最上位の結果があるタブへ移る
     if (state.autoTab && toks.length && !counts[state.cat] && r.all.length) state.cat = r.all[0].it.cat;
     state.autoTab = false;
     renderTabs(counts);
-    var inCat = r.all.filter(function (x) { return x.it.cat === state.cat; }), subCounts = {};
-    inCat.forEach(function (x) { subsOf(x.it).forEach(function (k) { subCounts[k] = (subCounts[k] || 0) + 1; }); });
+    var inCat = state.cat === "dict" ? r.all : r.all.filter(function (x) { return x.it.cat === state.cat; }), subCounts = {};
+    // 辞書タブで検索していないときは、タブの順（非課税 → … → 通達）に並べる
+    if (state.cat === "dict" && !toks.length) inCat = inCat.slice().sort(function (a, b) { return CAT_ORDER[a.it.cat] - CAT_ORDER[b.it.cat]; });
+    inCat.forEach(function (x) { subsIn(x.it).forEach(function (k) { subCounts[k] = (subCounts[k] || 0) + 1; }); });
     renderSubtabs(state.cat, subCounts, inCat.length, toks.length > 0);
-    var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return subsOf(x.it).indexOf(state.sub) >= 0; }), sub2Counts = {};
+    var inSub = state.sub === "all" ? inCat : inCat.filter(function (x) { return subsIn(x.it).indexOf(state.sub) >= 0; }), sub2Counts = {};
     inSub.forEach(function (x) { (x.it.sub2 || []).forEach(function (k) { sub2Counts[k] = (sub2Counts[k] || 0) + 1; }); });
     if (!SUB2[state.sub2] || SUB2[state.sub2].sub !== state.sub) state.sub2 = "all";
     renderSubtabs2(sub2Counts, inSub.length, toks.length > 0);
     var shown = state.sub2 === "all" ? inSub : inSub.filter(function (x) { return (x.it.sub2 || []).indexOf(state.sub2) >= 0; });
     // 複数のタブに属するページ（No.2240 など）は、そのタブ本来のページの後ろに並べる
-    if (!toks.length && state.sub !== "all") {
+    if (!toks.length && state.sub !== "all" && state.cat !== "dict") {
       shown = shown.filter(function (x) { return x.it.sub === state.sub; })
         .concat(shown.filter(function (x) { return x.it.sub !== state.sub; }));
     }
@@ -653,13 +667,14 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (pos >= state.limit) state.limit = pos + 20;
     var html = "", lastGroup = null, list = shown.slice(0, state.limit);
     list.forEach(function (x) {
-      var it = x.it, group = it.kind === "overview" ? "あらまし" : (it.group || (it.sub && groupLabel(it)) || "用語");
+      var it = x.it, group = state.cat === "dict" ? CAT[it.cat].name : it.kind === "overview" ? "あらまし" : (it.group || (it.sub && groupLabel(it)) || "用語");
       if (!toks.length && group !== lastGroup) {
-        html += '<div class="group-label">' + esc(group) + "</div>";
+        html += '<div class="group-label"' + (state.cat === "dict" ? ' style="' + catStyle(it.cat) + '"' : "") + ">" + esc(group) + "</div>";
         lastGroup = group;
       }
       html += '<button class="result" type="button" data-id="' + it.id + '" style="' + catStyle(it.cat) + '" aria-current="' + (state.current === it.id) + '">' +
-        '<span class="row">' + (toks.length && it.kind === "overview" ? '<span class="tag">あらまし</span>' : "") +
+        '<span class="row">' + (state.cat === "dict" && toks.length ? '<span class="ctag">' + esc(CAT[it.cat].name) + "</span>" : "") +
+        (toks.length && it.kind === "overview" ? '<span class="tag">あらまし</span>' : "") +
         '<span class="term">' + highlight(it.term, toks) + "</span>" +
         (it.code ? '<span class="code">No.' + it.code + "</span>" : it.label ? '<span class="code">' + esc(it.label) + "</span>" : "") + "</span>" +
         (kana.length && anyIn(it.n.yomi, kana) && !anyIn(it.n.term, toks) ? '<span class="ry">' + highlight(it.yomi, kana) + "</span>" : "") +
@@ -678,7 +693,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function jumpTo(id) {
     var it = BY_ID[id];
     if (!it) return;
-    if (it.cat !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
+    if (state.cat === "dict") {
+      if (state.sub !== "all" && state.sub !== "d-" + it.cat) { state.sub = "all"; state.limit = 60; }
+    } else if (it.cat !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
       qEl.value = ""; state.q = "";
       state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
     }
@@ -948,11 +965,11 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     setSub(ids[next]);
   });
   tabsEl.addEventListener("keydown", function (e) {
-    var i = CATS.map(function (c) { return c.id; }).indexOf(state.cat), n = CATS.length;
+    var i = TABS.map(function (c) { return c.id; }).indexOf(state.cat), n = TABS.length;
     var next = { ArrowRight: (i + 1) % n, ArrowLeft: (i + n - 1) % n, Home: 0, End: n - 1 }[e.key];
     if (next === undefined) return;
     e.preventDefault();
-    setTab(CATS[next].id);
+    setTab(TABS[next].id);
   });
   listEl.addEventListener("click", function (e) {
     if (e.target.id === "more") { state.limit += 200; render(); return; }
