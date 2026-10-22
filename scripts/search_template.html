@@ -69,7 +69,7 @@ header.top {
 }
 header.top .wrap { padding-block: 14px 12px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.brand h1 { font-family: var(--font-display); font-size: 20px; margin: 0; letter-spacing: .04em; }
+.brand h1 { font-family: var(--font-body); font-size: 21px; font-weight: 700; margin: 0; letter-spacing: .03em; }
 .searchbox { position: relative; }
 .searchbox input {
   width: 100%; font: inherit; font-size: 17px; color: var(--ink);
@@ -94,44 +94,45 @@ header.top .wrap { padding-block: 14px 12px; display: grid; grid-template-column
 .tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
-  font: inherit; font-size: 14.5px; cursor: pointer; color: var(--muted); white-space: nowrap;
-  background: transparent; border: 0; border-bottom: 3px solid transparent;
+  font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; color: var(--c); white-space: nowrap;
+  background: transparent; border: 0; border-bottom: 3px solid transparent; border-radius: 8px 8px 0 0;
   padding: 8px 14px 9px; display: inline-flex; gap: 7px; align-items: center;
 }
-.tab:hover { color: var(--ink); }
+.tab:hover { background: color-mix(in srgb, var(--c) 8%, transparent); }
 .tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
 .tab .n {
-  font-family: var(--font-mono); font-size: 11px; color: var(--muted);
-  background: var(--bg); border-radius: 999px; padding: 0 7px; line-height: 1.6;
+  font-family: var(--font-mono); font-size: 11px; color: var(--c);
+  background: color-mix(in srgb, var(--c) 13%, transparent); border-radius: 999px; padding: 0 7px; line-height: 1.6;
 }
 .tab .n.zero { opacity: .5; }
-.tab[aria-selected="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--c); }
-.tab[aria-selected="true"] .n { color: var(--ink); }
+.tab[aria-selected="true"] { font-weight: 700; background: color-mix(in srgb, var(--c) 14%, transparent); border-bottom-color: var(--c); }
+.tab[aria-selected="true"] .n { color: var(--surface); background: var(--c); }
 /* 所得区分の下のタブ（所得の種類） */
 header.top.has-sub .tabbar { margin-bottom: 0; border-bottom: 1px solid var(--line); }
 .subtabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; min-width: 0; padding-top: 2px; }
 .subtabs::-webkit-scrollbar { display: none; }
 @media (min-width: 861px) { .subtabs { flex-wrap: wrap; } }
 .subtab {
-  font: inherit; font-size: 13px; cursor: pointer; color: var(--muted); white-space: nowrap;
-  background: transparent; border: 1px solid transparent; border-radius: 999px;
+  font: inherit; font-size: 13px; cursor: pointer; color: var(--c); white-space: nowrap;
+  background: color-mix(in srgb, var(--c) 6%, transparent); border: 1px solid color-mix(in srgb, var(--c) 28%, transparent); border-radius: 999px;
   padding: 3px 12px; display: inline-flex; gap: 5px; align-items: center;
 }
-.subtab:hover { color: var(--ink); border-color: var(--line); }
-.subtab[aria-selected="true"] { color: var(--ink); font-weight: 700; background: var(--accent-soft); border-color: var(--line); }
-.subtab .n { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.subtab:hover { background: color-mix(in srgb, var(--c) 14%, transparent); }
+.subtab[aria-selected="true"] { color: var(--surface); font-weight: 700; background: var(--c); border-color: var(--c); }
+.subtab .n { font-family: var(--font-mono); font-size: 11px; color: inherit; opacity: .8; }
 .subtab .n.zero { opacity: .5; }
 /* 3段目のタブ（譲渡所得の課税方法など） */
 .subtabs.sub2 { align-items: center; padding-top: 0; }
 .subtabs.sub2::before { content: "└"; color: var(--muted); margin: 0 4px 0 10px; }
 .subtabs.sub2 .subtab { font-size: 12.5px; padding: 2px 10px; }
+.subtabs.sub2 .subtab[aria-selected="true"] { color: var(--c); background: color-mix(in srgb, var(--c) 18%, transparent); border-color: var(--c); }
 .status { margin-left: auto; padding-bottom: 12px; color: var(--muted); font-size: 12.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* 本体 */
 main.wrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 24px; padding-block: 18px 40px; }
 .list { display: grid; gap: 2px; align-content: start; min-width: 0; }
 .group-label {
-  font-size: 12px; letter-spacing: .08em; color: var(--muted); padding: 14px 10px 4px;
+  font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--c); padding: 14px 10px 4px;
   display: flex; align-items: center; gap: 8px;
 }
 .group-label:first-child { padding-top: 0; }
@@ -140,18 +141,18 @@ main.wrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr
 .empty .others button { font: inherit; font-size: 13px; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
 .result {
   display: grid; gap: 2px; text-align: left; font: inherit; color: inherit; cursor: pointer;
-  background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; width: 100%;
+  background: transparent; border: 0; border-left: 4px solid color-mix(in srgb, var(--c) 30%, transparent); border-radius: 6px; padding: 8px 10px; width: 100%;
 }
-.result:hover { background: var(--accent-soft); }
-.result[aria-current="true"] { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.result:hover { background: color-mix(in srgb, var(--c) 7%, transparent); }
+.result[aria-current="true"] { background: color-mix(in srgb, var(--c) 9%, var(--surface)); border-left-color: var(--c); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, var(--line)); }
 .result .row { display: flex; gap: 8px; align-items: baseline; min-width: 0; }
 .result .term { font-weight: 700; min-width: 0; }
 .result .code { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: auto; }
 .result .ry { font-size: 11.5px; color: var(--muted); letter-spacing: .04em; overflow-wrap: anywhere; }
 .result .snip { font-size: 12.5px; color: var(--muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .pill {
-  font-size: 11px; color: var(--c); border: 1px solid currentColor; border-radius: 4px;
-  padding: 0 5px; white-space: nowrap; line-height: 1.6;
+  font-size: 11.5px; font-weight: 700; color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent);
+  border-radius: 999px; padding: 1px 9px; white-space: nowrap; line-height: 1.6;
 }
 mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padding: 0 1px; }
 .more { font: inherit; font-size: 13px; color: var(--accent); background: none; border: 1px dashed var(--line); border-radius: 6px; padding: 8px; cursor: pointer; margin-top: 6px; }
@@ -173,7 +174,7 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .law { font-family: var(--font-mono); font-size: 12px; }
 .body { max-width: 72ch; overflow-wrap: anywhere; }
-.body h3 { font-size: 17px; margin: 28px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+.body h3 { font-size: 17px; margin: 28px 0 8px; padding: 0 0 4px 10px; border-bottom: 1px solid color-mix(in srgb, var(--c, var(--line)) 30%, var(--line)); border-left: 4px solid var(--c, var(--line)); }
 .body h4 { font-size: 15.5px; margin: 20px 0 6px; }
 .body h5, .body h6 { font-size: 14.5px; margin: 16px 0 4px; color: var(--muted); }
 .body p { margin: 0 0 10px; }
@@ -186,7 +187,7 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .tbl td { font-variant-numeric: tabular-nums; }
 .examples ul { padding-left: 1.2em; }
 .examples li { margin: 4px 0; }
-.examples .to { margin-left: 6px; font-weight: 700; }
+.examples .to { margin-left: 6px; font-weight: 700; color: var(--c); }
 .examples .src { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: 4px; }
 .examples .src:hover { color: var(--accent); }
 /* 源泉徴収税額表 */
@@ -507,6 +508,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   function catStyle(id) { return "--c: var(--c-" + CAT[id].color + ")"; }
 
   function renderTabs(counts) {
+    document.body.setAttribute("style", catStyle(state.cat));
     tabsEl.innerHTML = CATS.map(function (c) {
       var on = state.cat === c.id, n = counts[c.id] || 0;
       return '<button class="tab" type="button" role="tab" id="tab-' + c.id + '" data-cat="' + c.id + '" style="' + catStyle(c.id) +
@@ -849,6 +851,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var it = BY_ID[state.current];
     if (!it) { detailEl.innerHTML = ""; return; }
     var c = CAT[it.cat], toks = flat(tokens(state.q)), h = "";
+    detailEl.setAttribute("style", catStyle(it.cat));
     h += '<button class="back" type="button" id="back">← 一覧へ戻る</button>';
     h += '<div class="eyebrow" style="' + catStyle(it.cat) + '"><span class="pill">' + esc(c.name) + "</span>" +
       (it.sub && (it.kind === "tsutatsu" || it.kind === "kiji") ? "<span>" + esc(SUB[it.sub].name) + "</span>" : "") +
