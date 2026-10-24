@@ -47639,7 +47639,7 @@
         {
           "label": "給与・賞与",
           "rate": "源泉徴収税額表による",
-          "note": "月額表・日額表・賞与の算出率の表（年末調整タブの源泉徴収税額表）",
+          "note": "月額表・日額表・賞与の算出率の表（辞書タブの年末調整 → 源泉徴収税額表）",
           "source": "No.2511",
           "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2511.htm",
           "jump": "no2511",

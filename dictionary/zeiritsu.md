@@ -57,7 +57,7 @@
 
 | 支払うもの | 税率 | 備考 | 出典 |
 |---|---|---|---|
-| 給与・賞与 | 源泉徴収税額表による | 月額表・日額表・賞与の算出率の表（年末調整タブの源泉徴収税額表） | [No.2511](https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2511.htm) |
+| 給与・賞与 | 源泉徴収税額表による | 月額表・日額表・賞与の算出率の表（辞書タブの年末調整 → 源泉徴収税額表） | [No.2511](https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2511.htm) |
 | 退職手当等（「退職所得の受給に関する申告書」を提出していない人） | 20.42% | 確定申告で精算 | [No.1420](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm) |
 | 上場株式等の配当等（大口株主等を除く） | 15.315%（他に地方税5%） |  | [No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm) |
 | 上場株式等以外の配当等 | 20.42%（地方税なし） |  | [No.1330](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm) |

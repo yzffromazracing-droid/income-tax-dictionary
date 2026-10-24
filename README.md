@@ -9,11 +9,10 @@
 - 用語名・通称・要旨・本文・根拠法令（例: `所法9`）・タックスアンサー番号（例: `1199`）を対象に検索
 - ひらがなの読みでも検索できます（例: `ふよう` → 扶養控除、`じゅうたく` → 本文中の「住宅」「住宅借入金」も対象）
 - スペース区切りで AND 検索、全角/半角・カタカナ/ひらがなの違いは無視
-- 先頭の「辞書」タブでは全カテゴリをまとめて検索できます（下のタブでカテゴリに絞り込み。検索結果にはカテゴリ名を表示）
-- 辞書タブの右の「税率」タブでは、所得税の速算表、復興特別所得税・防衛特別所得税、分離課税の税率、源泉徴収の税率を表にまとめています（[dictionary/zeiritsu.md](dictionary/zeiritsu.md)、[data/zeiritsu.json](data/zeiritsu.json)。各行の税率はタックスアンサーの文言とビルド時に照合）
-- 非課税・所得区分・青色申告・所得控除・年末調整・税額控除・国税庁の記事・通達をタブで切り替え（検索中は各タブに一致件数を表示）
+- 上のタブは「辞書｜国税庁の記事｜通達」の3つ。辞書タブでは全カテゴリをまとめて検索でき、下のタブ（全体｜税率｜非課税｜所得区分｜青色申告｜所得控除｜年末調整｜税額控除｜国税庁の記事｜通達）でカテゴリに絞り込みます（検索中は件数を表示し、検索結果にはカテゴリ名を表示）
+- 辞書タブの「税率」では、所得税の速算表、復興特別所得税・防衛特別所得税、分離課税の税率、源泉徴収の税率を表にまとめています（[dictionary/zeiritsu.md](dictionary/zeiritsu.md)、[data/zeiritsu.json](data/zeiritsu.json)。各行の税率はタックスアンサーの文言とビルド時に照合）
 - 通達タブの下には基本通達・個別通達のタブがあり、`36-30` や `所基通9-3` のように通達番号でも検索できる
-- 非課税タブの下には No.2011 の表の区分（利子・配当所得関係、給与所得・公的年金関係、譲渡（山林）所得関係、その他）のタブ、所得区分タブの下には利子所得から雑所得までの10種類の所得のタブ（利子所得・配当所得・譲渡所得・一時所得・雑所得の下にはさらに総合課税・分離課税のタブ、退職所得・山林所得の下には分離課税のタブ、不動産所得・事業所得・給与所得の下には総合課税のタブ）、所得控除タブの下には雑損控除から基礎控除までの各控除のタブ、年末調整タブの下には対象となる人・対象となる給与・控除の申告・精算・やり直し・確定申告が必要な場合・源泉徴収税額表のタブ、税額控除タブの下には配当控除から公益社団法人等寄附金特別控除までの各控除のタブがある
+- 辞書タブでカテゴリを選ぶと、さらにその下のタブで絞り込めます。非課税の下には No.2011 の表の区分（利子・配当所得関係、給与所得・公的年金関係、譲渡（山林）所得関係、その他）のタブ、所得区分の下には利子所得から雑所得までの10種類の所得のタブ（利子所得・配当所得・譲渡所得・一時所得・雑所得の下にはさらに総合課税・分離課税のタブ、退職所得・山林所得の下には分離課税のタブ、不動産所得・事業所得・給与所得の下には総合課税のタブ）、所得控除の下には雑損控除から基礎控除までの各控除のタブ、年末調整の下には対象となる人・対象となる給与・控除の申告・精算・やり直し・確定申告が必要な場合・源泉徴収税額表のタブ、税額控除の下には配当控除から公益社団法人等寄附金特別控除までの各控除のタブがある
 - `#no1199` のようなリンクで用語を、`#shotoku-kojo` や `#kyuyo`（給与所得）のようなリンクでタブを直接開ける
 
 ## カテゴリ
@@ -25,7 +24,7 @@
 | 青色申告 | [dictionary/aoiro.md](dictionary/aoiro.md) | [No.2070 青色申告制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm) | 4 |
 | 所得控除 | [dictionary/shotoku-kojo.md](dictionary/shotoku-kojo.md) | [No.1100 所得控除のあらまし](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1100.htm) | 18 |
 | 年末調整 | [dictionary/nenmatsu.md](dictionary/nenmatsu.md) | [No.2662 年末調整のしかた](https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm) | 14 |
-| 源泉徴収税額表（年末調整タブ） | [dictionary/gensen-zeigakuhyo.md](dictionary/gensen-zeigakuhyo.md) | [令和8年分](https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/01.htm)・[令和9年分](https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2027/01.htm)の源泉徴収税額表 | 6 表 |
+| 源泉徴収税額表（辞書タブの年末調整） | [dictionary/gensen-zeigakuhyo.md](dictionary/gensen-zeigakuhyo.md) | [令和8年分](https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/01.htm)・[令和9年分](https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2027/01.htm)の源泉徴収税額表 | 6 表 |
 | 税額控除 | [dictionary/zeigaku-kojo.md](dictionary/zeigaku-kojo.md) | [No.1200 税額控除](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1200.htm) | 11 |
 | 国税庁の記事（タックスアンサー） | [dictionary/kiji-taxanswer.md](dictionary/kiji-taxanswer.md) | [タックスアンサー コード一覧](https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm)の所得税・源泉所得税・譲渡所得 | 346 |
 | 国税庁の記事（質疑応答事例） | [dictionary/kiji-shitsugi.md](dictionary/kiji-shitsugi.md) | [質疑応答事例](https://www.nta.go.jp/law/shitsugi/01.htm)の所得税・源泉所得税・譲渡所得 | 669 |
