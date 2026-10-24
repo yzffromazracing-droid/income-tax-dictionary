@@ -2,7 +2,7 @@
   "title": "所得税区分辞書",
   "source": "国税庁 タックスアンサー（よくある税の質問）所得税・法令解釈通達",
   "source_url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/code/index.htm",
-  "generated_at": "2026-10-20",
+  "generated_at": "2026-10-24",
   "categories": [
     {
       "id": "hikazei",
@@ -47361,5 +47361,382 @@
         "source_url": "https://www.nta.go.jp/law/shitsugi/joto/21/10.htm"
       }
     ]
-  }
+  },
+  "zeiritsu": [
+    {
+      "id": "zr-sokusan",
+      "term": "所得税の税率（速算表）",
+      "summary": "総合課税の所得や退職所得・山林所得にかかる所得税の税率は、5%から45%の7段階です。課税される所得金額（1,000円未満切捨て）×税率－控除額で求めます。",
+      "head": [
+        "課税される所得金額",
+        "税率",
+        "控除額"
+      ],
+      "rows": [
+        {
+          "label": "1,000円から1,949,000円まで",
+          "rate": "5%",
+          "note": "0円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "label": "1,950,000円から3,299,000円まで",
+          "rate": "10%",
+          "note": "97,500円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "label": "3,300,000円から6,949,000円まで",
+          "rate": "20%",
+          "note": "427,500円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "label": "6,950,000円から8,999,000円まで",
+          "rate": "23%",
+          "note": "636,000円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "label": "9,000,000円から17,999,000円まで",
+          "rate": "33%",
+          "note": "1,536,000円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "label": "18,000,000円から39,999,000円まで",
+          "rate": "40%",
+          "note": "2,796,000円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "label": "40,000,000円以上",
+          "rate": "45%",
+          "note": "4,796,000円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        }
+      ],
+      "notes": [
+        {
+          "text": "例：課税される所得金額が700万円なら 7,000,000円×23%－636,000円＝974,000円",
+          "source": "No.2260",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+          "jump": "ta-shotoku2260",
+          "title": "No.2260 所得税の税率"
+        },
+        {
+          "text": "基準所得金額が3億3,000万円を超える場合は、超える部分の22.5%相当額が通常の税額を上回る部分が加算されます（特定の基準所得金額の課税の特例）",
+          "source": "No.2270",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2270.htm",
+          "jump": "ta-shotoku2270",
+          "title": "No.2270 特定の基準所得金額の課税の特例"
+        }
+      ],
+      "yomi": "しょとくぜいのぜいりつそくさんひょう"
+    },
+    {
+      "id": "zr-fukko",
+      "term": "復興特別所得税・防衛特別所得税",
+      "summary": "所得税と併せて、基準所得税額に一定の税率を掛けた復興特別所得税（令和9年分以後は防衛特別所得税も）を申告・納付します。源泉徴収の税率（15.315%・20.42%など）はこれを含んだものです。",
+      "head": [
+        "区分",
+        "税率",
+        "内容"
+      ],
+      "rows": [
+        {
+          "label": "復興特別所得税（令和8年分まで）",
+          "rate": "2.1%",
+          "note": "基準所得税額に掛ける",
+          "source": "No.1522",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
+          "jump": "no1522",
+          "title": "No.1522 先物取引に係る雑所得等の課税の特例"
+        },
+        {
+          "label": "復興特別所得税（令和9年分以後）",
+          "rate": "1.1%",
+          "note": "基準所得税額に掛ける",
+          "source": "No.1522",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
+          "jump": "no1522",
+          "title": "No.1522 先物取引に係る雑所得等の課税の特例"
+        },
+        {
+          "label": "防衛特別所得税（令和9年分以後）",
+          "rate": "1%",
+          "note": "基準所得税額に掛ける",
+          "source": "No.1522",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
+          "jump": "no1522",
+          "title": "No.1522 先物取引に係る雑所得等の課税の特例"
+        },
+        {
+          "label": "源泉徴収の合計税率",
+          "rate": "変更なし",
+          "note": "令和9年以後も防衛特別所得税と復興特別所得税の合計税率は同じ",
+          "source": "No.1420",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+          "jump": "no1420",
+          "title": "No.1420 退職金を受け取ったとき(退職所得)"
+        }
+      ],
+      "notes": [],
+      "yomi": "ふっこうとくべつしょとくぜいぼうえいとくべつしょとくぜい"
+    },
+    {
+      "id": "zr-bunri",
+      "term": "分離課税の税率",
+      "summary": "他の所得と合計せずに税額を計算する所得の税率です。源泉分離課税は源泉徴収だけで課税が終わり、申告分離課税は確定申告で税額を計算します。",
+      "head": [
+        "所得",
+        "税率",
+        "課税方法など"
+      ],
+      "rows": [
+        {
+          "label": "預貯金・一般公社債等の利子",
+          "rate": "15.315%（他に地方税5%）",
+          "note": "源泉分離課税",
+          "source": "No.1310",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
+          "jump": "no1310",
+          "title": "No.1310 利息を受け取ったとき(利子所得)"
+        },
+        {
+          "label": "特定公社債等の利子",
+          "rate": "15.315%（他に地方税5%）",
+          "note": "申告分離課税（確定申告しないことも選択できる）",
+          "source": "No.1310",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm",
+          "jump": "no1310",
+          "title": "No.1310 利息を受け取ったとき(利子所得)"
+        },
+        {
+          "label": "上場株式等の配当等（申告分離課税を選択）",
+          "rate": "15.315%（他に地方税5%）",
+          "note": "申告分離課税",
+          "source": "No.1331",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1331.htm",
+          "jump": "no1331",
+          "title": "No.1331 上場株式等の配当等に係る申告分離課税制度"
+        },
+        {
+          "label": "株式等の譲渡所得等",
+          "rate": "所得税15%（住民税5%）",
+          "note": "申告分離課税。別に復興特別所得税",
+          "source": "No.1463",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1463.htm",
+          "jump": "no1463",
+          "title": "No.1463 株式等を譲渡したときの課税(申告分離課税)"
+        },
+        {
+          "label": "土地建物等の譲渡（長期：所有期間5年超）",
+          "rate": "所得税15%",
+          "note": "申告分離課税。別に復興特別所得税",
+          "source": "No.1440",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
+          "jump": "no1440",
+          "title": "No.1440 譲渡所得(土地や建物を譲渡したとき)"
+        },
+        {
+          "label": "土地建物等の譲渡（短期：所有期間5年以下）",
+          "rate": "所得税30%",
+          "note": "申告分離課税。別に復興特別所得税",
+          "source": "No.1440",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
+          "jump": "no1440",
+          "title": "No.1440 譲渡所得(土地や建物を譲渡したとき)"
+        },
+        {
+          "label": "先物取引に係る雑所得等（FXを含む）",
+          "rate": "所得税15%（他に地方税5%）",
+          "note": "申告分離課税。別に復興特別所得税",
+          "source": "No.1522",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1522.htm",
+          "jump": "no1522",
+          "title": "No.1522 先物取引に係る雑所得等の課税の特例"
+        },
+        {
+          "label": "金融類似商品の収益（定期積金の給付補てん金など）",
+          "rate": "15.315%（他に地方税5%）",
+          "note": "源泉分離課税",
+          "source": "No.1520",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1520.htm",
+          "jump": "no1520",
+          "title": "No.1520 金融類似商品と税金"
+        },
+        {
+          "label": "一時払養老保険の差益など（保険期間5年以内など）",
+          "rate": "15.315%（他に地方税5%）",
+          "note": "源泉分離課税（確定申告できない）",
+          "source": "No.1490",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1490.htm",
+          "jump": "no1490",
+          "title": "No.1490 一時所得"
+        },
+        {
+          "label": "退職所得",
+          "rate": "速算表の税率",
+          "note": "他の所得と分離して計算",
+          "source": "No.1420",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+          "jump": "no1420",
+          "title": "No.1420 退職金を受け取ったとき(退職所得)"
+        },
+        {
+          "label": "山林所得",
+          "rate": "速算表の税率（5分5乗方式）",
+          "note": "（課税山林所得金額×5分の1×税率）×5",
+          "source": "No.1480",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1480.htm",
+          "jump": "no1480",
+          "title": "No.1480 山林所得"
+        }
+      ],
+      "notes": [
+        {
+          "text": "長期・短期は、譲渡した年の1月1日現在の所有期間が5年を超えるかどうかで分けます",
+          "source": "No.1440",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1440.htm",
+          "jump": "no1440",
+          "title": "No.1440 譲渡所得(土地や建物を譲渡したとき)"
+        }
+      ],
+      "yomi": "ぶんりかぜいのぜいりつ"
+    },
+    {
+      "id": "zr-gensen",
+      "term": "源泉徴収の税率",
+      "summary": "支払の際に源泉徴収される所得税および復興特別所得税の主な税率です（令和9年以後も合計税率は同じ）。",
+      "head": [
+        "支払うもの",
+        "税率",
+        "備考"
+      ],
+      "rows": [
+        {
+          "label": "給与・賞与",
+          "rate": "源泉徴収税額表による",
+          "note": "月額表・日額表・賞与の算出率の表（年末調整タブの源泉徴収税額表）",
+          "source": "No.2511",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2511.htm",
+          "jump": "no2511",
+          "title": "No.2511 税額表の種類と使い方"
+        },
+        {
+          "label": "退職手当等（「退職所得の受給に関する申告書」を提出していない人）",
+          "rate": "20.42%",
+          "note": "確定申告で精算",
+          "source": "No.1420",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+          "jump": "no1420",
+          "title": "No.1420 退職金を受け取ったとき(退職所得)"
+        },
+        {
+          "label": "上場株式等の配当等（大口株主等を除く）",
+          "rate": "15.315%（他に地方税5%）",
+          "note": "",
+          "source": "No.1330",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
+          "jump": "no1330",
+          "title": "No.1330 配当金を受け取ったとき(配当所得)"
+        },
+        {
+          "label": "上場株式等以外の配当等",
+          "rate": "20.42%（地方税なし）",
+          "note": "",
+          "source": "No.1330",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
+          "jump": "no1330",
+          "title": "No.1330 配当金を受け取ったとき(配当所得)"
+        },
+        {
+          "label": "原稿料・講演料、弁護士・税理士等の報酬など（100万円以下の部分）",
+          "rate": "10.21%",
+          "note": "支払金額×10.21%",
+          "source": "No.2795",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2795.htm",
+          "jump": "ta-gensen2795",
+          "title": "No.2795 原稿料や講演料等を支払ったとき"
+        },
+        {
+          "label": "原稿料・講演料、弁護士・税理士等の報酬など（100万円を超える部分）",
+          "rate": "20.42%",
+          "note": "（支払金額－100万円）×20.42%＋102,100円",
+          "source": "No.2795",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2795.htm",
+          "jump": "ta-gensen2795",
+          "title": "No.2795 原稿料や講演料等を支払ったとき"
+        },
+        {
+          "label": "非居住者への給与・報酬・退職手当等",
+          "rate": "20.42%",
+          "note": "",
+          "source": "No.2884",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2884.htm",
+          "jump": "ta-gensen2884",
+          "title": "No.2884 非居住者等に対する源泉徴収・源泉徴収の税率"
+        },
+        {
+          "label": "非居住者への不動産の賃貸料等",
+          "rate": "20.42%",
+          "note": "",
+          "source": "No.2884",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2884.htm",
+          "jump": "ta-gensen2884",
+          "title": "No.2884 非居住者等に対する源泉徴収・源泉徴収の税率"
+        },
+        {
+          "label": "非居住者からの土地等の譲受け（譲渡対価）",
+          "rate": "10.21%",
+          "note": "",
+          "source": "No.2884",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2884.htm",
+          "jump": "ta-gensen2884",
+          "title": "No.2884 非居住者等に対する源泉徴収・源泉徴収の税率"
+        },
+        {
+          "label": "非居住者への利子等",
+          "rate": "15.315%",
+          "note": "",
+          "source": "No.2884",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2884.htm",
+          "jump": "ta-gensen2884",
+          "title": "No.2884 非居住者等に対する源泉徴収・源泉徴収の税率"
+        }
+      ],
+      "notes": [
+        {
+          "text": "令和9年1月1日以後に生ずる所得は、復興特別所得税1.1%と防衛特別所得税1%に分かれて源泉徴収されます",
+          "source": "No.1330",
+          "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm",
+          "jump": "no1330",
+          "title": "No.1330 配当金を受け取ったとき(配当所得)"
+        }
+      ],
+      "yomi": "げんせんちょうしゅうのぜいりつ"
+    }
+  ]
 }

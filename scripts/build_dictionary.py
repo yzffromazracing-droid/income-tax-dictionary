@@ -47,6 +47,7 @@ HIKAZEI_EXAMPLES = DATA / "hikazei_examples.json"
 NENMATSU_POINTS = DATA / "nenmatsu_points.json"
 NENMATSU_EXAMPLES = DATA / "nenmatsu_examples.json"
 ZEIGAKUHYO = DATA / "zeigakuhyo.json"
+ZEIRITSU = DATA / "zeiritsu.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "nenmatsu": "nenmatsu", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 KIJI_TAB = {
@@ -686,6 +687,54 @@ def check_zeigakuhyo(tables, page):
         raise SystemExit("源泉徴収税額表の計算が No.2523 の計算例と合いません。\n" + "\n".join(errors))
 
 
+def build_zeiritsu(taxanswer, item_ids):
+    """税率のまとめ（data/zeiritsu.json）に出典を付ける。各行の quote がタックスアンサーの本文にあるかを照合する。"""
+    pages = {e["code"]: e for e in taxanswer}
+    items, errors = [], []
+
+    def source(x):
+        page = pages.get(x["src"])
+        if page is None or _plain(x["quote"]) not in _plain(page["content_md"]):
+            errors.append(f"  {x.get('label') or x['text']}: No.{x['src']} に「{x['quote']}」が見つかりません")
+            return {}
+        jump = f"no{page['code']}" if f"no{page['code']}" in item_ids else f"ta-{page['folder']}{page['code']}"
+        return {"source": f"No.{page['code']}", "url": page["source_url"], "jump": jump, "title": page["title"]}
+
+    for it in json.loads(ZEIRITSU.read_text(encoding="utf-8"))["items"]:
+        rows = [{k: r[k] for k in ("label", "rate", "note")} | source(r) for r in it["rows"]]
+        notes = [{"text": n["text"]} | source(n) for n in it["notes"]]
+        items.append({"id": it["id"], "term": it["term"], "summary": it["summary"], "head": it["head"],
+                      "rows": rows, "notes": notes})
+    if errors:
+        raise SystemExit(f"{ZEIRITSU.name} の出典を確認してください。\n" + "\n".join(errors))
+    return items
+
+
+def zeiritsu_search_items(items):
+    out = []
+    for it in items:
+        srcs = list({x["url"]: {"title": x["title"], "url": x["url"]} for x in it["rows"] + it["notes"]}.values())
+        md = "\n\n".join([it["summary"]] + [f"{r['label']} {r['rate']} {r['note']}" for r in it["rows"]] +
+                          [n["text"] for n in it["notes"]])
+        out.append({"id": it["id"], "cat": "zeiritsu", "sub": "", "subs": [], "sub2": [], "kind": "zeiritsu",
+                    "term": it["term"], "yomi": it["yomi"], "summary": it["summary"], "md": md, "head": it["head"],
+                    "rows": it["rows"], "notes": it["notes"], "sources": srcs, "url": srcs[0]["url"],
+                    "srcLabel": "タックスアンサー", "srcTitle": srcs[0]["title"]})
+    return out
+
+
+def render_zeiritsu_md(items):
+    lines = ["# 税率", "", "国税庁タックスアンサーをもとに、所得税の税率を整理したもの。", ""]
+    for it in items:
+        lines += [f"## {it['term']}", "", it["summary"], "", "| " + " | ".join(it["head"] + ["出典"]) + " |",
+                  "|" + "---|" * (len(it["head"]) + 1)]
+        lines += [f"| {r['label']} | {r['rate']} | {r['note']} | [{r['source']}]({r['url']}) |" for r in it["rows"]]
+        lines.append("")
+        lines += [f"- {n['text']}（[{n['source']}]({n['url']})）" for n in it["notes"]]
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def render_search_page(result, yomi_pairs, extra_items):
     """1ファイルで動く検索ページ（docs/index.html）を生成する。"""
     as_of = next((c["overview"]["as_of"] for c in result["categories"] if c["overview"]["as_of"]), "")
@@ -792,9 +841,16 @@ def main():
         shitsugi, "qa"), encoding="utf-8")
     print(f"国税庁の記事: タックスアンサー {len(taxanswer)} 件、質疑応答事例 {len(shitsugi)} 件", file=sys.stderr)
 
+    item_ids = {it["id"] for it in search_items(result)}
+    zeiritsu = build_zeiritsu(taxanswer, item_ids)
+    add_yomi(zeiritsu, table, maxlen)
+    result["zeiritsu"] = zeiritsu
+    (DOCS / "zeiritsu.md").write_text(render_zeiritsu_md(zeiritsu), encoding="utf-8")
+    print(f"税率: {len(zeiritsu)} 項目", file=sys.stderr)
+
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    render_search_page(result, yomi_pairs, zeigakuhyo.search_items(tables) +
+    render_search_page(result, yomi_pairs, zeiritsu_search_items(zeiritsu) + zeigakuhyo.search_items(tables) +
                        kiji.search_items(taxanswer, shitsugi) + tsutatsu.search_items(kihon, kobetsu))
 
 
