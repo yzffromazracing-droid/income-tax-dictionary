@@ -550,7 +550,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     subtabsEl.hidden = !subs.length;
     document.querySelector("header.top").classList.toggle("has-sub", subs.length > 0);
     if (!subs.length) { subtabsEl.innerHTML = ""; return; }
-    var tabs = [{ id: "all", name: cat === "dict" ? "辞書" : "すべて", n: total }].concat(subs.map(function (t) { return { id: t.id, name: t.name, n: counts[t.id] || 0 }; }));
+    var tabs = [{ id: "all", name: cat === "dict" ? "全体" : "すべて", n: total }].concat(subs.map(function (t) { return { id: t.id, name: t.name, n: counts[t.id] || 0 }; }));
     subtabsEl.innerHTML = tabs.map(function (t) {
       var on = state.sub === t.id;
       return '<button class="subtab" type="button" role="tab" id="sub-' + t.id + '" data-sub="' + t.id + '"' +
