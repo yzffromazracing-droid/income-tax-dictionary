@@ -24,6 +24,7 @@
   --c-kiji: #8a5a00;
   --c-nenmatsu: #a8323e;
   --c-dict: #2f3b4c;
+  --c-zeiritsu: #0b6aa2;
   --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
   --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -33,14 +34,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
     --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b; --c-dict: #c9d3df;
+    --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b; --c-dict: #c9d3df; --c-zeiritsu: #7cc8f0;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111720; --surface: #19212c; --ink: #e6ebf2; --muted: #9aa6b6; --line: #2c3746;
   --accent: #8fb4ec; --accent-soft: #22324a; --mark: #6b5310; --mark-ink: #fff6dc;
-  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b; --c-dict: #c9d3df;
+  --c-hikazei: #5fd1bf; --c-kubun: #8fb4ec; --c-shotoku: #f0ae66; --c-zeigaku: #e09ad2; --c-tsutatsu: #b9c98a; --c-aoiro: #a9adf5; --c-kiji: #e8b653; --c-nenmatsu: #f2939b; --c-dict: #c9d3df; --c-zeiritsu: #7cc8f0;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -192,6 +193,11 @@ mark { background: var(--mark); color: var(--mark-ink); border-radius: 2px; padd
 .examples .to { margin-left: 6px; font-weight: 700; color: var(--c); }
 .examples .src { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; margin-left: 4px; }
 .examples .src:hover { color: var(--accent); }
+/* 税率 */
+.tbl.zr td.rate { font-weight: 700; color: var(--c); white-space: nowrap; }
+.tbl.zr table { min-width: 640px; }
+.tbl.zr td:first-child { min-width: 12em; }
+.tbl.zr .src { font-family: var(--font-mono); font-size: 11.5px; white-space: nowrap; }
 /* 源泉徴収税額表 */
 .zh-lead { margin: 0 0 12px; max-width: 72ch; }
 .calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px 14px; margin: 0 0 10px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
@@ -274,13 +280,17 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   var DATA = JSON.parse(document.getElementById("dict-data").textContent);
   var CATS = DATA.categories;
   // 「辞書」タブ：すべてのタブの項目をまとめて探す。下のタブは各カテゴリ（d-<カテゴリ>）
+  // 「税率」は辞書タブの中だけにある（上のタブにはしない）
+  var ZEIRITSU = { id: "zeiritsu", name: "税率", color: "zeiritsu", subtabs: [] };
   var DICT = { id: "dict", name: "辞書", color: "dict",
-    subtabs: CATS.map(function (c) { return { id: "d-" + c.id, name: c.name, children: [] }; }) };
+    subtabs: [ZEIRITSU].concat(CATS).map(function (c) { return { id: "d-" + c.id, name: c.name, children: [] }; }) };
   var TABS = [DICT].concat(CATS);
   var CAT = {};
-  TABS.forEach(function (c) { CAT[c.id] = c; });
-  var CAT_ORDER = {};
+  TABS.concat([ZEIRITSU]).forEach(function (c) { CAT[c.id] = c; });
+  var CAT_ORDER = { zeiritsu: -1 };
   CATS.forEach(function (c, i) { CAT_ORDER[c.id] = i; });
+  // 項目を開くタブ（税率の項目は辞書タブで開く）
+  function tabOf(it) { return it.cat === "zeiritsu" ? "dict" : it.cat; }
   var ITEMS = DATA.items;
   var BY_ID = {};
   ITEMS.forEach(function (it) { BY_ID[it.id] = it; });
@@ -534,7 +544,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     subtabsEl.hidden = !subs.length;
     document.querySelector("header.top").classList.toggle("has-sub", subs.length > 0);
     if (!subs.length) { subtabsEl.innerHTML = ""; return; }
-    var tabs = [{ id: "all", name: "すべて", n: total }].concat(subs.map(function (t) { return { id: t.id, name: t.name, n: counts[t.id] || 0 }; }));
+    var tabs = [{ id: "all", name: cat === "dict" ? "辞書" : "すべて", n: total }].concat(subs.map(function (t) { return { id: t.id, name: t.name, n: counts[t.id] || 0 }; }));
     subtabsEl.innerHTML = tabs.map(function (t) {
       var on = state.sub === t.id;
       return '<button class="subtab" type="button" role="tab" id="sub-' + t.id + '" data-sub="' + t.id + '"' +
@@ -689,9 +699,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (!it) return;
     if (state.cat === "dict") {
       if (state.sub !== "all" && state.sub !== "d-" + it.cat) { state.sub = "all"; state.limit = 60; }
-    } else if (it.cat !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
+    } else if (tabOf(it) !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
       qEl.value = ""; state.q = "";
-      state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
+      state.cat = tabOf(it); state.sub = it.cat === "zeiritsu" ? "d-zeiritsu" : it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
     }
     state.current = id;
     render();
@@ -864,6 +874,23 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     var row = hit && wrap.querySelector('tr[data-row="' + hit + '"]');
     if (row) { row.classList.add("hit"); wrap.scrollTop = Math.max(0, row.offsetTop - wrap.clientHeight / 2); }
   }
+  // ---- 税率のまとめ ----
+  function srcLink(x) {
+    return '<a class="src" href="' + esc(BY_ID[x.jump] ? "#" + x.jump : x.url) + '"' + (BY_ID[x.jump] ? ' data-jump="' + x.jump + '"' : ' target="_blank" rel="noopener"') +
+      ' title="' + esc(x.title) + '">' + esc(x.source) + "</a>";
+  }
+  function zeiritsuHtml(it) {
+    var h = '<p class="zh-lead">' + esc(it.summary) + "</p>";
+    h += '<div class="tbl zr"><table><thead><tr>' + it.head.concat(["出典"]).map(function (c) { return "<th>" + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>";
+    it.rows.forEach(function (r) {
+      h += "<tr><td>" + esc(r.label) + '</td><td class="rate">' + esc(r.rate) + "</td><td>" + esc(r.note) + "</td><td>" + srcLink(r) + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+    if (it.notes.length) h += '<div class="body examples"><ul>' + it.notes.map(function (n) { return "<li>" + esc(n.text) + " " + srcLink(n) + "</li>"; }).join("") + "</ul></div>";
+    var others = ITEMS.filter(function (x) { return x.kind === "zeiritsu" && x.id !== it.id; });
+    h += '<div class="body"><h3>ほかの税率</h3><ul>' + others.map(function (x) { return '<li><a href="#' + x.id + '" data-jump="' + x.id + '">' + esc(x.term) + "</a></li>"; }).join("") + "</ul></div>";
+    return h;
+  }
   function renderDetail() {
     var it = BY_ID[state.current];
     if (!it) { detailEl.innerHTML = ""; return; }
@@ -878,7 +905,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (it.yomi) h += '<p class="yomi">' + esc(it.yomi) + "</p>";
     if (it.alias) h += '<dl class="meta"><dt>通称</dt><dd>' + esc(it.alias) + "</dd></dl>";
     else h += '<div class="rule"></div>';
-    if (it.kind === "zeigakuhyo") {
+    if (it.kind === "zeiritsu") {
+      h += zeiritsuHtml(it);
+    } else if (it.kind === "zeigakuhyo") {
       h += zeigakuhyoHtml(it);
     } else if (it.kind === "hikazei") {
       h += examplesHtml(it);
@@ -908,10 +937,12 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (it.basis) h += '<dt>根拠法令等</dt><dd class="law">' + esc(it.basis) + "</dd>";
     if (it.asOf) h += "<dt>基準</dt><dd>" + esc(it.asOf) + "</dd>";
     if (it.issued) h += "<dt>番号・日付</dt><dd>" + esc(it.issued) + "</dd>";
-    h += "<dt>" + esc(it.srcLabel || "タックスアンサー") + '</dt><dd><a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
-      esc(it.srcTitle || (it.code ? it.title : "No.2011 課税される所得と非課税所得")) + "</a></dd></dl>" +
+    h += "<dt>" + esc(it.srcLabel || "タックスアンサー") + "</dt><dd>" + (it.sources ? it.sources.map(function (x) {
+      return '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.title) + "</a>";
+    }).join("<br>") : '<a href="' + esc(it.url) + '" target="_blank" rel="noopener">' +
+      esc(it.srcTitle || (it.code ? it.title : "No.2011 課税される所得と非課税所得")) + "</a>") + "</dd></dl>" +
       "<p>この内容は国税庁ホームページの" + (it.kind === "tsutatsu" ? "法令解釈通達" : it.kind === "kiji" || it.kind === "zeigakuhyo" ? it.srcLabel : "タックスアンサー") +
-      "を転載・整形したものです。最新の内容はリンク先で確認してください。</p></div>";
+      (it.kind === "zeiritsu" ? "をもとに整理したものです（各行の出典の文言と照合しています）。" : "を転載・整形したものです。") + "最新の内容はリンク先で確認してください。</p></div>";
     detailEl.innerHTML = h;
     markIn(detailEl.querySelector("h2"), toks);
     if (it.yomi) markIn(detailEl.querySelector(".yomi"), toks);
@@ -1012,7 +1043,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   $("foot").innerHTML = "出典: <a href=\"" + esc(DATA.source_url) + "\" target=\"_blank\" rel=\"noopener\">" + esc(DATA.source) + "</a>（" + esc(DATA.as_of) + "）。国税庁の公式サービスではありません。生成日 " + esc(DATA.generated_at) + "。";
 
   var initial = (location.hash || "").slice(1);
-  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; state.sub2 = (BY_ID[initial].sub2 || []).length === 1 ? BY_ID[initial].sub2[0] : "all"; }
+  if (BY_ID[initial]) { state.cat = tabOf(BY_ID[initial]); state.sub = BY_ID[initial].cat === "zeiritsu" ? "d-zeiritsu" : BY_ID[initial].sub || "all"; state.sub2 = (BY_ID[initial].sub2 || []).length === 1 ? BY_ID[initial].sub2[0] : "all"; }
   else if (CAT[initial]) state.cat = initial;
   else if (SUB[initial]) { state.cat = SUB[initial].cat; state.sub = initial; }
   else if (SUB2[initial]) { state.cat = SUB2[initial].cat; state.sub = SUB2[initial].sub; state.sub2 = initial; }
