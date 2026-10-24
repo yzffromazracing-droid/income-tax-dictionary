@@ -107,6 +107,8 @@ header.top .wrap { padding-block: 14px 12px; display: grid; grid-template-column
 }
 .tab:hover { background: color-mix(in srgb, var(--c) 8%, transparent); }
 .tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+/* タブが10個あるので、広い画面以外では色の点を省いて1行に収める */
+@media (max-width: 1399px) { .tab .dot { display: none; } }
 .tab .n {
   font-family: var(--font-mono); font-size: 11px; color: var(--c);
   background: color-mix(in srgb, var(--c) 13%, transparent); border-radius: 999px; padding: 0 7px; line-height: 1.6;
@@ -286,17 +288,15 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   var DATA = JSON.parse(document.getElementById("dict-data").textContent);
   var CATS = DATA.categories;
   // 「辞書」タブ：すべてのタブの項目をまとめて探す。下のタブは各カテゴリ（d-<カテゴリ>）
-  // 「税率」は辞書タブの中だけにある（上のタブにはしない）
+  // 「税率」タブ：辞書タブの右に置く（項目は data/zeiritsu.json から作る。下のタブはない）
   var ZEIRITSU = { id: "zeiritsu", name: "税率", color: "zeiritsu", subtabs: [] };
   var DICT = { id: "dict", name: "辞書", color: "dict",
     subtabs: [ZEIRITSU].concat(CATS).map(function (c) { return { id: "d-" + c.id, name: c.name, children: [] }; }) };
-  var TABS = [DICT].concat(CATS);
+  var TABS = [DICT, ZEIRITSU].concat(CATS);
   var CAT = {};
-  TABS.concat([ZEIRITSU]).forEach(function (c) { CAT[c.id] = c; });
+  TABS.forEach(function (c) { CAT[c.id] = c; });
   var CAT_ORDER = { zeiritsu: -1 };
   CATS.forEach(function (c, i) { CAT_ORDER[c.id] = i; });
-  // 項目を開くタブ（税率の項目は辞書タブで開く）
-  function tabOf(it) { return it.cat === "zeiritsu" ? "dict" : it.cat; }
   var ITEMS = DATA.items;
   var BY_ID = {};
   ITEMS.forEach(function (it) { BY_ID[it.id] = it; });
@@ -677,7 +677,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (pos >= state.limit) state.limit = pos + 20;
     var html = "", lastGroup = null, list = shown.slice(0, state.limit);
     list.forEach(function (x) {
-      var it = x.it, group = state.cat === "dict" ? CAT[it.cat].name : it.kind === "overview" ? "あらまし" : (it.group || (it.sub && groupLabel(it)) || "用語");
+      var it = x.it, group = state.cat === "dict" ? CAT[it.cat].name : it.kind === "overview" ? "あらまし" : (it.group || (it.sub && groupLabel(it)) || CAT[it.cat].name);
       if (!toks.length && group !== lastGroup) {
         html += '<div class="group-label"' + (state.cat === "dict" ? ' style="' + catStyle(it.cat) + '"' : "") + ">" + esc(group) + "</div>";
         lastGroup = group;
@@ -705,9 +705,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
     if (!it) return;
     if (state.cat === "dict") {
       if (state.sub !== "all" && state.sub !== "d-" + it.cat) { state.sub = "all"; state.limit = 60; }
-    } else if (tabOf(it) !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
+    } else if (it.cat !== state.cat || (it.sub && state.sub !== "all" && subsOf(it).indexOf(state.sub) < 0)) {
       qEl.value = ""; state.q = "";
-      state.cat = tabOf(it); state.sub = it.cat === "zeiritsu" ? "d-zeiritsu" : it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
+      state.cat = it.cat; state.sub = it.sub || "all"; state.sub2 = (it.sub2 || []).length === 1 ? it.sub2[0] : "all"; state.limit = 60;
     }
     state.current = id;
     render();
@@ -1049,7 +1049,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   $("foot").innerHTML = "出典: <a href=\"" + esc(DATA.source_url) + "\" target=\"_blank\" rel=\"noopener\">" + esc(DATA.source) + "</a>（" + esc(DATA.as_of) + "）。国税庁の公式サービスではありません。生成日 " + esc(DATA.generated_at) + "。";
 
   var initial = (location.hash || "").slice(1);
-  if (BY_ID[initial]) { state.cat = tabOf(BY_ID[initial]); state.sub = BY_ID[initial].cat === "zeiritsu" ? "d-zeiritsu" : BY_ID[initial].sub || "all"; state.sub2 = (BY_ID[initial].sub2 || []).length === 1 ? BY_ID[initial].sub2[0] : "all"; }
+  if (BY_ID[initial]) { state.cat = BY_ID[initial].cat; state.sub = BY_ID[initial].sub || "all"; state.sub2 = (BY_ID[initial].sub2 || []).length === 1 ? BY_ID[initial].sub2[0] : "all"; }
   else if (CAT[initial]) state.cat = initial;
   else if (SUB[initial]) { state.cat = SUB[initial].cat; state.sub = initial; }
   else if (SUB2[initial]) { state.cat = SUB2[initial].cat; state.sub = SUB2[initial].sub; state.sub2 = initial; }
