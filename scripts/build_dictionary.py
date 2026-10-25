@@ -61,7 +61,8 @@ KIJI_TAB = {
 }
 TSUTATSU_TAB = {
     "id": "tsutatsu", "name": "通達", "color": "tsutatsu",
-    "subtabs": [{"id": "kihon", "name": "基本通達"}, {"id": "kobetsu", "name": "個別通達"}],
+    "subtabs": [{"id": "kihon", "name": "基本通達"}, {"id": "kobetsu", "name": "個別通達"},
+                {"id": "sochiho", "name": "措置法通達", "children": []}],
 }
 
 CATEGORIES = [
@@ -780,6 +781,8 @@ def main():
     import tsutatsu
     kihon = tsutatsu.build_kihon(args.refresh)
     kobetsu = tsutatsu.build_kobetsu(args.refresh)
+    sochiho, kobetsu = tsutatsu.build_sochiho(kobetsu, args.refresh)
+    TSUTATSU_TAB["subtabs"][2]["children"] = [{"id": sid, "name": label} for _, sid, label in tsutatsu.SOCHIHO]
     yomi_pairs = load_yomi()
     table = dict(yomi_pairs)
     maxlen = max(len(s) for s in table)
@@ -824,10 +827,11 @@ def main():
     (DOCS / "gensen-zeigakuhyo.md").write_text(zeigakuhyo.render_md(tables), encoding="utf-8")
     print(f"源泉徴収税額表: {len(tables)} 表", file=sys.stderr)
 
-    result["tsutatsu"] = {"kihon": kihon, "kobetsu": kobetsu}
+    result["tsutatsu"] = {"kihon": kihon, "kobetsu": kobetsu, "sochiho": sochiho}
     (DOCS / "tsutatsu-kihon.md").write_text(tsutatsu.render_kihon_md(kihon), encoding="utf-8")
     (DOCS / "tsutatsu-kobetsu.md").write_text(tsutatsu.render_kobetsu_md(kobetsu), encoding="utf-8")
-    print(f"通達: 基本通達 {len(kihon)} 項目、個別通達 {len(kobetsu)} 項目", file=sys.stderr)
+    (DOCS / "tsutatsu-sochiho.md").write_text(tsutatsu.render_sochiho_md(sochiho), encoding="utf-8")
+    print(f"通達: 基本通達 {len(kihon)} 項目、個別通達 {len(kobetsu)} 項目、措置法通達 {len(sochiho)} 項目", file=sys.stderr)
 
     import kiji
     taxanswer = kiji.build_taxanswer(args.refresh)
@@ -851,7 +855,7 @@ def main():
     (DATA / "income_tax_dictionary.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     render_search_page(result, yomi_pairs, zeiritsu_search_items(zeiritsu) + zeigakuhyo.search_items(tables) +
-                       kiji.search_items(taxanswer, shitsugi) + tsutatsu.search_items(kihon, kobetsu))
+                       kiji.search_items(taxanswer, shitsugi) + tsutatsu.search_items(kihon, kobetsu, sochiho))
 
 
 if __name__ == "__main__":
