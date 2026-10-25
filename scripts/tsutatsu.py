@@ -2,6 +2,7 @@
 
   - 所得税基本通達: 「9-3」などの通達番号ごとに1項目
   - 個別通達（所得税関係）: 通達ごとに1項目。5ページを超える通達はページごとに1項目
+  - 措置法通達: 租税特別措置法関係の主な4つの通達を、「31・32共-1」などの通達番号ごとに1項目（個別通達からは除く）
 """
 
 import posixpath
@@ -19,6 +20,13 @@ KOBETSU_GROUPS = [
     ("源泉所得税関係", "/law/tsutatsu/kobetsu/shotoku/gensen/gensen.htm"),
     ("譲渡・山林所得関係", "/law/tsutatsu/kobetsu/shotoku/joto-sanrin/sanrin.htm"),
     ("租税特別措置法関係", "/law/tsutatsu/kobetsu/shotoku/sochiho/sotihou.htm"),
+]
+# 措置法通達として通達番号ごとに分ける通達（個別通達の「租税特別措置法関係」の名前、下のタブの id・名前）
+SOCHIHO = [
+    ("租税特別措置法に係る所得税の取扱いについて", "so-shotoku", "所得税関係"),
+    ("租税特別措置法に係る所得税の取扱い《源泉所得税関係》について", "so-gensen", "源泉所得税関係"),
+    ("租税特別措置法（株式等に係る譲渡所得等関係）の取扱いについて", "so-kabu", "株式等に係る譲渡所得等関係"),
+    ("租税特別措置法（山林所得・譲渡所得関係）の取扱いについて", "so-joto", "山林所得・譲渡所得関係"),
 ]
 SPLIT_PAGES = 5  # これを超えるページ数の個別通達はページごとに分ける
 MAX_PAGES = 400
@@ -249,6 +257,41 @@ def build_kobetsu(refresh=False):
     return entries
 
 
+def build_sochiho(kobetsu, refresh=False):
+    """個別通達のうち措置法通達（SOCHIHO）のページを通達番号ごとに分ける。
+
+    戻り値は（措置法通達の項目, それを除いた個別通達）。各ページの題名（「措置法第31条…関係」）を条の見出しにする。
+    """
+    names = {name: (sid, label) for name, sid, label in SOCHIHO}
+    entries, rest, last, linked = [], [], {}, {}
+    for e in kobetsu:
+        if e["circular"] not in names:
+            rest.append(e)
+            continue
+        sid, label = names[e["circular"]]
+        path = e["source_url"][len(BASE):]
+        # 通達の目次（最初のページ）からリンクされているページだけを使う（改正前の旧版のページへのリンクをたどったものは除く）
+        if sid not in linked:
+            linked[sid] = {path} | {l.split("#")[0] for l in kobetsu_page(path, refresh)["links"]}
+        if path not in linked[sid]:
+            continue
+        # 題名のない続きのページは、直前のページの条の見出しを引き継ぐ
+        group = last[sid] = e["page_title"] if e["page_title"] and e["page_title"] != e["circular"] else last.get(sid, "")
+        if not group:  # 最初の条の見出しより前（目次・前文）のページ
+            continue
+        meta = {"hen": e["circular"], "sho": label, "group": group}
+        for it in parse_kihon_page(path, meta, refresh):
+            # 目次のページの「番号＋リンク」だけの行は通達本文ではないので除く
+            if re.fullmatch(r"\[[^\]]+\]\([^)]+\)", it["content_md"].strip()):
+                continue
+            it.update(sub2=sid, header=e["header"])
+            entries.append(it)
+    missing = [name for name in names if not any(x["hen"] == name for x in entries)]
+    if missing:
+        raise SystemExit("措置法通達が見つかりません: " + "、".join(missing))
+    return entries, rest
+
+
 # ---- 出力 ----
 
 KIHON_URL = BASE + KIHON_INDEX
@@ -271,6 +314,24 @@ def render_kihon_md(entries):
             lines += [f"*{e['section']}*", ""]
         lines += [e["content_md"], "", f"出典: [所得税基本通達 {e['no']}]({e['source_url']})", ""]
     lines += ["---", "", f"出典: 国税庁 [法令解釈通達 所得税基本通達]({KIHON_URL})", ""]
+    return "\n".join(lines)
+
+
+def render_sochiho_md(entries):
+    lines = ["# 措置法通達（所得税関係）", ""]
+    hen = group = None
+    for e in entries:
+        if e["hen"] != hen:
+            hen, group = e["hen"], None
+            lines += [f"## {hen}", ""] + ([e["header"], ""] if e["header"] else [])
+        if e["group"] != group:
+            group = e["group"]
+            lines += [f"### {group}", ""]
+        lines += [f"#### {e['term']}", ""]
+        if e["section"]:
+            lines += [f"*{e['section']}*", ""]
+        lines += [e["content_md"], "", f"出典: [{e['hen']} {e['no']}]({e['source_url']})", ""]
+    lines += ["---", "", f"出典: 国税庁 [法令解釈通達]({KOBETSU_URL})", ""]
     return "\n".join(lines)
 
 
@@ -298,7 +359,7 @@ def render_kobetsu_md(entries):
     return "\n".join(lines)
 
 
-def search_items(kihon, kobetsu):
+def search_items(kihon, kobetsu, sochiho):
     """検索ページ用の項目（タブ「通達」）。"""
     items = []
     for i, e in enumerate(kihon, 1):
@@ -307,6 +368,13 @@ def search_items(kihon, kobetsu):
             "term": e["term"], "label": "所基通" + e["no"], "group": e["group"], "section": e["section"],
             "summary": "", "md": e["content_md"], "url": e["source_url"],
             "srcLabel": "所得税基本通達", "srcTitle": f"所得税基本通達 {e['no']}",
+        })
+    for i, e in enumerate(sochiho, 1):
+        items.append({
+            "id": f"ts{i}", "cat": "tsutatsu", "sub": "sochiho", "sub2": [e["sub2"]], "kind": "tsutatsu",
+            "term": e["term"], "label": "措通" + e["no"], "group": e["group"], "section": e["section"],
+            "summary": "", "md": e["content_md"], "url": e["source_url"],
+            "srcLabel": "措置法通達", "srcTitle": f"{e['hen']} {e['no']}",
         })
     for i, e in enumerate(kobetsu, 1):
         issued = ISSUED.search(e["header"])
