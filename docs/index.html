@@ -295,7 +295,9 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
   var ALLCATS = [ZEIRITSU].concat(CATS);
   var TOP_IDS = ["kiji", "tsutatsu"];
   var DICT = { id: "dict", name: "辞書", color: "dict",
-    subtabs: ALLCATS.map(function (c) { return { id: "d-" + c.id, name: c.name, children: [] }; }) };
+    // 国税庁の記事・通達は上のタブにあるので、辞書タブの下のタブには出さない（項目は「全体」に含める）
+    subtabs: ALLCATS.filter(function (c) { return TOP_IDS.indexOf(c.id) < 0; })
+      .map(function (c) { return { id: "d-" + c.id, name: c.name, children: [] }; }) };
   var TABS = [DICT].concat(CATS.filter(function (c) { return TOP_IDS.indexOf(c.id) >= 0; }));
   var CAT = {};
   [DICT].concat(ALLCATS).forEach(function (c) { CAT[c.id] = c; });
