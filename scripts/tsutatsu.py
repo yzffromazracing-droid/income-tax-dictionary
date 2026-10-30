@@ -28,6 +28,20 @@ SOCHIHO = [
     ("租税特別措置法（株式等に係る譲渡所得等関係）の取扱いについて", "so-kabu", "株式等に係る譲渡所得等関係"),
     ("租税特別措置法（山林所得・譲渡所得関係）の取扱いについて", "so-joto", "山林所得・譲渡所得関係"),
 ]
+# 基本通達の下の所得区分のタブ（id・名前・条）。条は各項目の「法第○条…関係」で判定する
+KIHON_KUBUN = [
+    ("tk-rishi", "利子所得", [23]),
+    ("tk-haito", "配当所得", [24]),
+    ("tk-fudosan", "不動産所得", [26]),
+    ("tk-jigyo", "事業所得", [27]),
+    ("tk-kyuyo", "給与所得", [28]),
+    ("tk-taishoku", "退職所得", [30, 31]),
+    ("tk-sanrin", "山林所得", [32]),
+    # 法第38条（譲渡所得の取得費）・第58条（交換の特例）・第59条（贈与等の特例）も譲渡所得に含める
+    ("tk-joto", "譲渡所得", [33, 38, 58, 59]),
+    ("tk-ichiji", "一時所得", [34]),
+    ("tk-zatsu", "雑所得", [35]),
+]
 SPLIT_PAGES = 5  # これを超えるページ数の個別通達はページごとに分ける
 MAX_PAGES = 400
 
@@ -362,9 +376,12 @@ def render_kobetsu_md(entries):
 def search_items(kihon, kobetsu, sochiho):
     """検索ページ用の項目（タブ「通達」）。"""
     items = []
+    kubun = {a: kid for kid, _, arts in KIHON_KUBUN for a in arts}
     for i, e in enumerate(kihon, 1):
+        art = re.match(r"法第(\d+)条(?!の)", e["group"])
+        kid = kubun.get(int(art.group(1))) if art else None
         items.append({
-            "id": f"tk{i}", "cat": "tsutatsu", "sub": "kihon", "kind": "tsutatsu",
+            "id": f"tk{i}", "cat": "tsutatsu", "sub": "kihon", "sub2": [kid] if kid else [], "kind": "tsutatsu",
             "term": e["term"], "label": "所基通" + e["no"], "group": e["group"], "section": e["section"],
             "summary": "", "md": e["content_md"], "url": e["source_url"],
             "srcLabel": "所得税基本通達", "srcTitle": f"所得税基本通達 {e['no']}",
