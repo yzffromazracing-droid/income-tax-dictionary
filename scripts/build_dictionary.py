@@ -61,7 +61,7 @@ KIJI_TAB = {
 }
 TSUTATSU_TAB = {
     "id": "tsutatsu", "name": "通達", "color": "tsutatsu",
-    "subtabs": [{"id": "kihon", "name": "基本通達"}, {"id": "kobetsu", "name": "個別通達"},
+    "subtabs": [{"id": "kihon", "name": "基本通達", "children": []}, {"id": "kobetsu", "name": "個別通達"},
                 {"id": "sochiho", "name": "措置法通達", "children": []}],
 }
 
@@ -782,6 +782,7 @@ def main():
     kihon = tsutatsu.build_kihon(args.refresh)
     kobetsu = tsutatsu.build_kobetsu(args.refresh)
     sochiho, kobetsu = tsutatsu.build_sochiho(kobetsu, args.refresh)
+    TSUTATSU_TAB["subtabs"][0]["children"] = [{"id": kid, "name": name} for kid, name, _ in tsutatsu.KIHON_KUBUN]
     TSUTATSU_TAB["subtabs"][2]["children"] = [{"id": sid, "name": label} for _, sid, label in tsutatsu.SOCHIHO]
     yomi_pairs = load_yomi()
     table = dict(yomi_pairs)
