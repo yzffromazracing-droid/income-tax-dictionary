@@ -960,7 +960,7 @@ footer.wrap { padding-block: 0 32px; color: var(--muted); font-size: 12px; }
       h += examplesHtml(it);
       h += '<div class="body">' + mdToHtml(it.md) + "</div>";
       if (it.relatedTsutatsu && it.relatedTsutatsu.length) {
-        h += '<div class="body"><h3>関連する通達（所得税基本通達）</h3><ul>' + it.relatedTsutatsu.map(function (t) {
+        h += '<div class="body"><h3>' + esc(it.relatedLabel || "関連する通達（所得税基本通達）") + "</h3><ul>" + it.relatedTsutatsu.map(function (t) {
           return '<li><a href="#' + t.id + '" data-jump="' + t.id + '">' + esc(t.term) + "</a></li>";
         }).join("") + "</ul></div>";
       }

@@ -291,6 +291,131 @@
   - 消費税率の引上げの際に、低所得者に配慮して都道府県・市区町村から支払われる一定の給付金（租税特別措置法第41条の8）（[No.2011](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2011.htm)）
 - **根拠法令**: 措法41の8、措規19の2
 
+<a id="no1535"></a>
+
+## NISA制度
+
+- **読み**: にーさせいど
+- **要旨**: 令和6年以降のNISAでは、18歳以上（口座開設の年の1月1日現在）の居住者等が、非課税口座に係るつみたて投資枠（特定累積投資勘定）および成長投資枠(特定非課税管理勘定）で取得した上場株式等について、その配当等やその上場株式等を売却したことにより生じた譲渡益が、非課税となります。年間投資上限額は、つみたて投資枠が120万円、成長投資枠が240万円です。また、非課税保有限度額は1,800万円（内数として成長投資枠のみの上限が1,200万円）です。
+- **具体例**:
+  - 令和6年以降のNISA：つみたて投資枠・成長投資枠で取得した上場株式等の配当等と譲渡益（18歳以上の居住者等）（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - 年間投資上限額：つみたて投資枠120万円、成長投資枠240万円（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - 非課税保有限度額：1,800万円（うち成長投資枠は1,200万円まで）（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - 令和5年までの一般NISA（年120万円、最長5年間非課税）（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - 令和5年までのつみたてNISA（一定の投資信託、年40万円、最長20年間非課税）（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - ジュニアNISA（18歳未満、平成28年〜令和5年、年80万円、最長5年間非課税）（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - 令和5年までのNISAで投資した商品は、令和6年以降のNISAの外枠で引き続き非課税（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+- **当たらない例**:
+  - 上場株式等の発行者から直接交付される配当等（株式数比例配分方式でないもの） → 課税（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+  - 非課税口座で取得した上場株式等の売却損 → ないものとみなされ、損益通算・繰越控除はできない（[No.1535](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)）
+
+<details><summary>詳細（タックスアンサー本文）</summary>
+
+#### 概要
+
+##### NISAの概要
+
+（1）　令和6年以降のNISA
+
+令和6年以降のNISAでは、18歳以上（口座開設の年の1月1日現在）の居住者等が、非課税口座に係るつみたて投資枠（特定累積投資勘定）および成長投資枠(特定非課税管理勘定）で取得した上場株式等について、その配当等やその上場株式等を売却したことにより生じた譲渡益が、非課税となります。年間投資上限額は、つみたて投資枠が120万円、成長投資枠が240万円です。また、非課税保有限度額は1,800万円（内数として成長投資枠のみの上限が1,200万円）です。
+
+（注1）　非課税とされる配当等は非課税口座を開設している金融商品取引業者等を経由して交付されるもの（株式数比例配分方式を選択したもの）に限られていますので、上場株式等の発行者から直接交付されるものは課税扱いとなります（令和5年までのNISAおよびジュニアNISAにおいても同様です。）。
+
+（注2）　非課税口座で取得した上場株式等を売却したことにより生じた損失はないものとみなされます。したがって、その上場株式等を売却したことにより生じた損失について、特定口座や一般口座で保有する上場株式等の配当等やその上場株式等を売却したことにより生じた譲渡益との損益通算や、繰越控除をすることはできません（令和5年までのNISAおよびジュニアNISAにおいても同様です。）。
+
+［図：イメージ図］
+
+［図：イメージ図］
+
+（2）　令和5年までのNISA
+
+イ　一般NISA
+
+一般NISAは、18歳以上（口座開設の年の1月1日現在）の居住者等を対象として、平成26年から令和5年までの間に、非課税口座で取得した上場株式等について、その配当等やその上場株式等を売却したことにより生じた譲渡益が、非課税管理勘定が設けられた日の属する年の1月1日から最長5年間非課税とされる制度です（年間投資額は120万円。）。
+
+ロ　つみたてNISA
+
+つみたてNISAは、18歳以上（口座開設の年の1月1日現在）の居住者等を対象として、平成30年から令和5年までの間に、非課税口座で取得した一定の投資信託について、その収益の分配やその投資信託を売却したことにより生じた譲渡益が、累積投資勘定が設けられた日の属する年の1月1日から最長20年間非課税とされる制度です（年間投資額は40万円。）。
+
+（注）令和5年までのNISAにおいて投資した商品は、令和6年以降のNISAの外枠で、引き続き非課税の対象となります。
+
+##### ジュニアNISAの概要
+
+ジュニアNISAは、18歳未満（口座開設の年の1月1日現在）またはその年に出生した居住者等を対象として、平成28年から令和5年までの間に、未成年者口座で取得した上場株式等について、その配当等やその上場株式等を売却したことにより生じた譲渡益が、非課税管理勘定が設けられた日の属する年の1月1日から最長5年間非課税とされる制度です（年間投資額は80万円）。
+
+各NISA制度に関する各種情報については、[NISAに関する情報](https://www.nta.go.jp/users/gensen/nisa/index.htm)をご覧ください。
+
+</details>
+
+### 関連する通達（措置法通達）
+
+- [37の14-1 非課税口座内上場株式等に係る譲渡所得等の非課税](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-2 受入期間内に取得した者から相続等により取得した場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-3 非課税口座内上場株式等に係る譲渡損失](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-4 最終の気配相場の価格](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-5 2以上の市場に価格が存する場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-5の2 非課税期間終了時における非課税口座内上場株式等の移管](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-6 購入の範囲](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-7 払込みの範囲](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-8 取得対価の額](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-9 非課税口座内上場株式等の取得に要した費用等の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-10 非課税管理勘定等に受入れ可能な上場株式等の取得対価の額の合計額の判定](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-11 外貨で表示されている上場株式等に係る取得の対価の額等の邦貨換算](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-12 他年分非課税管理勘定からの移管の範囲](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-12の2 他年分非課税管理勘定が設けられた日の属する年の1月1日から5年を経過する日以前に移管される上場株式等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-13 一株（口）に満たない端数の処理](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-13の2 削除](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14 対象非課税口座内上場株式等の購入の代価の額の総額の計算](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の2 特定課税未成年者口座の開設及び廃止](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の3 居住の用に供している家屋](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の4 医療費の範囲等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の5 措置法令第25条の13第33項に規定する投資信託の終了による譲渡があった場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の6 非課税口座に受け入れられない併合により取得した特定累積投資上場株式等以外の株式等の取得価額等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の7 遡及課税が行われる契約不履行等事由の範囲](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の8 契約不履行等事由が生じた場合の課税対象となる非課税口座内上場株式等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の9 契約不履行等事由が生じた場合の課税対象となる非課税口座内上場株式等の譲渡による譲渡所得等の金額の計算](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の10 契約不履行等事由が生じた場合の課税対象となる非課税口座内上場株式等に係る譲渡所得等の申告不要の適用を受けた場合の効果](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-14の11 契約不履行等事由が生じた場合の課税対象となる非課税口座内上場株式等に係る譲渡所得等の金額を申告した場合の効果](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-15 確認書類の範囲](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-16 郵便等により提示された確認書類によって氏名等を確認する場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-17 特定の営業所の長が提供事項を取りまとめて提供する場合の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-18 削除](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-19 郵便等により提出された金融商品取引業者等変更届出書等の提出日の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-20 重ねて設けられた非課税管理勘定等で行われた取引の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-21 重ねて設けられた非課税管理勘定等の判定](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-22 継続適用期間中に非課税管理勘定等に受け入れることができない上場株式等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-23 継続適用届出書の提出をすることができない者](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-24 継続適用届出書提出者が非課税口座廃止届出書を提出した場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14-25 株式等に係る譲渡所得等の課税の特例に関する取扱い等の準用](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14/01.htm)
+- [37の14の2-1 未成年者口座内上場株式等に係る譲渡所得等の非課税](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-2 未成年者口座内上場株式等に係る譲渡損失](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-3 取得対価の額等の合計額の判定](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-3の2 未成年者非課税管理勘定が設けられた日の属する年の1月1日から5年を経過する日以前に移管される上場株式等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-4 外貨で表示されている上場株式等に係る取得の対価の額等の邦貨換算](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-4の2 非課税期間終了時における未成年者口座内上場株式等の移管](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-5 課税未成年者口座の開設及び廃止](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-6 特定口座である課税未成年者口座とそれ以外の特定口座を重複して開設している場合の損益の通算](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-7 削除](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-8 削除](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-9 措置法令第25条の13の8第10項各号に掲げる譲渡があった場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-10 基準年前に出国する場合の課税未成年者口座の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-11 未成年者口座に受け入れられない合併等により取得した上場株式等以外の株式等の取得価額等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-12 合併等により取得した上場株式等で未成年者口座又は課税未成年者口座内の上場株式等を基因とするものの受入れ](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-13 遡及課税が行われる契約不履行等事由の範囲](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-14 契約不履行等事由が生じた場合の課税対象となる未成年者口座内上場株式等](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-15 契約不履行等事由が生じた場合の課税対象となる未成年者口座内上場株式等の譲渡による譲渡所得等の金額の計算](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-16 削除](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-17 削除](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-18 郵便等により提示された確認書類によって氏名等を確認する場合](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-19 郵便等により提出された未成年者口座廃止届出書の提出日の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-20 重ねて開設された未成年者口座で行われた取引の取扱い](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-21 重ねて開設された未成年者口座の判定](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+- [37の14の2-22 株式等に係る譲渡所得等の課税の特例に関する取扱い等の準用](https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/sochiho/020624/sanrin/1273/37_14_2/01.htm)
+
+- **根拠法令等**: 措法9の8、9の9、37の14、37の14の2等
+- **基準**: 令和8年4月1日現在法令等
+- **タックスアンサー**: [No.1535 NISA制度](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm)
+
 ---
 
 **根拠法令等**: 所法9、10、その他表に掲載

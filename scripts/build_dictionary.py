@@ -48,6 +48,7 @@ NENMATSU_POINTS = DATA / "nenmatsu_points.json"
 NENMATSU_EXAMPLES = DATA / "nenmatsu_examples.json"
 ZEIGAKUHYO = DATA / "zeigakuhyo.json"
 ZEIRITSU = DATA / "zeiritsu.json"
+NISA_EXAMPLES = DATA / "nisa_examples.json"
 CAT_COLORS = {"hikazei": "hikazei", "shotoku-kubun": "kubun", "aoiro": "aoiro",
               "shotoku-kojo": "shotoku", "nenmatsu": "nenmatsu", "zeigaku-kojo": "zeigaku", "tsutatsu": "tsutatsu"}
 KIJI_TAB = {
@@ -77,7 +78,12 @@ CATEGORIES = [
             {"id": "hk-kyuyo", "name": "給与所得・公的年金関係", "group": "給与所得・公的年金関係", "pages": []},
             {"id": "hk-joto", "name": "譲渡（山林）所得関係", "group": "譲渡(山林)所得関係", "pages": []},
             {"id": "hk-sonota", "name": "その他", "group": "その他", "pages": []},
+            # 表の行のうち用語に「NISA」があるものと、No.1535（NISA制度）
+            {"id": "hk-nisa", "name": "NISA", "match": "NISA", "pages": ["1535"]},
         ],
+        # 表とは別に収録するタックスアンサー（下のタブ「NISA」）と、関連する措置法通達（通達番号の頭）
+        "extra_pages": ["1535"],
+        "related_sochiho": ("37の14-", "37の14の2-"),
     },
     {
         "id": "shotoku-kubun",
@@ -548,7 +554,7 @@ def _example_lines(exs, indent="", tax_heading="課税方法"):
     return lines
 
 
-def render_md(cat, overview, entries):
+def render_md(cat, overview, entries, extra=()):
     source = (f"出典: 国税庁タックスアンサー [{overview['title']}]({overview['source_url']})"
               + (f"（{overview['as_of']}）" if overview["as_of"] else ""))
     # 本文の「### 概要」はページの「## 概要」と重なるので外す
@@ -602,6 +608,20 @@ def render_md(cat, overview, entries):
             if e["as_of"]:
                 lines.append(f"- **基準**: {e['as_of']}")
             lines += [f"- **タックスアンサー**: [{e['title']}]({e['source_url']})", ""]
+    for e in extra:  # 表とは別に収録したページ（非課税の NISA）
+        lines += [f'<a id="no{e["code"]}"></a>', "", f"## {e['term']}", "", f"- **読み**: {e['yomi']}"]
+        if e["summary"]:
+            lines.append(f"- **要旨**: {e['summary']}")
+        lines += _example_lines(e.get("examples", []))
+        lines += ["", "<details><summary>詳細（タックスアンサー本文）</summary>", "",
+                  demote(e["content_md"]), "", "</details>", ""]
+        if e.get("related_tsutatsu"):
+            lines += [f"### {e['related_label']}", ""] + [f"- [{t['term']}]({t['url']})" for t in e["related_tsutatsu"]] + [""]
+        if e["legal_basis"]:
+            lines.append(f"- **根拠法令等**: {e['legal_basis']}")
+        if e["as_of"]:
+            lines.append(f"- **基準**: {e['as_of']}")
+        lines += [f"- **タックスアンサー**: [{e['title']}]({e['source_url']})", ""]
     if overview.get("related_tsutatsu"):
         lines += ["## 関連する通達", ""] + [f"- [所得税基本通達 {t['term']}]({t['url']})" for t in overview["related_tsutatsu"]] + [""]
     lines += ["---", ""]
@@ -635,6 +655,8 @@ def search_items(result):
         [c["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) for c in t.get("children", [])]
     assert len(sub_ids) == len(set(sub_ids)), "下のタブの id が重複しています"
     sub_of_group = {t["group"]: t["id"] for cat in CATEGORIES for t in cat.get("subtabs", []) if "group" in t}
+    # 用語に特定の語がある非課税の行は、その語の下のタブ（NISA）にも入れる
+    sub_of_match = [(t["match"], t["id"]) for cat in CATEGORIES for t in cat.get("subtabs", []) if "match" in t]
 
     def page_item(cat_id, page, kind):
         return {
@@ -644,15 +666,19 @@ def search_items(result):
             "summary": page["summary"], "basis": page["legal_basis"],
             "asOf": page["as_of"], "url": page["source_url"], "md": page["content_md"],
             "examples": page.get("examples", []), "points": page.get("points", []),
-            "relatedTsutatsu": page.get("related_tsutatsu", []),
+            "relatedTsutatsu": page.get("related_tsutatsu", []), "relatedLabel": page.get("related_label", ""),
         }
 
     for cat in result["categories"]:
         items.append(page_item(cat["id"], cat["overview"], "overview"))
+        # 表とは別に収録したページ（非課税の NISA）は、あらましの次に並べる
+        for e in cat.get("pages", []):
+            items.append(page_item(cat["id"], e, "entry"))
         for i, e in enumerate(cat["entries"], 1):
             if cat["id"] == "hikazei":
                 items.append({
-                    "id": f"hk{i}", "cat": cat["id"], "sub": sub_of_group[e["group"]], "kind": "hikazei",
+                    "id": f"hk{i}", "cat": cat["id"], "sub": sub_of_group[e["group"]],
+                    "subs": [sub_of_group[e["group"]]] + [sid for w, sid in sub_of_match if w in e["term"]], "kind": "hikazei",
                     "term": e["term"], "yomi": e["yomi"], "alias": e["alias"], "group": e["group"],
                     "basis": e["legal_basis"], "asOf": cat["overview"]["as_of"],
                     "url": e["source_url"], "summary": "",
@@ -789,9 +815,24 @@ def main():
     maxlen = max(len(s) for s in table)
     for cat in CATEGORIES:
         overview, soup = parse_page(cat["overview"], fetch(cat["overview"], args.refresh))
+        extra = []
         if cat["id"] == "hikazei":
             entries = extract_hikazei(soup, args.refresh)
             add_hikazei_examples(entries, overview, kihon)
+            extra = [parse_page(c, fetch(c, args.refresh))[0] for c in cat["extra_pages"]]
+            for page in extra:
+                # 概要の最初が「（1）令和6年以降のNISA」のような見出しだけのときは、次の段落を要旨にする
+                if len(page["summary"]) < 30:
+                    paras = [x for x in page["content_md"].split("\n\n") if not x.startswith(("#", "|", "-", "［"))]
+                    page["summary"] = next((x for x in paras if len(x) >= 30), page["summary"])
+            add_yomi(extra, table, maxlen)
+            add_examples(extra, {p["code"]: p for p in extra}, kihon, NISA_EXAMPLES)
+            prefixes = cat["related_sochiho"]
+            for page in extra:
+                page["related_tsutatsu"] = [
+                    {"id": f"ts{i}", "term": e["term"], "url": e["source_url"]}
+                    for i, e in enumerate(sochiho, 1) if e["no"].startswith(prefixes)]
+                page["related_label"] = "関連する通達（措置法通達）"
         else:
             entries = [parse_page(c, fetch(c, args.refresh))[0] for c in cat["pages"]]
         add_yomi([overview] + entries, table, maxlen)
@@ -816,8 +857,9 @@ def main():
             "name": cat["name"],
             "overview": overview,
             "entries": entries,
+            "pages": extra,
         })
-        (DOCS / f"{cat['id']}.md").write_text(render_md(cat, overview, entries), encoding="utf-8")
+        (DOCS / f"{cat['id']}.md").write_text(render_md(cat, overview, entries, extra), encoding="utf-8")
         print(f"{cat['name']}: {len(entries)} 項目", file=sys.stderr)
 
     import zeigakuhyo
