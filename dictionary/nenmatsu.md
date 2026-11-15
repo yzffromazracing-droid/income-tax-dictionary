@@ -476,7 +476,7 @@
 
 [調書方式に対応した金融機関](https://www.nta.go.jp/taxes/shiraberu/shinkoku/jutaku/ichiran.htm)からの借入れについて住宅ローン控除の適用を受けるためには、借入先の金融機関に対し、マイナンバー等（※）を記載した「[住宅ローン控除の適用申請書](https://www.nta.go.jp/taxes/shiraberu/shinkoku/jutaku/pdf/03.pdf)」（金融機関により様式は異なります。）を提出します
 
-※　ご利用の金融機関により、マイナンバーに代えてe-Taxの利用者識別番号を記載していただくことになります。対象となる金融機関については、[「調書方式」に対応した金融機関の一覧](https://www.nta.go.jp/taxes/shiraberu/shinkoku/jutaku/ichiran.htm)をご参照ください。e-Taxの利用者識別番号をお持ちでない方は、[e-Taxホームページ「ご利用の流れ」](https://www.e-tax.nta.go.jp/start/index.htm)の「1　利用者識別番号の取得」をご確認ください。
+※　ご利用の金融機関により、マイナンバーに代えてe-Taxの利用者識別番号を記載していただくことになります。対象となる金融機関については、[「調書方式」に対応した金融機関の一覧](https://www.nta.go.jp/taxes/shiraberu/shinkoku/jutaku/ichiran.htm)をご参照ください。e-Taxの利用者識別番号をお持ちでない方は、[e-Taxホームページ「ご利用の流れ」](https://www.e-tax.nta.go.jp/start/index.html)の「1　利用者識別番号の取得」をご確認ください。
 
 (2)　事前準備
 
