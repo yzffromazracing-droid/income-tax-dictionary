@@ -1,0 +1,62 @@
+name: 所得税豆知識 翌日の投稿案
+
+# 毎日 17:47（日本時間）に翌日分の投稿案（本文と図）を作り、PR にする。
+# PR を確認してマージしたものだけが、翌日 10:57 に Facebook に投稿される（fb-post.yml）。
+# PR を作るには Settings → Actions → General の「Allow GitHub Actions to create and approve pull requests」を有効にする。
+on:
+  schedule:
+    - cron: "47 8 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "投稿日 YYYY-MM-DD（空なら明日）"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SVG renderer and Japanese fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends librsvg2-bin fonts-noto-cjk
+      - name: Make the post
+        id: make
+        run: |
+          DATE="${{ inputs.date }}"
+          [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date -d tomorrow +%F)
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          if [ -f "posts/$DATE.json" ]; then echo "$DATE の投稿案はもう main にあります"; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          python3 scripts/fb_post.py prepare --date="$DATE"
+      - name: Open a pull request
+        if: steps.make.outputs.skip != '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DATE: ${{ steps.make.outputs.date }}
+        run: |
+          BR="fb/$DATE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BR"
+          git add "posts/$DATE.json" "posts/$DATE.png" "posts/$DATE.md"
+          git commit -q -m "所得税豆知識：$DATE の投稿案"
+          git push -q -f -u origin "$BR"
+          {
+            echo "$DATE 10:57 に投稿する「所得税豆知識」の案です。内容がよければ **10:50 までにマージ** してください（マージしないと投稿されません）。"
+            echo "直したいときは、このブランチの posts/$DATE.json の message（本文）を直してからマージしてください。"
+            echo
+            echo "![図](https://github.com/${{ github.repository }}/blob/$BR/posts/$DATE.png?raw=true)"
+            echo
+            echo '```text'
+            python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['message'])" "posts/$DATE.json"
+            echo '```'
+          } > "$RUNNER_TEMP/body.md"
+          gh pr view "$BR" >/dev/null 2>&1 || gh pr create --base main --head "$BR" --title "所得税豆知識（$DATE）の投稿案" --body-file "$RUNNER_TEMP/body.md"

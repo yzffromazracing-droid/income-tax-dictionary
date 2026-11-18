@@ -1,0 +1,34 @@
+name: 所得税豆知識 Facebook 投稿
+
+# 毎日 10:57（日本時間。毎時0分は混雑で遅れやすいのでずらしている）に、
+# main にある posts/今日の日付.json（前日に確認してマージした投稿案）を Facebook ページに投稿する。
+# 投稿案がない日は投稿しない。消費税豆知識（consumption-tax-dictionary）と同じページ・同じトークンを使う。
+on:
+  schedule:
+    - cron: "57 1 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "投稿日 YYYY-MM-DD（空なら今日）"
+        required: false
+      dry_run:
+        description: "投稿せずに本文を表示するだけ"
+        type: boolean
+        default: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Post to Facebook page
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          DATE="${{ inputs.date }}"
+          [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date +%F)
+          python3 scripts/fb_post.py publish --date="$DATE" ${{ inputs.dry_run && '--dry-run' || '' }}
