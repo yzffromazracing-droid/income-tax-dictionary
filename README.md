@@ -62,3 +62,21 @@ python3 scripts/zeigakuhyo.py --refresh
 ```
 
 収録するページは `scripts/build_dictionary.py` の `CATEGORIES` で変更できます。
+
+## Facebook への毎日投稿（所得税豆知識）
+
+辞書の項目を1日1件、図（1080×1080）付きで Facebook ページに「所得税豆知識」として投稿します。消費税区分辞書の「消費税豆知識」（毎日 8:47）と同じページ・同じトークンを使います。投稿の前日に内容を確認してから出す流れです。
+
+1. 毎日 17:47（日本時間）に `.github/workflows/fb-prepare.yml` が翌日分の投稿案（`posts/日付.json`・`.png`・`.md`）を作り、「所得税豆知識（日付）の投稿案」という PR にします。
+2. PR の本文と図を確認し、よければ **投稿日の 10:50 までにマージ** します。直したいときは、そのブランチの `posts/日付.json` の `message` を直してからマージします。
+3. 毎日 10:57 に `.github/workflows/fb-post.yml` が、main にある当日の投稿案を投稿します。マージされていない日は投稿しません。
+
+投稿する項目は `scripts/fb_post.py` が日付から決めます。[data/fb_topics.json](data/fb_topics.json) の `calendar` にある月（年末調整・確定申告・予定納税・青色申告承認申請・納期の特例などの行事の1か月前）は奇数日に時期のテーマを、それ以外の日は辞書の項目（具体例・要点・税率のあるもの）を順番に出します。時期のテーマの文言は、出典（タックスアンサーまたは国税庁の手続のページ）にあるかを照合してから使います。
+
+準備（最初に1回）：
+
+- Settings → Secrets and variables → Actions の Secrets に `FB_PAGE_ID` と `FB_PAGE_ACCESS_TOKEN`（消費税豆知識と同じもの）を登録する。
+- Settings → Actions → General の「Workflow permissions」で「Allow GitHub Actions to create and approve pull requests」を有効にする（投稿案の PR を作るため）。
+- Actions タブの「所得税豆知識 翌日の投稿案」→「Run workflow」で投稿案の PR を作り、「所得税豆知識 Facebook 投稿」を `dry_run` 付きで実行して本文を確かめる。
+
+手元での確認：`python3 scripts/fb_post.py check --online`（1年分を作れるか・出典の照合）、`python3 scripts/fb_post.py show --date=2026-12-01`（本文）、`python3 scripts/fb_post.py prepare --date=2026-12-01`（図も作る。`rsvg-convert` がなければ Playwright の Chromium を使う）。
