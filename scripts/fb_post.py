@@ -401,7 +401,7 @@ def main():
     ap.add_argument("command", choices=["prepare", "publish", "check", "show"])
     ap.add_argument("--date", help="YYYY-MM-DD（日本時間。既定は prepare が明日、ほかは今日）")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--deadline", type=int, help="publish：投稿日のこの時（日本時間）を過ぎたら投稿しない")
+    ap.add_argument("--deadline", type=int, help="publish：投稿日のこの時（日本時間）を過ぎたら投稿しない（24 ならその日のうち）")
     ap.add_argument("--online", action="store_true", help="check で URL の出典も取得して照合する")
     args = ap.parse_args()
     today = datetime.datetime.now(JST).date()

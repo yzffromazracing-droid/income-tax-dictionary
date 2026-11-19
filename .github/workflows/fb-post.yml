@@ -3,7 +3,7 @@ name: 所得税豆知識 Facebook 投稿
 # 毎日 10:57（日本時間。毎時0分は混雑で遅れやすいのでずらしている）に、
 # main にある posts/今日の日付.json（前日に確認してマージした投稿案）を Facebook ページに投稿する。
 # GitHub の時刻実行は遅れたり飛ばされたりするので、11:37・12:17 にも予備で動かす。
-# 投稿すると posts/日付.done.json を main に残し、2回目以降は投稿しない。時刻実行は14時を過ぎたら投稿しない。
+# 投稿すると posts/日付.done.json を main に残し、2回目以降は投稿しない。時刻実行が遅れても、その日のうちなら投稿する（日付が変わったら投稿しない）。
 # 投稿案がない日は投稿しない。消費税豆知識（consumption-tax-dictionary）と同じページ・同じトークンを使う。
 on:
   schedule:
@@ -46,7 +46,7 @@ jobs:
           [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date +%F)
           git pull -q --ff-only origin main
           DEADLINE=""
-          [ "${{ github.event_name }}" = "schedule" ] && DEADLINE="--deadline=14"
+          [ "${{ github.event_name }}" = "schedule" ] && DEADLINE="--deadline=24"
           python3 scripts/fb_post.py publish --date="$DATE" $DEADLINE ${{ inputs.dry_run && '--dry-run' || '' }}
           if [ -f "posts/$DATE.done.json" ] && [ -n "$(git status --porcelain "posts/$DATE.done.json")" ]; then
             git config user.name "github-actions[bot]"
