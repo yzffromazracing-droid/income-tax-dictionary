@@ -341,10 +341,19 @@ def resolve_token(page_id, token):
     return token
 
 
-def publish(date_str, dry_run=False):
+def publish(date_str, dry_run=False, deadline=None):
     meta_path = POSTS / f"{date_str}.json"
+    done_path = POSTS / f"{date_str}.done.json"
     if not meta_path.exists():
         print(f"{meta_path.relative_to(ROOT)} がない（前日の投稿案が確認・マージされていない）ため投稿しません。")
+        return
+    if done_path.exists():
+        # 投稿済み（または見送り）の印。GitHub の時刻実行が遅れて重なっても2回投稿しない。
+        print(f"{done_path.relative_to(ROOT)} があるため投稿しません：{done_path.read_text(encoding='utf-8').strip()}")
+        return
+    now = datetime.datetime.now(JST)
+    if deadline is not None and not dry_run and (now.date().isoformat() != date_str or now.hour >= deadline):
+        print(f"いまは {now:%Y-%m-%d %H:%M}（日本時間）で、{date_str} の {deadline} 時を過ぎたため投稿しません（時刻実行の遅れ）。")
         return
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
     png = POSTS / meta["image"]
@@ -364,7 +373,10 @@ def publish(date_str, dry_run=False):
                      ctype="application/x-www-form-urlencoded")
     if "error" in res:
         raise SystemExit("Facebook API error: " + res["error"].get("message", json.dumps(res)))
-    print(f"posted: {res.get('post_id') or res.get('id')} ({meta['term']})")
+    post_id = res.get('post_id') or res.get('id')
+    print(f"posted: {post_id} ({meta['term']})")
+    done_path.write_text(json.dumps({"posted_at": now.isoformat(timespec="seconds"), "post_id": post_id},
+                                    ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def prepare(date, items, calendar, topics, site_url):
@@ -389,13 +401,14 @@ def main():
     ap.add_argument("command", choices=["prepare", "publish", "check", "show"])
     ap.add_argument("--date", help="YYYY-MM-DD（日本時間。既定は prepare が明日、ほかは今日）")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--deadline", type=int, help="publish：投稿日のこの時（日本時間）を過ぎたら投稿しない")
     ap.add_argument("--online", action="store_true", help="check で URL の出典も取得して照合する")
     args = ap.parse_args()
     today = datetime.datetime.now(JST).date()
     date = datetime.date.fromisoformat(args.date) if args.date else (
         today + datetime.timedelta(days=1) if args.command == "prepare" else today)
     if args.command == "publish":
-        publish(date.isoformat(), args.dry_run)
+        publish(date.isoformat(), args.dry_run, args.deadline)
         return
     items = load_items()
     calendar, topics = load_topics(items, online=args.online or args.command == "prepare")
