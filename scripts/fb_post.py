@@ -11,7 +11,6 @@ publish の環境変数:
   FB_PAGE_ID           : 投稿先の Facebook ページ ID
   FB_PAGE_ACCESS_TOKEN : ページアクセストークン（pages_manage_posts 権限）
   FB_GRAPH_VERSION     : Graph API のバージョン（任意。既定 v23.0）
-  SITE_URL             : 投稿に添える辞書の URL（任意。既定は GitHub Pages）
 
 投稿する項目は日付で決まる。data/fb_topics.json の calendar にある月（行事の1か月前）は奇数日に時期のテーマ、
 それ以外の日は辞書の項目を順番に出す。図は SVG を作り、FB_FONT_DIR があれば resvg（GitHub Actions）、なければ rsvg-convert か Chromium で PNG にする。
@@ -142,7 +141,7 @@ def load_topics(items, online=False):
             bullets.append({"text": b["text"], "kind": ""})
         codes = list(dict.fromkeys(b.get("src") or t.get("src") for b in t["bullets"] if b.get("src") or t.get("src")))
         source = t.get("source") or "国税庁タックスアンサー " + "・".join(f"No.{c}" for c in codes)
-        url = t.get("url") or (pages[codes[0]]["source_url"] if codes and codes[0] in pages else SITE_URL)
+        url = t.get("url") or (pages[codes[0]]["source_url"] if codes and codes[0] in pages else "")
         link_id = f"ta-{pages[codes[0]]['folder']}{codes[0]}" if codes and codes[0] in pages else ""
         topics[tid] = {"id": link_id, "term": t["term"], "category": t["category"], "summary": "",
                        "bullets": bullets, "source": source, "url": url, "seasonal": True}
@@ -187,9 +186,7 @@ def build_message(it, site_url=SITE_URL):
         lines += [it["summary"], ""]
     lines.append("■ ポイント")
     lines += [f"・{b['text']}" for b in it["bullets"]]
-    lines += ["", f"出典：{it['source']}", it["url"]]
-    if it["id"]:
-        lines += ["", "詳しくは「所得税区分辞書」で：", site_url + "#" + it["id"]]
+    lines += ["", f"出典：{it['source']}"] + ([it["url"]] if it["url"] else [])
     lines += ["", DISCLAIMER, "", f"#所得税豆知識 #所得税 #{NAMES[it['category']]} #税金"]
     return "\n".join(lines)
 
