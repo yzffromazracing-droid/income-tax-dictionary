@@ -82,4 +82,4 @@ python3 scripts/zeigakuhyo.py --refresh
 - Settings → Actions → General の「Workflow permissions」で「Allow GitHub Actions to create and approve pull requests」を有効にする（投稿案の PR を作るため）。
 - Actions タブの「所得税豆知識 翌日の投稿案」→「Run workflow」で投稿案の PR を作り、「所得税豆知識 Facebook 投稿」を `dry_run` 付きで実行して本文を確かめる。
 
-手元での確認：`python3 scripts/fb_post.py check --online`（1年分を作れるか・出典の照合）、`python3 scripts/fb_post.py show --date=2026-12-01`（本文）、`python3 scripts/fb_post.py prepare --date=2026-12-01`（図も作る。`rsvg-convert` がなければ Playwright の Chromium を使う）。
+手元での確認：`python3 scripts/fb_post.py check --online`（1年分を作れるか・出典の照合）、`python3 scripts/fb_post.py show --date=2026-12-01`（本文）、`python3 scripts/fb_post.py prepare --date=2026-12-01`（図も作る。`rsvg-convert` がなければ Playwright の Chromium を使う。GitHub Actions では apt を使わず、PyPI の resvg-py と npm の Noto Sans JP で描く）。

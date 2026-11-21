@@ -27,20 +27,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # 図は resvg（PyPI）と Noto Sans JP（npm の @expo-google-fonts/noto-sans-jp）で描く。
+      # apt の配布サーバーが止まって投稿案が作れないことがあったので、apt は使わない。
+      - name: Cache Japanese fonts
+        uses: actions/cache@v4
+        with:
+          path: ~/fbfonts
+          key: noto-sans-jp-0.4.4
       - name: Install SVG renderer and Japanese fonts
-        # 配布サーバーが止まって待ち続けないよう、1回5分で打ち切り、だめなら1回だけやり直す。
-        timeout-minutes: 12
+        timeout-minutes: 10
         run: |
-          for i in 1 2; do
-            if timeout 300 sudo apt-get update -qq -o Acquire::Retries=3 -o Acquire::http::Timeout=30 \
-              && timeout 300 sudo apt-get install -y -qq --no-install-recommends -o Acquire::Retries=3 -o Acquire::http::Timeout=30 librsvg2-bin fonts-noto-cjk; then
-              exit 0
-            fi
-            echo "インストールに失敗しました（$i 回目）。やり直します。"
-            sudo dpkg --configure -a || true
-            sleep 20
-          done
-          exit 1
+          for i in 1 2 3; do timeout 120 pip install -q resvg-py==0.5.0 && break; [ $i = 3 ] && exit 1; sleep 15; done
+          if [ ! -f ~/fbfonts/NotoSansJP_800ExtraBold.ttf ]; then
+            mkdir -p ~/fbfonts && cd "$RUNNER_TEMP"
+            for i in 1 2 3; do timeout 180 npm pack -q @expo-google-fonts/noto-sans-jp@0.4.4 && break; [ $i = 3 ] && exit 1; sleep 15; done
+            tar xzf expo-google-fonts-noto-sans-jp-0.4.4.tgz -C ~/fbfonts --strip-components=2 \
+              package/400Regular/NotoSansJP_400Regular.ttf package/700Bold/NotoSansJP_700Bold.ttf package/800ExtraBold/NotoSansJP_800ExtraBold.ttf
+          fi
+          ls ~/fbfonts
+          echo "FB_FONT_DIR=$HOME/fbfonts" >> "$GITHUB_ENV"
       - name: Make the post
         id: make
         run: |
