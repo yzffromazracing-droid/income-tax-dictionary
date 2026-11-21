@@ -1,7 +1,8 @@
 name: 所得税豆知識 翌日の投稿案
 
-# 毎日 17:47（日本時間）に翌日分の投稿案（本文と図）を作り、PR にする。
-# PR を確認してマージしたものだけが、翌日 10:57 に Facebook に投稿される（fb-post.yml）。
+# 毎日 17:47（日本時間）に翌日分の投稿案（本文と図）を作り、PR にしてそのまま main にマージする（事前確認なし）。
+# main にある投稿案が、翌日 10:57 に Facebook に投稿される（fb-post.yml）。
+# 投稿をやめるときは posts/日付.done.json を置き、本文を直すときは main の posts/日付.json を直す。
 # PR を作るには Settings → Actions → General の「Allow GitHub Actions to create and approve pull requests」を有効にする。
 on:
   schedule:
@@ -54,16 +55,17 @@ jobs:
           [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date -d '12 hours ago' +%F | xargs -I{} date -d '{} +1 day' +%F)
           echo "date=$DATE" >> "$GITHUB_OUTPUT"
           if [ -f "posts/$DATE.json" ]; then echo "$DATE の投稿案はもう main にあります"; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; fi
-          # 案のブランチがもうあれば作り直さない（PR で直した本文を上書きしないため）。
-          if git ls-remote --exit-code --heads origin "fb/$DATE" >/dev/null; then echo "fb/$DATE はもうあります"; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          # 案のブランチがもうあれば作り直さず、その PR をマージする。
+          if git ls-remote --exit-code --heads origin "fb/$DATE" >/dev/null; then echo "fb/$DATE はもうあります"; echo "existing=1" >> "$GITHUB_OUTPUT"; exit 0; fi
           python3 scripts/fb_post.py prepare --date="$DATE"
-      - name: Open a pull request
+      - name: Open and merge a pull request
         if: steps.make.outputs.skip != '1'
         env:
           GH_TOKEN: ${{ github.token }}
           DATE: ${{ steps.make.outputs.date }}
         run: |
           BR="fb/$DATE"
+          if [ "${{ steps.make.outputs.existing }}" != "1" ]; then
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BR"
@@ -71,13 +73,17 @@ jobs:
           git commit -q -m "所得税豆知識：$DATE の投稿案"
           git push -q -f -u origin "$BR"
           {
-            echo "$DATE 10:57 に投稿する「所得税豆知識」の案です。内容がよければ **10:50 までにマージ** してください（マージしないと投稿されません）。"
-            echo "直したいときは、このブランチの posts/$DATE.json の message（本文）を直してからマージしてください。"
+            echo "$DATE 10:57 に投稿する「所得税豆知識」の案です。事前確認なしで自動でマージします。"
+            echo "投稿をやめるときは main に posts/$DATE.done.json を置き、本文を直すときは main の posts/$DATE.json の message を直してください。"
             echo
-            echo "![図](https://github.com/${{ github.repository }}/blob/$BR/posts/$DATE.png?raw=true)"
+            echo "![図](https://github.com/${{ github.repository }}/blob/main/posts/$DATE.png?raw=true)"
             echo
             echo '```text'
             python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['message'])" "posts/$DATE.json"
             echo '```'
           } > "$RUNNER_TEMP/body.md"
           gh pr view "$BR" >/dev/null 2>&1 || gh pr create --base main --head "$BR" --title "所得税豆知識（$DATE）の投稿案" --body-file "$RUNNER_TEMP/body.md"
+          fi
+          # 事前確認なしでマージする（PR の作成直後はマージできるか判定中のことがあるので数回やり直す）。
+          for i in 1 2 3 4 5 6; do gh pr merge "$BR" --merge --delete-branch && exit 0; sleep 10; done
+          exit 1
