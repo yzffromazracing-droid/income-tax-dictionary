@@ -14,7 +14,7 @@ publish の環境変数:
   SITE_URL             : 投稿に添える辞書の URL（任意。既定は GitHub Pages）
 
 投稿する項目は日付で決まる。data/fb_topics.json の calendar にある月（行事の1か月前）は奇数日に時期のテーマ、
-それ以外の日は辞書の項目を順番に出す。図は SVG を作り、rsvg-convert（なければ Chromium）で PNG にする。
+それ以外の日は辞書の項目を順番に出す。図は SVG を作り、FB_FONT_DIR があれば resvg（GitHub Actions）、なければ rsvg-convert か Chromium で PNG にする。
 """
 
 import argparse
@@ -288,6 +288,15 @@ def build_svg(it):
 
 
 def svg_to_png(svg_path, png_path):
+    font_dir = os.environ.get("FB_FONT_DIR")
+    if font_dir:
+        # GitHub Actions：resvg（pip）と npm から入れた Noto Sans JP で描く（apt を使わない）
+        import resvg_py
+        png = resvg_py.svg_to_bytes(svg_path=str(svg_path), width=1080, height=1080,
+                                    font_dirs=[font_dir], skip_system_fonts=True,
+                                    sans_serif_family="Noto Sans JP")
+        Path(png_path).write_bytes(bytes(png))
+        return
     if shutil.which("rsvg-convert"):
         subprocess.run(["rsvg-convert", "-w", "1080", "-h", "1080", "-o", str(png_path), str(svg_path)], check=True)
         return
