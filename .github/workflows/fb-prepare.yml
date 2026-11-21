@@ -85,5 +85,10 @@ jobs:
           gh pr view "$BR" >/dev/null 2>&1 || gh pr create --base main --head "$BR" --title "所得税豆知識（$DATE）の投稿案" --body-file "$RUNNER_TEMP/body.md"
           fi
           # 事前確認なしでマージする（PR の作成直後はマージできるか判定中のことがあるので数回やり直す）。
-          for i in 1 2 3 4 5 6; do gh pr merge "$BR" --merge --delete-branch && exit 0; sleep 10; done
-          exit 1
+          for i in 1 2 3 4 5 6; do
+            gh pr merge "$BR" --merge && break
+            [ "$(gh pr view "$BR" --json state -q .state)" = "MERGED" ] && break
+            [ "$i" = 6 ] && exit 1
+            sleep 10
+          done
+          git push -q origin --delete "$BR" || true
