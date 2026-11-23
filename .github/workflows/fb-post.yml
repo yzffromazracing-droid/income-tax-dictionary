@@ -46,7 +46,8 @@ jobs:
           [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date +%F)
           # 20261123 のような書き方でも YYYY-MM-DD にそろえる（投稿済みの印のファイル名と合わせるため）。
           DATE=$(date -d "$DATE" +%F) || { echo "日付の書き方が正しくありません：$DATE"; exit 1; }
-          git pull -q --ff-only origin main
+          # 投稿案と投稿済みの印は、いつも main の最新を見る。
+          git fetch -q origin main && git checkout -q FETCH_HEAD -- posts
           DEADLINE=""
           [ "${{ github.event_name }}" = "schedule" ] && DEADLINE="--deadline=24"
           python3 scripts/fb_post.py publish --date="$DATE" $DEADLINE ${{ inputs.dry_run && '--dry-run' || '' }}
