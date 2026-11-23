@@ -44,6 +44,8 @@ jobs:
         run: |
           DATE="${{ inputs.date }}"
           [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date +%F)
+          # 20261123 のような書き方でも YYYY-MM-DD にそろえる（投稿済みの印のファイル名と合わせるため）。
+          DATE=$(date -d "$DATE" +%F) || { echo "日付の書き方が正しくありません：$DATE"; exit 1; }
           git pull -q --ff-only origin main
           DEADLINE=""
           [ "${{ github.event_name }}" = "schedule" ] && DEADLINE="--deadline=24"
@@ -53,5 +55,9 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add "posts/$DATE.done.json"
             git commit -q -m "所得税豆知識：$DATE を投稿済み"
-            for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
+            ok=""
+            for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && ok=1 && break; sleep 5; done
+            # 印を main に残せないと、遅れて来た実行がもう一度投稿してしまうので、失敗として知らせる。
+            [ -n "$ok" ] || { echo "投稿済みの印（posts/$DATE.done.json）を main に残せませんでした"; exit 1; }
+            echo "投稿済みの印を main に残しました：posts/$DATE.done.json"
           fi

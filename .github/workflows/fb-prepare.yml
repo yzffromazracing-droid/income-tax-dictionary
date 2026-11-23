@@ -53,6 +53,7 @@ jobs:
           DATE="${{ inputs.date }}"
           # 12時間前の日付の翌日にする。実行が夜中過ぎまで遅れても、予定どおりの日の案を作る。
           [ -n "$DATE" ] || DATE=$(TZ=Asia/Tokyo date -d '12 hours ago' +%F | xargs -I{} date -d '{} +1 day' +%F)
+          DATE=$(date -d "$DATE" +%F) || { echo "日付の書き方が正しくありません：$DATE"; exit 1; }
           echo "date=$DATE" >> "$GITHUB_OUTPUT"
           if [ -f "posts/$DATE.json" ]; then echo "$DATE の投稿案はもう main にあります"; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; fi
           # 案のブランチがもうあれば作り直さず、その PR をマージする。
