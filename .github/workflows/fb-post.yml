@@ -51,13 +51,19 @@ jobs:
           DEADLINE=""
           [ "${{ github.event_name }}" = "schedule" ] && DEADLINE="--deadline=24"
           python3 scripts/fb_post.py publish --date="$DATE" $DEADLINE ${{ inputs.dry_run && '--dry-run' || '' }}
-          if [ -f "posts/$DATE.done.json" ] && [ -n "$(git status --porcelain "posts/$DATE.done.json")" ]; then
+          # 今回投稿して印ができたとき（main にはまだ印がないとき）だけ、印を main に残す。
+          if [ -f "posts/$DATE.done.json" ] && ! git cat-file -e "FETCH_HEAD:posts/$DATE.done.json" 2>/dev/null; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            # main の最新の上に印だけを足して送る（main が先に進んでいたら取り直して載せ直す）。
+            git checkout -q -B fb-done FETCH_HEAD
             git add "posts/$DATE.done.json"
             git commit -q -m "所得税豆知識：$DATE を投稿済み"
             ok=""
-            for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && ok=1 && break; sleep 5; done
+            for i in 1 2 3; do
+              git push -q origin HEAD:main && ok=1 && break
+              sleep 5; git fetch -q origin main && git rebase -q FETCH_HEAD || true
+            done
             # 印を main に残せないと、遅れて来た実行がもう一度投稿してしまうので、失敗として知らせる。
             [ -n "$ok" ] || { echo "投稿済みの印（posts/$DATE.done.json）を main に残せませんでした"; exit 1; }
             echo "投稿済みの印を main に残しました：posts/$DATE.done.json"
